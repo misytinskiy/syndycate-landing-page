@@ -1,6 +1,11 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --color-primary: rgba(14, 254, 242, 1);
+  --color-secondary: rgba(255, 255, 255, 1);
+  --color-dark: rgba(2, 2, 2, 1);
+  --color-dark-secondary: rgba(10, 10, 10, 1);
+  --color-gray: rgba(125, 125, 125, 1);
 }
 
 @media (prefers-color-scheme: dark) {
