@@ -96,9 +96,9 @@
 }
 
 .bottomRight {
-  position: absolute;
-  bottom: 40px;
-  right: 40px;
+  /* position: absolute; */
+  /* bottom: 40px;
+  right: 40px; */
   text-align: left;
   font-family: var(--font-inter);
   font-size: 20px;
@@ -165,9 +165,9 @@
 }
 
 .scrollDown {
-  position: absolute;
+  /* position: absolute;
   bottom: 40px;
-  left: 50%;
+  left: 50%; */
   transform: translateX(-50%);
 
   z-index: 2;
@@ -254,4 +254,43 @@
     rgb(139, 139, 139) 100%
   );
   z-index: 1;
+}
+
+.footerRow {
+  margin-top: auto; /* всё, что выше, «заполняет» пространство */
+  position: relative; /* база для абсолютного позиционирования стрелки */
+}
+
+.scrollDown {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  /* ширина/высота как было */
+}
+
+.bottomRight {
+  margin-left: auto; /* уводит элемент вправо */
+  max-width: 400px;
+  /* остальная типографика — без изменений */
+}
+
+.titleWrap {
+  display: block;
+  position: relative;
+}
+
+.scrollDown {
+  position: absolute;
+  left: 50%;
+  bottom: 0; /* одна линия с низом h1 */
+  transform: translateX(-50%);
+}
+
+.bottomRight {
+  position: absolute;
+  right: 0;
+  bottom: 0; /* та же линия */
+  max-width: 400px; /* как было */
+  text-align: left;
 }

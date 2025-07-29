@@ -57,6 +57,7 @@ export default function StatsSection() {
       <div className={styles.grid}>
         {stats.map((stat) => (
           <div key={stat.id} className={`${styles.card} ${styles[stat.area]}`}>
+            <span className={styles.decor} />
             <div className={styles.valueRow}>
               <div className={styles.value}>{stat.value}</div>
               <div className={styles.note}>{stat.note}</div>

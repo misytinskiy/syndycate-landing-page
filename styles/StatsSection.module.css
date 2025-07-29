@@ -109,3 +109,36 @@
 .cell4 {
   grid-area: cell4;
 }
+
+.card {
+  position: relative;
+  padding-left: 44px; /* 24px было + ещё 20px под линию */
+}
+
+/* сама линия */
+.decor {
+  position: absolute;
+  top: 0;
+  bottom: 0; /* тянется на всю высоту карточки */
+  left: 24px; /* 24px от левого края -> между линией и текстом 20px */
+  width: 1px;
+  background: rgba(77, 77, 77, 1);
+}
+
+/* квадраты на концах */
+.decor::before,
+.decor::after {
+  content: "";
+  position: absolute;
+  left: -3px; /* чтобы линия шла по центру квадрата ( (7-1)/2 ) */
+  width: 7px;
+  height: 7px;
+  background: #ffffff; /* белый квадрат */
+}
+
+.decor::before {
+  top: 0;
+}
+.decor::after {
+  bottom: 0;
+}
