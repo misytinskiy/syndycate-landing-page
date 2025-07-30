@@ -239,3 +239,21 @@
   bottom: 22px;
   right: -400px;
 }
+
+.section {
+  overflow: hidden; /* чтобы SVG не выходил за пределы */
+}
+
+.statsGraphBg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0; /* прижат к низу секции */
+  z-index: 0; /* под карточками и текстом */
+  pointer-events: none;
+}
+
+.statsGraphSvg {
+  width: 100vw; /* растягиваем на ширину экрана */
+  height: auto;
+}
