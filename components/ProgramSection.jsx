@@ -15,10 +15,13 @@ const modules = [
 export default function ProgramSection() {
   return (
     <section className={styles.wrapper}>
-      {/* Левая колонка */}
+      {/* горизонтальная линия-разделитель */}
+      <span className={styles.hLine} />
+
+      {/* левая колонка */}
       <div className={styles.left}>
         <h2 className={styles.title}>
-          NEW PROGRAM — 37 MODULES <br />
+          NEW PROGRAM <br /> — 37 MODULES <br />
           <span className={styles.primary}>
             A STEP-BY-STEP SYSTEM TO BUILD
           </span>{" "}
@@ -27,7 +30,7 @@ export default function ProgramSection() {
         </h2>
       </div>
 
-      {/* Правая колонка */}
+      {/* правая колонка */}
       <div className={styles.right}>
         <p className={styles.paragraph}>
           THE PROGRAM IS DESIGNED FOR BOTH BEGINNERS AND EXPERIENCED TRADERS.
@@ -36,10 +39,12 @@ export default function ProgramSection() {
           SUCCEED IN A MARKET THAT DOESN’T FORGIVE MISTAKES
         </p>
         <p className={styles.paragraph}>
-          THE COURSE IS CONSTANTLY UPDATED, ENSURING YOU ALWAYS HAVE ACCESS TO
-          THE LATEST VERSION. ADAPT TO THE MARKET — IT WILL NEVER ADAPT TO YOU
+          THE COURSE IS CONSTANTLY UPDATED, ENSURING <br /> YOU ALWAYS HAVE
+          ACCESS TO THE LATEST VERSION. ADAPT TO THE MARKET — IT WILL NEVER
+          ADAPT TO YOU
         </p>
 
+        {/* список модулей */}
         <ul className={styles.moduleList}>
           {modules.map((item, i) => (
             <li key={item} className={styles.moduleItem}>
@@ -49,15 +54,53 @@ export default function ProgramSection() {
                 </span>
                 <span className={styles.moduleTitle}>{item}</span>
               </div>
-              <span className={styles.icon}>↗</span>
+
+              {/* квадратная кнопка-стрелка */}
+              <button className={styles.iconBtn}>
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10.9497 1.04936L1.05025 10.9489M10.9497 1.04936V10.9489M10.9497 1.04936H1.05025"
+                    stroke="#0EFEF2"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
             </li>
           ))}
         </ul>
 
-        <button className={styles.fullButton}>
-          The whole program <span className={styles.icon}>↗</span>
-        </button>
+        {/* «The whole program» + стрелка */}
+        <div className={styles.fullRow}>
+          <button className={styles.fullTextBtn}>The whole program</button>
+          <button className={styles.fullArrowBtn}>
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.9497 1.04936L1.05025 10.9489M10.9497 1.04936V10.9489M10.9497 1.04936H1.05025"
+                stroke="#0EFEF2"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
+
+      <span className={styles.gradLeft} />
     </section>
   );
 }

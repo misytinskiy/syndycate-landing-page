@@ -15,8 +15,10 @@ export default function Header() {
           <button>MENU</button>
           <button>MENU</button>
         </nav>
-        <div className={styles.circle}></div>
-        <div className={styles.circle}></div>
+        <div className={styles.circlesRow}>
+          <div className={styles.circle}></div>
+          <div className={styles.circle}></div>
+        </div>
       </div>
     </header>
   );

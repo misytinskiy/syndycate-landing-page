@@ -1,18 +1,19 @@
 .wrapper {
   display: flex;
   justify-content: space-between;
-  padding: 100px 60px;
+  padding: 150px 50px 133px;
   background-color: var(--color-dark-secondary);
-  gap: 40px;
+  gap: 0;
   color: var(--color-secondary);
+  position: relative;
 }
 
 .left {
-  width: 40%;
+  width: 50%;
 }
 
 .right {
-  width: 60%;
+  width: 50%;
 }
 
 .title {
@@ -38,10 +39,14 @@
   margin-bottom: 30px;
 }
 
+.right .paragraph:first-of-type {
+  text-indent: 235px;
+}
+
 .moduleList {
   list-style: none;
   padding: 0;
-  margin-top: 40px;
+  margin-top: 64px;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -99,6 +104,121 @@
 
 .leftPart {
   display: flex;
-  gap: 70px;
+  gap: 206px;
   align-items: center;
+}
+
+.hLine {
+  position: absolute;
+  top: 119px;
+  left: 50px;
+  width: calc(100% - 105px);
+  height: 1px;
+  background: rgba(58, 58, 58, 1);
+}
+
+.hLine::before,
+.hLine::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: #ffffff;
+  top: -3px; /* центр квадрата совпадает с линией ( (7-1)/2 ) */
+}
+
+.hLine::before {
+  left: -3px;
+} /* левый конец */
+.hLine::after {
+  right: -3px;
+} /* правый конец */
+
+/* dfffff*/
+
+/* ───────── список модулей ───────── */
+.moduleList {
+  gap: 0; /* было 12px */
+}
+
+.moduleItem {
+  border: none; /* убираем старую рамку */
+  border-bottom: 1px solid rgba(42, 42, 42, 1);
+  padding: 26px 0; /* 34 px от линии до контента */
+}
+
+.moduleItem:first-child {
+  border-top: 1px solid rgba(42, 42, 42, 1); /* верхняя разделительная линия */
+}
+
+/* ───────── квадратная стрелка в строке модуля ───────── */
+.iconBtn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(14, 254, 242, 1);
+  border-radius: 5px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ───────── пара кнопок «The whole program» ───────── */
+.fullRow {
+  display: flex;
+  gap: 4px; /* расстояние между кнопками */
+
+  margin-top: 48px;
+  width: 100%;
+}
+
+.fullTextBtn {
+  height: 56px;
+  flex: 1 1 auto;
+  padding: 10px 16px;
+  border: 1px solid var(--color-primary);
+  border-radius: 5px;
+  background: transparent;
+  font-family: var(--font-inter);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--color-primary);
+  text-align: center;
+  cursor: pointer;
+}
+
+.fullArrowBtn {
+  width: 56px;
+  height: 56px;
+  border: 1px solid rgba(14, 254, 242, 1);
+  border-radius: 5px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ───────── если старая .icon больше не нужна ───────── */
+.icon {
+  display: none;
+}
+
+.gradLeft {
+  position: absolute;
+  width: 442px;
+  height: 442px;
+  border-radius: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(14, 218, 254, 1) 0%,
+    rgba(10, 10, 10, 1) 100%
+  );
+  opacity: 0.6;
+  filter: blur(180px);
+  top: 1300px;
+  left: -400px;
 }

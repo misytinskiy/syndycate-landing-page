@@ -1,6 +1,6 @@
 .section {
   background: var(--color-dark-secondary);
-  padding: 100px 60px 80px;
+  padding: 100px 61px 150px 50px;
   color: var(--color-secondary);
 }
 
@@ -17,10 +17,12 @@
   line-height: 110%;
   letter-spacing: -0.02em;
   text-transform: uppercase;
+  margin-bottom: 32px;
 }
 
 .rightText {
   text-align: left;
+  margin-left: 49px;
 }
 
 .valueRow {
@@ -28,6 +30,8 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 12px;
+  margin-top: -17px;
+  margin-bottom: 21px;
 }
 
 .primary {
@@ -41,24 +45,24 @@
   line-height: 110%;
   letter-spacing: -0.03em;
   text-transform: uppercase;
+  margin-bottom: 124px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, auto);
-  gap: 60px;
+  gap: 15px;
   grid-template-areas:
     "cell1 . . cell4"
     ". cell2 . ."
     ". . cell3 .";
   position: relative;
-  padding-bottom: 80px;
 }
 
 .card {
   position: relative;
-  padding-left: 24px;
+  padding-left: 19px;
 }
 
 .note {
@@ -69,8 +73,8 @@
   letter-spacing: -0.03em;
   text-transform: uppercase;
   line-height: 1;
-  padding-top: 8px;
   color: var(--color-gray);
+  text-align: end;
 }
 
 .value {
@@ -89,7 +93,7 @@
   letter-spacing: -0.03em;
   line-height: 110%;
   text-transform: uppercase;
-  max-width: 340px;
+  max-width: 316px;
   color: var(--color-gray);
 }
 
@@ -112,7 +116,7 @@
 
 .card {
   position: relative;
-  padding-left: 44px; /* 24px было + ещё 20px под линию */
+  padding-left: 19px; /* 24px было + ещё 20px под линию */
 }
 
 /* сама линия */
@@ -120,7 +124,7 @@
   position: absolute;
   top: 0;
   bottom: 0; /* тянется на всю высоту карточки */
-  left: 24px; /* 24px от левого края -> между линией и текстом 20px */
+  left: 1px; /* 24px от левого края -> между линией и текстом 20px */
   width: 1px;
   background: rgba(77, 77, 77, 1);
 }
@@ -141,4 +145,97 @@
 }
 .decor::after {
   bottom: 0;
+}
+
+/* ───────── горизонтальная линия ───────── */
+.section {
+  position: relative; /* базовый контекст для абсолютных декораций */
+  padding-top: 219px; /* 219 px от верхнего края страницы до линии */
+}
+/* ───────── горизонтальная линия ───────── */
+.hLine {
+  position: absolute;
+  top: 219px;
+  left: 50px;
+  width: calc(100% - 100px);
+  height: 1px;
+  background: rgba(58, 58, 58, 1);
+}
+
+/* белые квадраты на концах */
+.hLine::before,
+.hLine::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: #ffffff;
+  top: -3px; /* центр квадрата совпадает с линией ( (7-1)/2 ) */
+}
+
+.hLine::before {
+  left: -3px;
+} /* левый конец */
+.hLine::after {
+  right: -3px;
+} /* правый конец */
+
+/* ───────── заголовочная строка ───────── */
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 30px; /* 30 px от линии до блока с заголовком */
+}
+
+.about {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* 15 px между квадратами и текстом */
+  margin-left: -2px;
+}
+
+/* маленькие бирюзовые квадраты */
+.bracket {
+  width: 9px;
+  height: 14px;
+  background: rgba(14, 254, 242, 1);
+}
+
+.aboutText {
+  font-family: var(--font-inter);
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  color: var(--color-primary);
+  letter-spacing: -0.02em;
+}
+
+/* ───────── фоновые градиенты ───────── */
+.gradLeft,
+.gradRight {
+  position: absolute;
+  width: 442px;
+  height: 442px;
+  border-radius: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(14, 218, 254, 1) 0%,
+    rgba(10, 10, 10, 1) 100%
+  );
+  opacity: 0.6;
+  filter: blur(180px);
+}
+
+/* верхний слева (уходит за левый край) */
+.gradLeft {
+  top: 348px;
+  left: -472px;
+}
+
+/* нижний справа (22 px от правого края) */
+.gradRight {
+  bottom: 22px;
+  right: -400px;
 }

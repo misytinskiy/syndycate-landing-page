@@ -39,10 +39,23 @@ const stats = [
 export default function StatsSection() {
   return (
     <section className={styles.section}>
-      <div className={styles.header}>
+      {/* ───── декоративная горизонтальная линия ───── */}
+      <span className={styles.hLine} />
+
+      {/* ───── заголовочная строка с <ABOUT US> и основным тайтлом ───── */}
+      <div className={styles.headerRow}>
+        {/* левый блок  */}
+        <div className={styles.about}>
+          <span className={styles.bracket} />
+          <span className={styles.aboutText}>&lt;ABOUT&nbsp;US&gt;</span>
+          <span className={styles.bracket} />
+        </div>
+
+        {/* правый блок  */}
         <div className={styles.rightText}>
           <h2 className={styles.title}>
-            <span className={styles.primary}>WHAT IS SYNDICATE</span> <br />
+            <span className={styles.primary}>WHAT IS SYNDICATE</span>
+            <br />
             IN NUMBERS?
           </h2>
           <p className={styles.subtext}>
@@ -54,18 +67,23 @@ export default function StatsSection() {
         </div>
       </div>
 
+      {/* ───── сетка карточек ───── */}
       <div className={styles.grid}>
         {stats.map((stat) => (
           <div key={stat.id} className={`${styles.card} ${styles[stat.area]}`}>
             <span className={styles.decor} />
+            <div className={styles.note}>{stat.note}</div>
             <div className={styles.valueRow}>
               <div className={styles.value}>{stat.value}</div>
-              <div className={styles.note}>{stat.note}</div>
             </div>
             <p className={styles.desc}>{stat.description}</p>
           </div>
         ))}
       </div>
+
+      {/* ───── фоновые градиенты ───── */}
+      <span className={styles.gradLeft} />
+      <span className={styles.gradRight} />
     </section>
   );
 }

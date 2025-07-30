@@ -1,9 +1,8 @@
 .hero {
   position: relative;
-  min-height: 100vh;
   background-color: var(--color-dark-secondary);
   color: white;
-  padding: 40px;
+  padding: 55px 50px 0 50px;
   overflow: hidden;
   z-index: 0;
 }
@@ -34,15 +33,15 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 12px;
-  margin-top: 20px;
+  gap: 6px;
+  margin-bottom: 57px;
 }
 
 .timerValue {
   font-family: var(--font-anton);
   font-size: 40px;
   line-height: 100%;
-  margin-top: 6px;
+  margin-top: 12px;
   letter-spacing: 0.03em;
 }
 
@@ -77,10 +76,10 @@
   border: 1px solid rgba(184, 184, 184, 1);
   padding: 8px 14px;
   border-radius: 64px;
-  height: 170px;
-  margin-left: 10px;
+  height: 156px;
+  margin-left: 30px;
   vertical-align: middle;
-  min-width: 300px;
+  min-width: 284px;
   transform: translateY(-5%) translateX(3%);
 }
 
@@ -106,7 +105,8 @@
   line-height: 110%;
   letter-spacing: -0.03em;
   text-transform: uppercase;
-  max-width: 400px;
+
+  color: var(--color-secondary);
   z-index: 2;
 }
 
@@ -176,16 +176,15 @@
 .signIn {
   display: flex;
   gap: 4px;
-  margin-top: 20px;
+  margin-top: 23px;
 }
 
 .signInText {
   font-family: var(--font-inter);
   font-weight: 600;
   font-size: 18px;
-  text-transform: uppercase;
   letter-spacing: -0.03em;
-  background: var(--color-primary);
+  background: rgba(14, 254, 242, 1);
   padding: 0 24px;
   height: 56px;
   width: 270px;
@@ -271,13 +270,14 @@
 
 .bottomRight {
   margin-left: auto; /* уводит элемент вправо */
-  max-width: 400px;
+
   /* остальная типографика — без изменений */
 }
 
 .titleWrap {
   display: block;
   position: relative;
+  margin-bottom: 52px;
 }
 
 .scrollDown {
@@ -289,8 +289,10 @@
 
 .bottomRight {
   position: absolute;
-  right: 0;
-  bottom: 0; /* та же линия */
-  max-width: 400px; /* как было */
+  right: 30px;
+  bottom: -2px; /* та же линия */
+
   text-align: left;
+  font-size: 22px;
+  letter-spacing: -0.03em;
 }
