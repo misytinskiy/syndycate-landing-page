@@ -1,0 +1,157 @@
+.section {
+  background: var(--color-dark-secondary);
+  padding: 100px 61px 150px 50px;
+  color: var(--color-secondary);
+}
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 80px;
+}
+
+.about {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: -2px;
+}
+
+.bracket {
+  width: 9px;
+  height: 14px;
+  background: rgba(14, 254, 242, 1);
+}
+
+.aboutText {
+  font-family: var(--font-inter);
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  color: var(--color-primary);
+}
+
+.title {
+  font-family: var(--font-anton);
+  font-weight: 400;
+  font-size: 125px;
+  line-height: 110%;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.hLine {
+  display: block;
+  width: calc(100% - 100px);
+  height: 1px;
+  background: rgba(58, 58, 58, 1);
+  margin-left: 50px;
+  position: relative;
+}
+
+.hLine::before,
+.hLine::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: #ffffff;
+  top: -3px;
+}
+
+.hLine::before {
+  left: -3px;
+}
+
+.hLine::after {
+  right: -3px;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex; /* вместо grid */
+  justify-content: space-between; /* раздвигаем детей к краям */
+  align-items: flex-start;
+  padding: 64px 0;
+  border-top: 1px solid rgba(58, 58, 58, 1);
+}
+
+.item:last-child {
+  border-bottom: 1px solid rgba(58, 58, 58, 1);
+}
+
+.number {
+  width: 120px;
+  font-family: var(--font-inter);
+  font-size: 22px;
+  font-weight: 400;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  color: var(--color-gray);
+  min-width: 80px;
+
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 949px;
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.itemTitle {
+  font-family: var(--font-inter);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 110%;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.square {
+  width: 14px;
+  height: 14px;
+  background: rgba(14, 254, 242, 1);
+  margin-top: 4px;
+}
+
+.list {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 625px;
+}
+
+.bullet {
+  font-family: var(--font-inter);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 110%;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--color-gray);
+}
+
+.bulletIcon {
+  color: var(--color-primary);
+  margin-right: 8px;
+}

@@ -1,0 +1,106 @@
+.section {
+  background: var(--color-dark-secondary);
+  padding: 150px 50px;
+  color: var(--color-secondary);
+  overflow: hidden;
+}
+
+.columns {
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
+}
+
+/* 40 : 60 раскладка */
+.left {
+  flex: 0 0 30%;
+}
+
+.right {
+  flex: 0 0 60%;
+}
+
+/* левый заголовок */
+.faq {
+  font-family: var(--font-anton);
+  font-size: 125px;
+  line-height: 110%;
+  text-transform: uppercase;
+}
+
+/* список FAQ */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* пункт FAQ */
+.item {
+  border-bottom: 1px solid rgba(58, 58, 58, 1);
+  overflow: hidden; /* чтобы answer не “выпирал” при анимации */
+}
+
+/* вопросная строка */
+.questionRow {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 32px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.question {
+  font-family: var(--font-inter);
+  font-size: 32px;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+/* иконка */
+.iconBox {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-primary);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  transition: transform 0.35s ease-in-out;
+}
+
+/* скрытый / открытый ответ */
+.answerWrapper {
+  max-height: 0;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.answer {
+  font-family: var(--font-inter);
+  font-size: 22px;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: rgba(125, 125, 125, 1);
+  padding-bottom: 32px;
+}
+
+/* ———  открытое состояние ——— */
+.open .icon {
+  transform: rotate(90deg); /* стрелка вниз */
+}
+
+.open .answerWrapper {
+  max-height: 120px; /* <— хватит для одной-двух строк */
+}
+
+/* линия над первым пунктом */
+.item:first-child {
+  border-top: 1px solid rgba(58, 58, 58, 1);
+}

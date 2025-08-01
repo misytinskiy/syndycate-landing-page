@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "@/styles/ProgramSection.module.css";
 
 /* полный список из 37 модулей */
@@ -14,38 +14,56 @@ const modules = [
   "Multi-Timeframe Analysis",
   "Sessions / Part 1",
   "Sessions / Part 2",
-  "Sessions / Part 3",
-  "Sessions / Part 4",
   "Market Context",
   "Risk Management",
   "Backtest",
   "Statics",
   "Dynamics",
   "Trading Strategy",
-  "ICT Mentorship",
   "Indices",
-  "R. Wyckoff",
   "News",
-  "Useful / Part 1",
-  "Useful / Part 2",
+  "Useful",
   "Technical Psychology",
   "Roadmap",
   "Crypto",
   "Prop Trading",
   "Forex Market",
-  "Microstructure & Market Participants",
-  "Order System",
-  "Overnight Arbitrage vs Market Makers",
   "Algorithms & Dynamics",
-  "Microstructures",
-  "Working with Imbalance (XAU)",
-  "Gold & Indices",
+  "Working with XAU",
+  "Gold & Indices - Differences from forex",
   "Market Manipulations",
 ];
 
 export default function ProgramSection() {
   const [opened, setOpened] = useState(false);
-  const visible = opened ? modules : modules.slice(0, 8);
+
+  const [openedIdx, setOpenedIdx] = useState(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const rowRefs = useRef([]);
+
+  const wrapperRef = useRef(null);
+
+  /* когда openedIdx меняется → скроллим к строке */
+  useEffect(() => {
+    if (openedIdx === null) return;
+    const el = rowRefs.current[openedIdx];
+    if (el) {
+      el.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest", // «как можно ближе», чуть подвинет страницу
+      });
+    }
+  }, [openedIdx]);
+
+  useEffect(() => {
+    if (!opened && wrapperRef.current) {
+      wrapperRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [opened]);
 
   return (
     <section className={styles.programSection}>
@@ -75,40 +93,66 @@ export default function ProgramSection() {
             ADAPT TO YOU
           </p>
 
-          {/* список модулей */}
           <div
             className={`${styles.moduleWrapper} ${
               opened ? styles.expanded : ""
             }`}
+            ref={wrapperRef}
           >
             <ul className={styles.moduleList}>
-              {modules.map((item, i) => (
-                <li key={item} className={styles.moduleItem}>
-                  <div className={styles.leftPart}>
-                    <span className={styles.index}>
-                      /{String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className={styles.moduleTitle}>{item}</span>
-                  </div>
-                  <button className={styles.iconBtn}>
-                    <svg
-                      width="12"
-                      height="12"
-                      viewBox="0 0 12 12"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
+              {modules.map((item, i) => {
+                const idx = showAll ? i : i; // индекс видимого
+                const opened = openedIdx === idx; // открыт ли сейчас
+                return (
+                  <li
+                    key={item}
+                    className={`${styles.moduleItem} ${
+                      opened ? styles.open : ""
+                    }`}
+                    ref={(el) => (rowRefs.current[i] = el)}
+                  >
+                    {/* clickable row */}
+                    <button
+                      className={styles.rowBtn}
+                      onClick={() => setOpenedIdx(opened ? null : idx)}
                     >
-                      <path
-                        d="M10.95 1.05L1.05 10.95M10.95 1.05V10.95M10.95 1.05H1.05"
-                        stroke="#0EFEF2"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </button>
-                </li>
-              ))}
+                      <div className={styles.leftPart}>
+                        <span className={styles.index}>
+                          /{String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className={styles.moduleTitle}>{item}</span>
+                      </div>
+
+                      <span className={styles.iconBtn}>
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          className={styles.icon}
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M10.95 1.05L1.05 10.95M10.95 1.05V10.95M10.95 1.05H1.05"
+                            stroke="#0EFEF2"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+
+                    {/* раскрывающийся ответ */}
+                    <div className={styles.answerWrapper}>
+                      <p className={styles.answer}>
+                        TEST TEXT • HERE WILL BE A SHORT DESCRIPTION OF THE
+                        MODULE.
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 

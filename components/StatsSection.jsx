@@ -38,7 +38,7 @@ const stats = [
 
 export default function StatsSection() {
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="next">
       {/* ───── декоративная горизонтальная линия ───── */}
       <span className={styles.hLine} />
 

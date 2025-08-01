@@ -1,0 +1,223 @@
+.section {
+  position: relative;
+  background: var(--color-dark-secondary);
+  padding: 153px 50px 150px;
+  color: var(--color-secondary);
+  overflow: hidden;
+}
+
+/* ───────── линия ───────── */
+.hLine {
+  position: absolute;
+  top: 153px;
+  left: 50px;
+  width: calc(100% - 100px);
+  height: 1px;
+  background: rgba(58, 58, 58, 1);
+}
+.hLine::before,
+.hLine::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: #ffffff;
+  top: -3px;
+}
+.hLine::before {
+  left: -3px;
+}
+.hLine::after {
+  right: -3px;
+}
+
+/* ───────── <TARIFFS> ───────── */
+.about {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.bracket {
+  width: 9px;
+  height: 14px;
+  background: rgba(14, 254, 242, 1);
+}
+.aboutText {
+  font-family: var(--font-inter);
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  color: var(--color-primary);
+}
+
+/* ───────── заголовок ───────── */
+.title {
+  margin-top: 48px;
+  text-align: center;
+  font-family: var(--font-anton);
+  font-size: 125px;
+  line-height: 110%;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+/* ───────── grid ───────── */
+.grid {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+/* ───────── карточка ───────── */
+.card {
+  position: relative;
+  height: 1000px;
+  padding: 30px;
+  background: rgba(24, 24, 24, 1);
+  border: 1px solid rgba(40, 40, 40, 1);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* заголовок тарифа */
+.cardTitle {
+  font-family: var(--font-anton);
+  font-size: 90px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+/* подзаголовок */
+.mode {
+  margin-top: 12px;
+  font-family: var(--font-inter);
+  font-size: 18px;
+  font-style: italic;
+  opacity: 0.4;
+  text-transform: uppercase;
+}
+
+/* список */
+.list {
+  margin-top: 40px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+}
+.bullet {
+  font-family: var(--font-inter);
+  font-size: 22px;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  color: var(--color-secondary);
+}
+.bulletIcon {
+  color: var(--color-primary);
+  margin-right: 8px;
+}
+
+/* блок со звездочкой и мелким текстом */
+.extra {
+  margin-top: 32px;
+}
+.star {
+  font-family: var(--font-inter);
+  font-size: 18px;
+}
+.extraLines {
+  margin-top: 12px;
+}
+.extraText {
+  font-family: var(--font-inter);
+  font-size: 20px;
+  line-height: 100%;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 1);
+  margin-bottom: 10px;
+}
+.extraVal {
+  color: var(--color-primary);
+}
+
+/* низ карточки: цена + кнопка */
+.bottomRow {
+  margin-top: 61px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.price {
+  font-family: var(--font-anton);
+  font-size: 55px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+}
+.oldPrice {
+  font-family: var(--font-inter);
+  font-size: 16px;
+  opacity: 0.4;
+  text-decoration: line-through;
+  align-self: end;
+  margin-left: 10px;
+}
+
+.fullRow {
+  display: flex;
+  width: 330px;
+  height: 56px;
+
+  overflow: hidden;
+  cursor: pointer;
+  gap: 4px;
+}
+
+.fullTextBtn {
+  flex: 1;
+  background: rgba(14, 254, 242, 1);
+  border: none;
+  font-family: var(--font-inter);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.fullArrowBtn {
+  width: 56px;
+  background: rgba(14, 254, 242, 1);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.muted {
+  color: rgba(66, 66, 66, 1);
+}
+
+/* знак доллара */
+.priceSymbol {
+  color: rgba(125, 125, 125, 1);
+  font-family: var(--font-anton);
+  font-size: 55px;
+  letter-spacing: -0.01em;
+  /* margin-right: 4px; */
+}

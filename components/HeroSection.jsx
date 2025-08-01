@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function HeroSection() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0 });
+  const [arrowUp, setArrowUp] = useState(false);
 
   useEffect(() => {
     const targetDate = new Date("2025-09-01T00:00:00");
@@ -28,6 +29,38 @@ export default function HeroSection() {
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const target = document.getElementById("next");
+    if (!target) {
+      console.log("₁  <#next> НЕ НАЙДЕН!");
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      ([entry]) => setArrowUp(entry.isIntersecting),
+      {
+        threshold: 0.05,
+        rootMargin: `-${EXTRA_OFFSET}px 0px 0px 0px`, //
+      }
+    );
+
+    io.observe(target);
+    return () => io.disconnect();
+  }, []);
+
+  const EXTRA_OFFSET = 150; // сколько нужно «перепрыгнуть» вниз
+
+  const scrollToNext = () => {
+    const el = document.getElementById("next");
+    if (!el) return;
+
+    const offsetTop =
+      el.getBoundingClientRect().top + window.scrollY + EXTRA_OFFSET; // 👈 +100
+
+    window.scrollTo({ top: offsetTop, behavior: "smooth" });
+  };
+
   return (
     <section className={styles.hero}>
       <div className={styles.timerWrapper}>
@@ -120,30 +153,25 @@ export default function HeroSection() {
 
         <div className={styles.footerRow}>
           <div className={styles.scrollDown}>
-            <svg
-              width="40"
-              height="40"
-              viewBox="0 0 40 40"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                x="0.5"
-                y="0.5"
-                width="39"
-                height="39"
-                rx="19.5"
-                stroke="white"
-              />
-              <path
-                d="M13 16.5L20 23.5L27 16.5"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <button onClick={scrollToNext} className={styles.scrollBtn}>
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 40 40"
+                className={arrowUp ? styles.up : ""}
+              >
+                <circle cx="20" cy="20" r="19.5" fill="none" stroke="white" />
+                <path
+                  d="M13 16.5L20 23.5L27 16.5"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
           </div>
+
           <div className={styles.bottomRight}>
             <p>
               CLOSED-COMMUNITY TRAINING
@@ -196,12 +224,14 @@ export default function HeroSection() {
                   fill-opacity="0.2"
                 />
               </g>
+
               <path
                 d="M60.902 538.561L-27 571.659V784H1957V10L1889.78 126.609L1773.44 190.77L1678.82 126.609L1573.33 217.758L1410.46 228.451L1345.31 294.649L1308.59 349.643L1249.13 330.803L1204.66 378.159L1134.34 365.429L1072.29 463.197L987.493 451.995L865.981 563.512L800.313 599.666L651.914 524.303L573.836 492.732L426.988 546.199L274.969 505.462L254.286 538.561L211.37 505.462L173.106 590.5L60.902 538.561Z"
                 stroke="url(#paint1_linear_106_2291)"
                 stroke-width="5"
               />
             </g>
+
             <defs>
               <filter
                 id="filter0_i_106_2291"

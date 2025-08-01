@@ -122,7 +122,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 26px 0;
+  /* padding: 26px 0; */
   border-bottom: 1px solid rgba(42, 42, 42, 1);
   font-family: var(--font-inter);
 }
@@ -210,7 +210,7 @@
   transition: transform 0.4s ease-in-out;
 }
 .rotated svg {
-  transform: rotate(180deg);
+  transform: rotate(90deg);
 }
 
 /* ================= ДЕКОРАТИВНЫЙ ГРАДИЕНТНЫЙ КРУГ ================= */
@@ -232,10 +232,6 @@
 }
 
 /* ================= ВСПОМОГАТЕЛЬНЫЕ КЛАССЫ ================= */
-
-.icon {
-  display: none;
-}
 
 .fullButton {
   display: flex;
@@ -291,4 +287,72 @@
 
 /* .programSection {
   min-height: 200vh;
+} */
+
+/* строка теперь кнопка, чтобы занимала всю ширину */
+.rowBtn {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 26px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* убираем padding на .moduleItem, потому что он переехал в .rowBtn */
+.moduleItem {
+  border-bottom: 1px solid rgba(42, 42, 42, 1);
+  overflow: hidden; /* чтобы answer не выходил при анимации */
+}
+.moduleItem:first-child {
+  border-top: 1px solid rgba(42, 42, 42, 1);
+}
+
+/* иконка поворачивается */
+.iconBtn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(14, 254, 242, 1);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon {
+  transition: transform 0.35s ease-in-out;
+}
+
+/* раскрывающийся answer */
+.answerWrapper {
+  max-height: 0;
+  transition: max-height 0.5s ease-in-out;
+}
+.answer {
+  font-family: var(--font-inter);
+  font-size: 20px;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: rgba(125, 125, 125, 1);
+  padding: 20px 0 26px; /* совпадает с высотой questionRow */
+}
+
+/* открытое состояние */
+.open .icon {
+  transform: rotate(90deg);
+}
+.open .answerWrapper {
+  max-height: 140px;
+}
+
+.moduleItem {
+  display: block; /* или flex; flex-direction:column; */
+  /* border-bottom: 1px solid rgba(42, 42, 42, 1); */
+  overflow: hidden;
+}
+
+/* .moduleItem:first-child {
+  border-top: 1px solid rgba(42, 42, 42, 1);
 } */

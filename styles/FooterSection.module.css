@@ -1,0 +1,75 @@
+.section {
+  position: relative;
+  background: var(--color-dark-secondary);
+  padding: 187px 50px 40px;
+  color: var(--color-secondary);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* ───────── линия ───────── */
+.hLine {
+  position: absolute;
+  top: 153px;
+  left: 50px;
+  width: calc(100% - 100px);
+  height: 1px;
+  background: rgba(58, 58, 58, 1);
+}
+
+.hLine::before,
+.hLine::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: #ffffff;
+  top: -3px;
+}
+
+.hLine::before {
+  left: -3px;
+}
+
+.hLine::after {
+  right: -3px;
+}
+
+/* ───────── слово SYNDICATE ───────── */
+.wordmark {
+  margin-bottom: 100px;
+  font-family: var(--font-stencil);
+  font-size: clamp(180px, 28vw, 449px);
+  line-height: 100%;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: #ffffff;
+  overflow-wrap: anywhere;
+}
+
+/* ───────── нижняя строка ───────── */
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-inter);
+  font-size: 18px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.meta {
+  white-space: nowrap;
+}
+
+/* ссылка */
+.privacy {
+  color: var(--color-secondary);
+  text-decoration: underline;
+  white-space: nowrap;
+  margin-left: 76px;
+}
+
+.privacy:hover {
+  color: var(--color-primary);
+}

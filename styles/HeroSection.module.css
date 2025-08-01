@@ -35,6 +35,7 @@
   justify-content: flex-end;
   gap: 6px;
   margin-bottom: 57px;
+  margin-right: 4px;
 }
 
 .timerValue {
@@ -95,9 +96,6 @@
 }
 
 .bottomRight {
-  /* position: absolute; */
-  /* bottom: 40px;
-  right: 40px; */
   text-align: left;
   font-family: var(--font-inter);
   font-size: 20px;
@@ -135,10 +133,8 @@
 .arrowBtn {
   background: var(--color-primary);
   border: none;
-  /* padding: 12px; */
+
   cursor: pointer;
-  /* border-top-right-radius: 8px; */
-  /* border-bottom-right-radius: 8px; */
 }
 
 .blue {
@@ -162,15 +158,9 @@
 .graphSvg {
   width: 100vw;
   height: auto;
-}
 
-.scrollDown {
-  /* position: absolute;
-  bottom: 40px;
-  left: 50%; */
-  transform: translateX(-50%);
-
-  z-index: 2;
+  mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
 }
 
 .signIn {
@@ -256,22 +246,12 @@
 }
 
 .footerRow {
-  margin-top: auto; /* всё, что выше, «заполняет» пространство */
-  position: relative; /* база для абсолютного позиционирования стрелки */
-}
-
-.scrollDown {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  /* ширина/высота как было */
+  margin-top: auto;
+  position: relative;
 }
 
 .bottomRight {
-  margin-left: auto; /* уводит элемент вправо */
-
-  /* остальная типографика — без изменений */
+  margin-left: auto;
 }
 
 .titleWrap {
@@ -283,16 +263,50 @@
 .scrollDown {
   position: absolute;
   left: 50%;
-  bottom: 0; /* одна линия с низом h1 */
+  bottom: 0;
   transform: translateX(-50%);
+  z-index: 2;
+}
+
+.scrollBtn {
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  transform: translateX(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scrollBtn svg {
+  transition: transform 0.35s ease;
+}
+
+.scrollBtn svg.up {
+  transform: rotate(180deg);
 }
 
 .bottomRight {
   position: absolute;
-  right: 30px;
-  bottom: -2px; /* та же линия */
+  right: 24px;
+  bottom: -2px;
 
   text-align: left;
   font-size: 22px;
   letter-spacing: -0.03em;
+}
+
+.title {
+  pointer-events: none;
+}
+.title * {
+  pointer-events: auto;
 }
