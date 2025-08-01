@@ -56,6 +56,7 @@ const tariffs = [
     bullets: [
       "LIFETIME ACCESS TO MATERIALS",
       "ACCESS TO MENTOR SETUPS",
+      "CHAT WITH MENTORS",
       "REGULAR UPDATES",
       "LIVE CONFERENCES",
       "HOMEWORK ASSIGNMENTS",

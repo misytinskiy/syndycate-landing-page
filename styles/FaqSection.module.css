@@ -7,8 +7,9 @@
 
 .columns {
   display: flex;
-  gap: 32px;
-  justify-content: space-between;
+  gap: 64px;
+
+  /* justify-content: space-between; */
 }
 
 /* 40 : 60 раскладка */
@@ -17,7 +18,7 @@
 }
 
 .right {
-  flex: 0 0 60%;
+  flex: 0 0 66.4%;
 }
 
 /* левый заголовок */
@@ -26,6 +27,7 @@
   font-size: 125px;
   line-height: 110%;
   text-transform: uppercase;
+  letter-spacing: -0.02em;
 }
 
 /* список FAQ */
@@ -46,7 +48,7 @@
   width: 100%;
   background: transparent;
   border: none;
-  padding: 32px 0;
+  padding: 34px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -56,15 +58,15 @@
 .question {
   font-family: var(--font-inter);
   font-size: 32px;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
   text-transform: uppercase;
   text-align: left;
 }
 
 /* иконка */
 .iconBox {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border: 1px solid var(--color-primary);
   border-radius: 3px;
   display: flex;

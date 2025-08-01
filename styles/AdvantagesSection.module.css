@@ -61,6 +61,8 @@
 
 .rightText {
   text-align: left;
+  margin-right: 14px;
+  margin-top: -10px;
 }
 
 .title {
@@ -78,7 +80,7 @@
   font-family: var(--font-inter);
   font-size: 32px;
   line-height: 110%;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
   text-transform: uppercase;
 }
 
@@ -129,10 +131,11 @@
   font-family: var(--font-inter);
   font-size: 22px;
   line-height: 110%;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
   text-transform: uppercase;
   color: var(--color-gray);
   margin-top: 24px;
+  max-width: 500px;
 }
 
 .gradLeft,

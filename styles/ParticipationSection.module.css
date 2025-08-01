@@ -33,7 +33,7 @@
 
 /* ───────── <TARIFFS> ───────── */
 .about {
-  margin-top: 30px;
+  margin-top: 45px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,10 +55,11 @@
 
 /* ───────── заголовок ───────── */
 .title {
-  margin-top: 48px;
+  margin-top: 32px;
   text-align: center;
   font-family: var(--font-anton);
   font-size: 125px;
+  font-weight: 400;
   line-height: 110%;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -75,7 +76,7 @@
 /* ───────── карточка ───────── */
 .card {
   position: relative;
-  height: 1000px;
+  height: 1015px;
   padding: 30px;
   background: rgba(24, 24, 24, 1);
   border: 1px solid rgba(40, 40, 40, 1);
@@ -91,6 +92,7 @@
   line-height: 100%;
   letter-spacing: -0.01em;
   text-transform: uppercase;
+  font-weight: 400;
 }
 
 /* подзаголовок */
@@ -105,13 +107,14 @@
 
 /* список */
 .list {
-  margin-top: 40px;
+  margin-top: 36px;
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 7px;
   list-style: none;
   padding: 0;
+  max-width: 522px;
 }
 .bullet {
   font-family: var(--font-inter);
@@ -128,9 +131,9 @@
 }
 
 /* блок со звездочкой и мелким текстом */
-.extra {
+/* .extra {
   margin-top: 32px;
-}
+} */
 .star {
   font-family: var(--font-inter);
   font-size: 18px;
@@ -144,7 +147,7 @@
   line-height: 100%;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 1);
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
 .extraVal {
   color: var(--color-primary);
@@ -152,7 +155,7 @@
 
 /* низ карточки: цена + кнопка */
 .bottomRow {
-  margin-top: 61px;
+  margin-top: 33px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -166,8 +169,10 @@
   letter-spacing: -0.01em;
 }
 .oldPrice {
-  font-family: var(--font-inter);
-  font-size: 16px;
+  font-family: var(--font-anton);
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
   opacity: 0.4;
   text-decoration: line-through;
   align-self: end;

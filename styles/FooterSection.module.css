@@ -1,7 +1,7 @@
 .section {
   position: relative;
   background: var(--color-dark-secondary);
-  padding: 187px 50px 40px;
+  padding: 156px 50px 40px;
   color: var(--color-secondary);
   text-align: center;
   overflow: hidden;
@@ -37,10 +37,11 @@
 
 /* ───────── слово SYNDICATE ───────── */
 .wordmark {
-  margin-bottom: 100px;
+  margin-bottom: 2px;
   font-family: var(--font-stencil);
-  font-size: clamp(180px, 28vw, 449px);
-  line-height: 100%;
+  font-size: 458px;
+  line-height: 98%;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0;
   color: #ffffff;
@@ -56,6 +57,7 @@
   font-size: 18px;
   text-transform: uppercase;
   opacity: 0.7;
+  letter-spacing: -0.03em;
 }
 
 .meta {
@@ -67,7 +69,7 @@
   color: var(--color-secondary);
   text-decoration: underline;
   white-space: nowrap;
-  margin-left: 76px;
+  margin-left: 138px;
 }
 
 .privacy:hover {

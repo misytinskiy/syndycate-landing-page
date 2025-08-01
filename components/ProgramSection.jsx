@@ -56,7 +56,15 @@ export default function ProgramSection() {
     }
   }, [openedIdx]);
 
+  const isFirstRender = useRef(true);
+
+  /* скроллим ТОЛЬКО при реальном сворачивании */
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false; // первый вызов пропускаем
+      return;
+    }
+
     if (!opened && wrapperRef.current) {
       wrapperRef.current.scrollIntoView({
         behavior: "smooth",

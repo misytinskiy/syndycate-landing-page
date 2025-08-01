@@ -35,7 +35,8 @@
 
 /* ───────── надпись <RESULTS> ───────── */
 .about {
-  margin-top: 30px;
+  margin-top: 43px;
+  margin-left: -29px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,7 +60,7 @@
 
 /* ───────── главный заголовок ───────── */
 .title {
-  margin-top: 48px;
+  margin-top: 33px;
   text-align: center;
   font-family: var(--font-anton);
   font-size: 125px;
@@ -73,7 +74,7 @@
 .contentRow {
   display: flex;
   gap: 16px;
-  margin-top: 80px;
+  margin-top: 62px;
   align-items: stretch;
 }
 
@@ -87,7 +88,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 32px 0;
+  padding: 34px 0;
   border-bottom: 1px solid rgba(58, 58, 58, 1);
 }
 
@@ -96,7 +97,7 @@
 }
 
 .listText {
-  max-width: 530px;
+  max-width: 585px;
   font-family: var(--font-inter);
   font-size: 32px;
   line-height: 110%;
@@ -124,7 +125,7 @@
 
 /* ───────── кнопка full-width ───────── */
 .fullRow {
-  margin-top: 80px;
+  margin-top: 30px;
   display: flex;
   width: 100%;
   height: 56px;

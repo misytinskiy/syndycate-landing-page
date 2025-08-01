@@ -1,6 +1,6 @@
 .section {
   background: var(--color-dark-secondary);
-  padding: 100px 61px 150px 50px;
+  padding: 100px 52px 150px 50px;
   color: var(--color-secondary);
 }
 
@@ -9,6 +9,7 @@
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 80px;
+  max-width: 1690px;
 }
 
 .about {
@@ -40,6 +41,7 @@
   line-height: 110%;
   letter-spacing: -0.02em;
   text-transform: uppercase;
+  margin-top: -10px;
 }
 
 .hLine {
@@ -78,7 +80,7 @@
   display: flex; /* вместо grid */
   justify-content: space-between; /* раздвигаем детей к краям */
   align-items: flex-start;
-  padding: 64px 0;
+  padding: 35px 0;
   border-top: 1px solid rgba(58, 58, 58, 1);
 }
 
@@ -104,7 +106,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin-left: 949px;
+  margin-left: 794px;
 }
 
 .itemHeader {
@@ -127,18 +129,18 @@
   width: 14px;
   height: 14px;
   background: rgba(14, 254, 242, 1);
-  margin-top: 4px;
+  margin-top: 11px;
 }
 
 .list {
   margin-top: 24px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 11px;
   list-style: none;
   margin: 0;
   padding: 0;
-  max-width: 625px;
+  max-width: 613px;
 }
 
 .bullet {
