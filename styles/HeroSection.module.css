@@ -2,7 +2,7 @@
   position: relative;
   background-color: var(--color-dark-secondary);
   color: white;
-  padding: 55px 50px 0 50px;
+  padding: 59px 50px 100px 50px;
   overflow: hidden;
   z-index: 0;
 }
@@ -33,7 +33,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 6px;
+  gap: 3px;
   margin-bottom: 57px;
   margin-right: 4px;
 }
@@ -74,14 +74,15 @@
 
   gap: 10px;
   background: var(--color-dark-secondary);
-  border: 1px solid rgba(184, 184, 184, 1);
+  border: 1px solid rgba(56, 55, 54, 1);
   padding: 8px 14px;
   border-radius: 64px;
   height: 156px;
-  margin-left: 30px;
+  margin-left: 35px;
   vertical-align: middle;
   min-width: 284px;
   transform: translateY(-5%) translateX(3%);
+  margin-top: -9px;
 }
 
 .arrow {
@@ -150,7 +151,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 13px;
   z-index: 2;
   pointer-events: none;
 }
@@ -257,13 +258,13 @@
 .titleWrap {
   display: block;
   position: relative;
-  margin-bottom: 52px;
+  /* margin-bottom: 52px; */
 }
 
 .scrollDown {
   position: absolute;
   left: 50%;
-  bottom: 0;
+  bottom: 3px;
   transform: translateX(-50%);
   z-index: 2;
 }
@@ -296,12 +297,12 @@
 
 .bottomRight {
   position: absolute;
-  right: 24px;
-  bottom: -2px;
+  right: 30px;
+  bottom: 1px;
 
   text-align: left;
   font-size: 22px;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
 }
 
 .title {

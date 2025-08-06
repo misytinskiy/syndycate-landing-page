@@ -1,82 +1,84 @@
+/* ───────── базовый блок ───────── */
 .section {
-  position: relative;
   background: var(--color-dark-secondary);
-  padding: 150px 50px 150px;
+  padding: 150px 50px;
   color: var(--color-secondary);
-  overflow: hidden;
 }
 
-/* ───────── горизонтальная линия ───────── */
-.hLine {
-  position: absolute;
-  top: 100px; /* 100 px от верха секции */
-  left: 50px;
-  width: calc(100% - 100px);
-  height: 1px;
-  background: rgba(58, 58, 58, 1);
-}
-.hLine::before,
-.hLine::after {
-  content: "";
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  background: #ffffff;
-  top: -3px;
-}
-.hLine::before {
-  left: -3px;
-}
-.hLine::after {
-  right: -3px;
-}
-
-/* ───────── header ───────── */
+/* ───────── HEADER ROW ───────── */
 .headerRow {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin-bottom: 56px;
+  margin-right: 15px;
 }
 
+/* левый «брекет-текст-брекет» */
 .about {
   display: flex;
   align-items: center;
   gap: 15px;
 }
-
 .bracket {
   width: 9px;
   height: 14px;
   background: rgba(14, 254, 242, 1);
 }
-
 .aboutText {
   font-family: var(--font-inter);
   font-size: 18px;
-  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: -0.03em;
   color: var(--color-primary);
 }
 
-.rightText {
+/* правый блок */
+.rightTitle {
   text-align: left;
-  margin-right: 14px;
   margin-top: -10px;
 }
-
 .title {
   font-family: var(--font-anton);
-  font-weight: 400;
   font-size: 125px;
   line-height: 110%;
-  letter-spacing: -0.02em;
   text-transform: uppercase;
-  margin-bottom: 32px;
-  z-index: 2;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+.subtext {
+  margin-top: 32px;
+  font-family: var(--font-inter);
+  font-size: 32px;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  max-width: 800px;
 }
 
-.subtext {
+/* ───────── БАННЕР 800PX ───────── */
+.bannerWrap {
+  position: relative;
+  height: 800px;
+
+  /* тянем влево-вправо на размер padding (50 px) */
+  margin: 0 -50px 80px;
+  width: calc(100% + 100px); /* 100 % + 2 × 50 px */
+
+  overflow: hidden;
+}
+.banner {
+  object-fit: cover;
+}
+
+/* ───────── НИЖНИЙ ДВУКОЛОНОЧНЫЙ БЛОК ───────── */
+.bottom {
+  display: flex;
+  gap: 152px;
+}
+
+/* левая колонка */
+.lead {
+  flex: 0 0 42%;
   font-family: var(--font-inter);
   font-size: 32px;
   line-height: 110%;
@@ -84,87 +86,33 @@
   text-transform: uppercase;
 }
 
-/* ───────── grid ───────── */
-.grid {
-  margin-top: 80px;
+/* правая колонка: сетка карточек */
+.cardsGrid {
+  flex: 1;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 71px 12px;
 }
 
-/* ───────── card ───────── */
 .card {
-  background: rgba(24, 24, 24, 1);
-  border-radius: 5px;
-  padding: 30px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 358px; /* подгонка под макет */
-  z-index: 2;
-}
-
-.topRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  gap: 20px;
 }
 
 .value {
   font-family: var(--font-anton);
-  font-size: 90px;
+  font-size: 120px;
   line-height: 100%;
   letter-spacing: -0.01em;
   text-transform: uppercase;
-}
-
-.note {
-  font-family: var(--font-inter);
-  font-size: 18px;
-  font-style: italic;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
-  color: rgba(125, 125, 125, 1);
 }
 
 .desc {
   font-family: var(--font-inter);
   font-size: 22px;
   line-height: 110%;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.03em;
   text-transform: uppercase;
-  color: var(--color-gray);
-  margin-top: 24px;
-  max-width: 500px;
-}
-
-.gradLeft,
-.gradRight {
-  position: absolute;
-  width: 442px;
-  height: 442px;
-  border-radius: 50%;
-  background: linear-gradient(
-    180deg,
-    rgba(14, 218, 254, 1) 0%,
-    rgba(10, 10, 10, 1) 100%
-  );
-  opacity: 0.6;
-  filter: blur(180px);
-  pointer-events: none; /* чтобы не ловили клики */
-  z-index: 0; /* под контентом, если нужно */
-}
-
-/* левый – выходит на ­½ круга за край */
-.gradLeft {
-  top: 70%; /* примерно центр секции */
-  left: -331px; /* ­½ ширины круга */
-  transform: translateY(-50%);
-}
-
-/* правый – симметрично */
-.gradRight {
-  top: 50%;
-  right: -429px;
-  transform: translateY(-50%);
+  color: rgba(125, 125, 125, 1);
 }

@@ -44,6 +44,10 @@
   margin-top: -10px;
 }
 
+.title span {
+  color: rgba(14, 254, 242, 1);
+}
+
 .hLine {
   display: block;
   width: calc(100% - 100px);
@@ -151,9 +155,11 @@
   letter-spacing: -0.03em;
   text-transform: uppercase;
   color: var(--color-gray);
+  display: flex;
 }
 
 .bulletIcon {
   color: var(--color-primary);
   margin-right: 8px;
+  margin-top: -2px;
 }

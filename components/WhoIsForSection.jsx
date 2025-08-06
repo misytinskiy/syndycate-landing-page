@@ -50,7 +50,9 @@ export default function WhoIsForSection() {
           </span>
           <span className={styles.bracket} />
         </div>
-        <h2 className={styles.title}>WHO IS THIS FOR?</h2>
+        <h2 className={styles.title}>
+          <span>WHO IS</span> THIS FOR?
+        </h2>
       </div>
 
       <div className={styles.items}>

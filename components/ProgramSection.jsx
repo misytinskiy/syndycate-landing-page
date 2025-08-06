@@ -97,8 +97,8 @@ export default function ProgramSection() {
           </p>
           <p className={styles.paragraph}>
             THE COURSE IS CONSTANTLY UPDATED, ENSURING <br /> YOU ALWAYS HAVE
-            ACCESS TO THE LATEST VERSION. ADAPT TO THE MARKET — IT WILL NEVER
-            ADAPT TO YOU
+            ACCESS TO THE LATEST VERSION.
+            <span> ADAPT TO THE MARKET — IT WILL NEVER ADAPT TO YOU</span>
           </p>
 
           <div

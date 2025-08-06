@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  width: 100vw;
+  height: 148px; /* по макету */
+  overflow: hidden;
+  background: #ffffff; /* белый фон, как в Figma */
+  position: relative;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+
+  gap: 120px; /* расстояние между повторениями */
+  white-space: nowrap;
+
+  /* бесконечная прокрутка */
+  animation: marquee 80s linear infinite;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 40px; /* иконка ↔ текст */
+}
+
+.text {
+  font-family: var(--font-anton);
+  font-size: 80px;
+  line-height: 110%;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #000;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  } /* половина, т.к. дублируем строку */
+}

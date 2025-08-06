@@ -101,8 +101,8 @@
   font-family: var(--font-inter);
   font-size: 18px;
   font-style: italic;
-  opacity: 0.4;
   text-transform: uppercase;
+  color: rgba(14, 254, 242, 1);
 }
 
 /* список */
@@ -119,7 +119,7 @@
 .bullet {
   font-family: var(--font-inter);
   font-size: 22px;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
   text-transform: uppercase;
   display: flex;
   align-items: center;
@@ -148,6 +148,7 @@
   text-transform: uppercase;
   color: rgba(255, 255, 255, 1);
   margin-bottom: 16px;
+  max-width: 486px;
 }
 .extraVal {
   color: var(--color-primary);

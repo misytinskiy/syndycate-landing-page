@@ -4,7 +4,7 @@ import styles from "@/styles/StatsSection.module.css";
 const stats = [
   {
     id: "s1",
-    value: "37",
+    value: "28",
     note: "(01)",
     description:
       "THEORETICAL & PRACTICAL MODULES DESIGNED FOR REAL TRADING RESULTS",
@@ -139,8 +139,133 @@ export default function StatsSection() {
       </div>
 
       {/* ───── фоновые градиенты ───── */}
-      <span className={styles.gradLeft} />
-      <span className={styles.gradRight} />
+      <span className={styles.gradLeft}>
+        <svg
+          width="150"
+          height="802"
+          viewBox="0 0 150 802"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g opacity="0.6" filter="url(#filter0_f_500_2228)">
+            <circle
+              cx="-251"
+              cy="401"
+              r="221"
+              fill="url(#paint0_linear_500_2228)"
+            />
+          </g>
+          <defs>
+            <filter
+              id="filter0_f_500_2228"
+              x="-652"
+              y="0"
+              width="802"
+              height="802"
+              filterUnits="userSpaceOnUse"
+              color-interpolation-filters="sRGB"
+            >
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feBlend
+                mode="normal"
+                in="SourceGraphic"
+                in2="BackgroundImageFix"
+                result="shape"
+              />
+              <feGaussianBlur
+                stdDeviation="90"
+                result="effect1_foregroundBlur_500_2228"
+              />
+            </filter>
+            <linearGradient
+              id="paint0_linear_500_2228"
+              x1="-251"
+              y1="180"
+              x2="-251"
+              y2="622"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#0EFEF2" />
+              <stop offset="1" stop-color="#0A0A0A" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </span>
+      <span className={styles.gradRight}>
+        <svg
+          width="240"
+          height="644"
+          viewBox="0 0 240 644"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g opacity="0.6" filter="url(#filter0_if_500_2262)">
+            <circle
+              cx="401"
+              cy="401"
+              r="221"
+              fill="url(#paint0_linear_500_2262)"
+            />
+          </g>
+          <defs>
+            <filter
+              id="filter0_if_500_2262"
+              x="0"
+              y="0"
+              width="802"
+              height="802"
+              filterUnits="userSpaceOnUse"
+              color-interpolation-filters="sRGB"
+            >
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feBlend
+                mode="normal"
+                in="SourceGraphic"
+                in2="BackgroundImageFix"
+                result="shape"
+              />
+              <feColorMatrix
+                in="SourceAlpha"
+                type="matrix"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                result="hardAlpha"
+              />
+              <feOffset dy="4" />
+              <feGaussianBlur stdDeviation="11.6" />
+              <feComposite
+                in2="hardAlpha"
+                operator="arithmetic"
+                k2="-1"
+                k3="1"
+              />
+              <feColorMatrix
+                type="matrix"
+                values="0 0 0 0 0 0 0 0 0 1 0 0 0 0 0.95 0 0 0 0.4 0"
+              />
+              <feBlend
+                mode="normal"
+                in2="shape"
+                result="effect1_innerShadow_500_2262"
+              />
+              <feGaussianBlur
+                stdDeviation="90"
+                result="effect2_foregroundBlur_500_2262"
+              />
+            </filter>
+            <linearGradient
+              id="paint0_linear_500_2262"
+              x1="401"
+              y1="180"
+              x2="401"
+              y2="622"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#0EFEF2" />
+              <stop offset="1" stop-color="#0A0A0A" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </span>
     </section>
   );
 }

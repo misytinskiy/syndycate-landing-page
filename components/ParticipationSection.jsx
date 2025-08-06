@@ -22,7 +22,7 @@ const tariffs = [
       "Prop firm account for top 1 student — not included",
       "Community Access: 1 months free",
     ],
-    price: "$349",
+    price: "$149",
     cta: "Buy now",
   },
   {
@@ -45,7 +45,7 @@ const tariffs = [
       "Prop firm account for the top 1 student in the group",
       "Community Access: 2 months free",
     ],
-    price: "$599",
+    price: "$699",
     oldPrice: "$749",
     cta: "Reserve your spot",
   },
@@ -94,18 +94,14 @@ export default function ParticipationSection() {
         FORMATS
       </h2>
 
-      {/* карточки */}
       <div className={styles.grid}>
         {tariffs.map((t) => (
           <div key={t.id} className={styles.card}>
-            {/* верх: название тарифа */}
             <h3 className={styles.cardTitle}>{t.title}</h3>
             <p className={styles.mode}>{t.mode}</p>
 
-            {/* список преимуществ */}
             <ul className={styles.list}>
               {t.bullets.map((b) => {
-                // если строка начинается с NO  или содержит "— not included"
                 const muted =
                   b.startsWith("NO ") ||
                   b.toLowerCase().includes("not included");

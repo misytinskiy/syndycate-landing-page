@@ -9,15 +9,15 @@
 
 .nav {
   display: flex;
-  gap: 24px;
+  gap: 22px;
   margin-right: 38px;
 }
 
 .logo {
-  font-family: var(--font-blackops);
+  font-family: var(--font-stencil);
   font-weight: 400;
   font-size: 40px;
-  letter-spacing: -0.03em;
+  /* letter-spacing: -0.03em; */
   text-transform: uppercase;
   color: var(--color-secondary);
 }
@@ -31,10 +31,20 @@
   text-transform: uppercase;
   background: none;
   border: 1px solid rgba(33, 33, 33, 1);
-  color: rgba(109, 109, 109, 1);
-  padding: 10px 27px;
+  color: rgba(186, 186, 186, 1);
+
   border-radius: 4px;
   cursor: pointer;
+}
+
+.button1 {
+  padding: 10px 11px;
+}
+.button2 {
+  padding: 10px 20px;
+}
+.button3 {
+  padding: 10px 37px;
 }
 
 .circlesRow {
@@ -47,7 +57,7 @@
 .circles {
   display: flex;
   gap: 10px;
-  padding-right: 4px;
+  padding-right: 1px;
 }
 
 .circle {
@@ -55,13 +65,16 @@
   height: 40px;
   background: rgba(217, 217, 217, 1);
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .line {
   position: absolute;
-  top: 82px;
-  left: 42px;
-  right: 42px;
+  top: 79px;
+  left: 48px;
+  right: 52px;
   height: 1px;
   background-color: #3a3a3a;
   z-index: 1;
