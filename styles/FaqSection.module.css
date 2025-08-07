@@ -106,3 +106,34 @@
 .item:first-child {
   border-top: 1px solid rgba(58, 58, 58, 1);
 }
+
+@media (max-width: 1280px) {
+  .columns {
+    gap: 43px;
+  }
+  /* Заголовок FAQ */
+  .faq {
+    font-size: 80px;
+    letter-spacing: -0.02em;
+  }
+
+  /* Вопрос */
+  .question {
+    font-size: 24px;
+    letter-spacing: -0.03em;
+  }
+
+  .questionRow {
+    padding: 22px 0;
+  }
+
+  .questionRow span {
+    max-width: 588px;
+  }
+
+  /* Ответ */
+  .answer {
+    font-size: 18px;
+    letter-spacing: -0.03em;
+  }
+}

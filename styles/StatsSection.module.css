@@ -186,6 +186,7 @@
   justify-content: space-between;
   align-items: flex-start;
   margin-top: 30px; /* 30 px от линии до блока с заголовком */
+  gap: 777px;
 }
 
 .about {
@@ -257,4 +258,64 @@
 .statsGraphSvg {
   width: 100vw; /* растягиваем на ширину экрана */
   height: auto;
+}
+
+@media (max-width: 1280px) {
+  .section {
+    padding-top: 150px;
+    padding-left: 50px;
+    padding-bottom: 150px;
+  }
+
+  .hLine {
+    top: 118px;
+  }
+
+  .aboutText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .headerRow {
+    margin-top: 0;
+    gap: 445px;
+  }
+
+  .rightText {
+    margin-right: 35px;
+    margin-right: 0;
+  }
+
+  .title {
+    font-size: 80px;
+    margin-bottom: 25px;
+  }
+  .subtext {
+    font-size: 24px;
+  }
+
+  .subtext {
+    margin-bottom: 97px;
+  }
+
+  .value {
+    font-size: 140px;
+  }
+  .desc {
+    font-size: 17px;
+  }
+
+  .grid {
+    gap: 82px 22px;
+  }
+
+  .decor::after {
+    /* bottom: 10px; */
+  }
+
+  .valueRow {
+    margin-bottom: 14px;
+  }
 }

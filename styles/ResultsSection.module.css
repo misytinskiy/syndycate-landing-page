@@ -130,3 +130,48 @@
 .fullArrowBtn {
   width: 56px;
 }
+
+@media (max-width: 1280px) {
+  .section {
+    padding-top: 148px;
+  }
+
+  .columns {
+    gap: 121px;
+  }
+
+  .title {
+    font-size: 80px;
+  }
+
+  .listText {
+    font-size: 24px;
+    max-width: 500px;
+  }
+
+  .gifWrap {
+    height: 401px;
+  }
+
+  .listRow {
+    padding: 21px 0;
+  }
+
+  .listRow span {
+    max-width: 493px;
+  }
+
+  .right {
+    gap: 45px;
+  }
+
+  .fullArrowBtn {
+    width: 46px;
+    height: 46px;
+  }
+
+  .fullTextBtn {
+    height: 46px;
+    font-size: 16px;
+  }
+}

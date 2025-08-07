@@ -360,3 +360,44 @@
 /* .moduleItem:first-child {
   border-top: 1px solid rgba(42, 42, 42, 1);
 } */
+
+@media (max-width: 1280px) {
+  .title {
+    font-size: 80px;
+  }
+  .paragraph {
+    font-size: 24px;
+    letter-spacing: -0.037em;
+  }
+
+  .paragraph:first-of-type {
+    margin-bottom: 22px;
+    text-indent: 96px;
+  }
+
+  .moduleList {
+    margin: 42px 0 20px;
+  }
+
+  .leftPart {
+    gap: 174px;
+  }
+
+  .moduleTitle {
+    font-size: 18px;
+  }
+
+  .fullRow {
+    margin-top: 15px;
+  }
+
+  .fullTextBtn {
+    height: 46px;
+    font-size: 16px;
+  }
+
+  .fullArrowBtn {
+    width: 46px;
+    height: 46px;
+  }
+}

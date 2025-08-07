@@ -311,3 +311,71 @@
 .title * {
   pointer-events: auto;
 }
+
+@media (max-width: 1280px) {
+  .hero {
+    padding-top: 40px;
+  }
+
+  .title {
+    font-size: 120px;
+  }
+
+  .timer {
+    font-size: 18px;
+    margin-right: 29px;
+    margin-left: 33px;
+  }
+
+  .timerWrapper {
+    margin-right: 28px;
+    margin-bottom: 74px;
+  }
+
+  .timerValue {
+    font-size: 30px;
+  }
+
+  .timerValue span {
+    font-size: 30px;
+  }
+
+  .cryptoIcons {
+    height: 103px;
+    min-width: 192px;
+    margin-top: -4px;
+    margin-left: 12px;
+    border-radius: 42px;
+  }
+
+  .cryptoIcons svg {
+    width: 145px;
+    height: 48px;
+  }
+
+  .bottomRight {
+    font-size: 18px;
+    right: 4px;
+  }
+
+  .signInText {
+    width: 247px;
+    height: 46px;
+    font-size: 16px;
+  }
+
+  .signInArrow {
+    width: 46px;
+    height: 46px;
+  }
+
+  .graphBg {
+    left: 12px;
+    right: 0;
+    bottom: 134px;
+  }
+
+  .curveRight {
+    margin-right: -28px;
+  }
+}

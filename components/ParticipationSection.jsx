@@ -140,9 +140,13 @@ export default function ParticipationSection() {
             {/* цена + кнопка */}
             <div className={styles.bottomRow}>
               <div className={styles.priceWrap}>
-                {/* <span>$</span><span>349</span> — легче красить символ отдельно */}
-                <span className={styles.priceSymbol}>$</span>
-                <span className={styles.price}>{t.price.replace("$", "")}</span>
+                <div>
+                  <span className={styles.priceSymbol}>$</span>
+                  <span className={styles.price}>
+                    {t.price.replace("$", "")}
+                  </span>
+                </div>
+
                 {t.oldPrice && <s className={styles.oldPrice}>{t.oldPrice}</s>}
               </div>
 

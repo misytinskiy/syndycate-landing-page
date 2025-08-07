@@ -3,6 +3,7 @@
   background: var(--color-dark-secondary);
   padding: 150px 50px;
   color: var(--color-secondary);
+  overflow: hidden;
 }
 
 /* ───────── HEADER ROW ───────── */
@@ -115,4 +116,65 @@
   letter-spacing: -0.03em;
   text-transform: uppercase;
   color: rgba(125, 125, 125, 1);
+}
+
+/* ======================== 1280px layout — Advantages ======================== */
+@media (max-width: 1280px) {
+  .section {
+    /* padding: 157px 40px; было 150px 50px */
+    padding: 159px 50px 150px;
+  }
+
+  /* верхняя строка с <OUR ADVANTAGES> и заголовком справа */
+  .headerRow {
+    margin-bottom: 54px; /* было 56px */
+    margin-right: 18px;
+  }
+  .aboutText {
+    font-size: 16px; /* было 18px */
+  }
+
+  .title {
+    font-size: 80px; /* было 125px */
+    line-height: 110%;
+    letter-spacing: -0.02em;
+  }
+  .subtext {
+    margin-top: 24px;
+    font-size: 24px; /* было 32px */
+    max-width: 549px; /* было 800px */
+  }
+
+  /* баннер на всю ширину секции, но с учётом новых паддингов */
+  .bannerWrap {
+    height: 600px; /* было 800px */
+    margin: 0 -40px 65px; /* было 0 -50px 80px */
+    width: calc(100% + 80px);
+  }
+
+  /* нижний блок: слева лид-абзац, справа карточки */
+  .bottom {
+    gap: 111px; /* было 152px */
+  }
+  .lead {
+    flex-basis: 42%;
+    font-size: 24px; /* было 32px */
+    max-width: 484px;
+    line-height: 120%;
+  }
+
+  /* сетка карточек */
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 9px; /* горизонтальный зазор */
+    row-gap: 48px; /* вертикальный зазор (отличается от горизонтального) */
+  }
+
+  .value {
+    font-size: 80px; /* было 120px */
+  }
+  .desc {
+    font-size: 18px; /* было 22px */
+    /* переносы вручную из строки с <br/> уже учтены через dangerouslySetInnerHTML */
+  }
 }

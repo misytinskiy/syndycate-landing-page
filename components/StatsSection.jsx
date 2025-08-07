@@ -59,10 +59,8 @@ export default function StatsSection() {
             IN NUMBERS?
           </h2>
           <p className={styles.subtext}>
-            WE ARE HAPPY TO PROVIDE YOU WITH <br />
-            ALL OUR COMPETENCIES AND MANY <br />
-            YEARS OF EXPERIENCE TO ACHIEVE <br />
-            YOUR FINANCIAL GOALS
+            WE ARE HAPPY TO PROVIDE YOU WITH ALL OUR COMPETENCIES AND MANY YEARS
+            OF EXPERIENCE TO ACHIEVE YOUR FINANCIAL GOALS
           </p>
         </div>
       </div>
