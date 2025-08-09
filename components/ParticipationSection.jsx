@@ -151,9 +151,7 @@ export default function ParticipationSection() {
               </div>
 
               <div className={styles.fullRow}>
-                <button className={styles.fullTextBtn}>
-                  Reserve your spot
-                </button>
+                <button className={styles.fullTextBtn}>Buy now</button>
                 <button className={styles.fullArrowBtn}>
                   <svg
                     width="12"

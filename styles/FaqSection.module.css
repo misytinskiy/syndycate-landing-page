@@ -137,3 +137,45 @@
     letter-spacing: -0.03em;
   }
 }
+
+@media (max-width: 744px) {
+  .section {
+    padding: 82px 22px;
+  }
+
+  .columns {
+    display: block; /* вместо двух колонок — одна */
+  }
+
+  .left,
+  .right {
+    flex: none; /* убрать зафиксированные проценты */
+    width: 100%;
+  }
+
+  .faq {
+    font-size: 80px; /* как в макете */
+    letter-spacing: -0.02em;
+    margin: 0 0 57px; /* отступ под заголовком */
+  }
+
+  /* чтобы текст вопроса не ограничивался старым max-width */
+  .questionRow span {
+    max-width: 100%;
+    font-size: 24px;
+    max-width: 460px;
+  }
+
+  .question {
+    font-size: 24px;
+    letter-spacing: -0.03em;
+  }
+
+  .questionRow {
+    padding: 22px 0;
+  }
+
+  .answer {
+    font-size: 18px;
+  }
+}

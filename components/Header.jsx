@@ -1,18 +1,54 @@
 "use client";
+import { useEffect, useState, useCallback } from "react";
 import styles from "@/styles/Header.module.css";
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
+
+  // блокируем прокрутку фона, когда открыт оверлей
+  useEffect(() => {
+    if (open) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => (document.body.style.overflow = prev);
+    }
+  }, [open]);
+
+  // ESC закрывает меню
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  // плавный скролл к секции
+  const goTo = useCallback((id) => {
+    const el = document.getElementById(id) || document.querySelector(id);
+    if (!el) return;
+    setOpen(false);
+    // ждём, пока меню заедет назад (анимация 450ms), и скроллим
+    setTimeout(() => {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 460);
+  }, []);
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>SNDCT</div>
-
       <div className={styles.line} />
 
+      {/* десктопная навигация (>1280px) */}
       <div className={styles.circles}>
         <nav className={styles.nav}>
-          <button className={styles.button1}>Program</button>
-          <button className={styles.button2}>Tariffs</button>
-          <button className={styles.button3}>FAQ</button>
+          <button className={styles.button1} onClick={() => goTo("program")}>
+            Program
+          </button>
+          <button className={styles.button2} onClick={() => goTo("tariffs")}>
+            Tariffs
+          </button>
+          <button className={styles.button3} onClick={() => goTo("faq")}>
+            FAQ
+          </button>
         </nav>
         <div className={styles.circlesRow}>
           <div className={styles.circle}>
@@ -44,6 +80,85 @@ export default function Header() {
             </svg>
           </div>
         </div>
+      </div>
+
+      {/* планшет/мобилка (≤1280px) — кнопка меню */}
+      <button
+        className={styles.menuBtn}
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-controls="menu-overlay"
+      >
+        MENU
+      </button>
+
+      {/* оверлей-меню */}
+      <div
+        id="menu-overlay"
+        className={`${styles.menuOverlay} ${open ? styles.menuOpen : ""}`}
+        aria-hidden={!open}
+      >
+        <div className={styles.overlayHeader}>
+          <div className={styles.overlayLogo}>SNDCT</div>
+          <span className={styles.hLine} />
+        </div>
+
+        <nav className={styles.overlayNav}>
+          <button onClick={() => goTo("program")}>Program</button>
+          <button onClick={() => goTo("tariffs")}>Tariffs</button>
+          <button onClick={() => goTo("faq")}>FAQ</button>
+        </nav>
+
+        <div className={styles.overlaySocials}>
+          <button aria-label="Telegram">
+            <svg
+              width="64"
+              height="64"
+              viewBox="0 0 64 64"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="64" height="64" rx="32" fill="white" />
+              <path
+                d="M32 16C23.168 16 16 23.168 16 32C16 40.832 23.168 48 32 48C40.832 48 48 40.832 48 32C48 23.168 40.832 16 32 16ZM39.424 26.88C39.184 29.408 38.144 35.552 37.616 38.384C37.392 39.584 36.944 39.984 36.528 40.032C35.6 40.112 34.896 39.424 34 38.832C32.592 37.904 31.792 37.328 30.432 36.432C28.848 35.392 29.872 34.816 30.784 33.888C31.024 33.648 35.12 29.92 35.2 29.584C35.2111 29.5331 35.2096 29.4803 35.1957 29.4301C35.1817 29.3799 35.1558 29.3339 35.12 29.296C35.024 29.216 34.896 29.248 34.784 29.264C34.64 29.296 32.4 30.784 28.032 33.728C27.392 34.16 26.816 34.384 26.304 34.368C25.728 34.352 24.64 34.048 23.824 33.776C22.816 33.456 22.032 33.28 22.096 32.72C22.128 32.432 22.528 32.144 23.28 31.84C27.952 29.808 31.056 28.464 32.608 27.824C37.056 25.968 37.968 25.648 38.576 25.648C38.704 25.648 39.008 25.68 39.2 25.84C39.36 25.968 39.408 26.144 39.424 26.272C39.408 26.368 39.44 26.656 39.424 26.88Z"
+                fill="#0A0A0A"
+              />
+            </svg>
+          </button>
+          <button aria-label="Instagram">
+            <svg
+              width="64"
+              height="64"
+              viewBox="0 0 64 64"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="64" height="64" rx="32" fill="white" />
+              <path
+                d="M33.6457 16C35.4457 16.0048 36.3593 16.0144 37.1481 16.0368L37.4585 16.048C37.8169 16.0608 38.1705 16.0768 38.5977 16.096C40.3001 16.176 41.4617 16.4448 42.4809 16.84C43.5369 17.2464 44.4265 17.7968 45.3161 18.6848C46.13 19.4844 46.7596 20.452 47.1609 21.52C47.5561 22.5392 47.8249 23.7008 47.9049 25.4048C47.9241 25.8304 47.9401 26.184 47.9529 26.544L47.9625 26.8544C47.9865 27.6416 47.9961 28.5552 47.9993 30.3552L48.0009 31.5488V33.6448C48.0048 34.8118 47.9925 35.9789 47.9641 37.1456L47.9545 37.456C47.9417 37.816 47.9257 38.1696 47.9065 38.5952C47.8265 40.2992 47.5545 41.4592 47.1609 42.48C46.7596 43.548 46.13 44.5156 45.3161 45.3152C44.5165 46.1291 43.549 46.7587 42.4809 47.16C41.4617 47.5552 40.3001 47.824 38.5977 47.904L37.4585 47.952L37.1481 47.9616C36.3593 47.984 35.4457 47.9952 33.6457 47.9984L32.4521 48H30.3577C29.1901 48.0041 28.0225 47.9918 26.8553 47.9632L26.5449 47.9536C26.1651 47.9392 25.7853 47.9227 25.4057 47.904C23.7033 47.824 22.5417 47.5552 21.5209 47.16C20.4534 46.7585 19.4864 46.1289 18.6873 45.3152C17.8728 44.5158 17.2427 43.5482 16.8409 42.48C16.4457 41.4608 16.1769 40.2992 16.0969 38.5952L16.0489 37.456L16.0409 37.1456C16.0114 35.9789 15.9981 34.8119 16.0009 33.6448V30.3552C15.9965 29.1882 16.0082 28.0211 16.0361 26.8544L16.0473 26.544C16.0601 26.184 16.0761 25.8304 16.0953 25.4048C16.1753 23.7008 16.4441 22.5408 16.8393 21.52C17.242 20.4515 17.8733 19.4839 18.6889 18.6848C19.4876 17.8713 20.454 17.2417 21.5209 16.84C22.5417 16.4448 23.7017 16.176 25.4057 16.096C25.8313 16.0768 26.1865 16.0608 26.5449 16.048L26.8553 16.0384C28.022 16.01 29.1891 15.9977 30.3561 16.0016L33.6457 16ZM32.0009 24C29.8792 24 27.8443 24.8429 26.3441 26.3431C24.8438 27.8434 24.0009 29.8783 24.0009 32C24.0009 34.1217 24.8438 36.1566 26.3441 37.6569C27.8443 39.1571 29.8792 40 32.0009 40C34.1226 40 36.1575 39.1571 37.6578 37.6569C39.1581 36.1566 40.0009 34.1217 40.0009 32C40.0009 29.8783 39.1581 27.8434 37.6578 26.3431C36.1575 24.8429 34.1226 24 32.0009 24ZM32.0009 27.2C32.6313 27.1999 33.2554 27.3239 33.8379 27.5651C34.4203 27.8062 34.9495 28.1597 35.3953 28.6053C35.8411 29.051 36.1947 29.5801 36.436 30.1624C36.6773 30.7447 36.8016 31.3689 36.8017 31.9992C36.8018 32.6295 36.6778 33.2537 36.4366 33.8361C36.1955 34.4185 35.842 34.9478 35.3964 35.3935C34.9507 35.8393 34.4217 36.193 33.8393 36.4343C33.257 36.6756 32.6329 36.7999 32.0025 36.8C30.7295 36.8 29.5086 36.2943 28.6084 35.3941C27.7082 34.4939 27.2025 33.273 27.2025 32C27.2025 30.727 27.7082 29.5061 28.6084 28.6059C29.5086 27.7057 30.7295 27.2 32.0025 27.2M40.4025 21.6C39.8721 21.6 39.3634 21.8107 38.9883 22.1858C38.6132 22.5609 38.4025 23.0696 38.4025 23.6C38.4025 24.1304 38.6132 24.6391 38.9883 25.0142C39.3634 25.3893 39.8721 25.6 40.4025 25.6C40.9329 25.6 41.4416 25.3893 41.8167 25.0142C42.1918 24.6391 42.4025 24.1304 42.4025 23.6C42.4025 23.0696 42.1918 22.5609 41.8167 22.1858C41.4416 21.8107 40.9329 21.6 40.4025 21.6Z"
+                fill="#0A0A0A"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* кнопка-стрелка снизу — закрыть меню */}
+        <button
+          className={`${styles.overlayClose} ${open ? styles.up : ""}`}
+          onClick={() => setOpen(false)}
+          aria-label="Close menu"
+        >
+          <svg width="40" height="40" viewBox="0 0 40 40">
+            <circle cx="20" cy="20" r="19.5" fill="none" stroke="white" />
+            <path
+              d="M13 16.5L20 23.5L27 16.5"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
       </div>
     </header>
   );

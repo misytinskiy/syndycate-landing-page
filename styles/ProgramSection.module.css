@@ -361,6 +361,10 @@
   border-top: 1px solid rgba(42, 42, 42, 1);
 } */
 
+.titleTablet {
+  display: none;
+}
+
 @media (max-width: 1280px) {
   .title {
     font-size: 80px;
@@ -399,5 +403,101 @@
   .fullArrowBtn {
     width: 46px;
     height: 46px;
+  }
+}
+
+/* ========= 744 PX BREAKPOINT — PROGRAM ============ */
+@media (max-width: 744px) {
+  .titleDesktop {
+    display: none;
+  }
+  .titleTablet {
+    display: inline;
+  }
+
+  .programSection {
+    padding: 118px 20px 80px;
+  }
+
+  /* разделительная линия */
+  .hLine {
+    top: 83px;
+    left: 23px;
+    width: calc(100% - 45px);
+  }
+
+  /* всё в одну колонку */
+  .columns {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* убираем липкость заголовка */
+  .stickyColumn {
+    position: static;
+    height: auto;
+  }
+
+  .title {
+    position: static;
+    top: auto;
+    font-size: 80px; /* как в макете */
+    line-height: 110%;
+    margin: 0 0 3px;
+  }
+
+  .paragraph {
+    font-size: 24px; /* как в макете */
+    line-height: 110%;
+    letter-spacing: -0.03em;
+    margin-bottom: 19px;
+    text-indent: 0; /* без отступа на планшете */
+    max-width: 674px;
+  }
+
+  .paragraph:first-of-type {
+    text-indent: 0;
+    margin-bottom: 16px;
+  }
+
+  /* список модулей */
+  .moduleList {
+    margin: 28px 0 12px;
+  }
+
+  .rowBtn {
+    padding: 26px 0;
+  }
+
+  .leftPart {
+    gap: 151px; /* номер ближе к названию */
+  }
+
+  .index {
+    font-size: 18px; /* /01 — italic 18px в макете */
+    min-width: 48px; /* чтобы колонки ровно сходились */
+    text-align: left;
+  }
+
+  .moduleTitle {
+    font-size: 18px;
+  }
+
+  /* кнопка The whole program */
+  .fullRow {
+    margin-top: 1px;
+  }
+  .fullTextBtn {
+    height: 46px;
+    font-size: 16px;
+  }
+  .fullArrowBtn {
+    width: 46px;
+    height: 46px;
+  }
+
+  /* декоративный круг можно спрятать, если мешает */
+  .gradLeft {
+    display: none;
   }
 }

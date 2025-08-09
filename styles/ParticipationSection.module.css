@@ -324,3 +324,102 @@
     font-size: 14px;
   }
 }
+
+/* ========= 744 PX BREAKPOINT — PARTICIPATION (TARIFFS) ============ */
+@media (max-width: 744px) {
+  .section {
+    padding: 115px 20px 80px;
+  }
+
+  .hLine {
+    top: 83px;
+    left: 23px;
+    width: calc(100% - 46px);
+  }
+
+  /* <TARIFFS> */
+  .about {
+    margin-top: 8px;
+    gap: 15px;
+    justify-content: left;
+  }
+  .aboutText {
+    font-size: 16px;
+  }
+
+  /* Заголовок под дескриптором */
+  .title {
+    margin-top: 36px;
+    text-align: left;
+    font-size: 80px; /* если тесно — можно 70px */
+    line-height: 110%;
+  }
+
+  /* Карточки друг под другом */
+  .grid {
+    margin-top: 61px;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .card {
+    padding: 27px;
+    height: auto;
+  }
+
+  .cardTitle {
+    font-size: 60px; /* как в макете */
+    line-height: 100%;
+  }
+  .mode {
+    font-size: 16px;
+  }
+
+  .list {
+    margin-top: 39px;
+    gap: 8px;
+  }
+  .bullet {
+    font-size: 18px;
+  }
+  .extra {
+    margin-top: 39px;
+  }
+
+  .extraLines {
+    margin-top: 18px;
+  }
+
+  .extraText {
+    font-size: 18px;
+    max-width: 100%;
+  }
+
+  .bottomRow {
+    margin-top: 12px;
+
+    gap: 12px;
+  }
+  .price,
+  .priceSymbol {
+    font-size: 40px;
+  }
+  .oldPrice {
+    font-size: 14px;
+    margin-top: -6px;
+  }
+
+  .fullRow {
+    width: 236px;
+    height: 46px;
+    gap: 4px;
+  }
+  .fullTextBtn {
+    height: 46px;
+    font-size: 16px;
+  }
+  .fullArrowBtn {
+    width: 46px;
+    height: 46px;
+  }
+}

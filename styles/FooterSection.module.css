@@ -106,3 +106,29 @@
     margin-left: 104px;
   }
 }
+
+@media (max-width: 744px) {
+  .section {
+    padding: 113px 20px 50px 20px;
+  }
+
+  .hLine {
+    top: 79px;
+    left: 23px;
+    width: calc(100% - 46px);
+  }
+
+  .wordmark {
+    font-size: 177.34px;
+    margin-bottom: 0;
+  }
+
+  .metaRow {
+    font-size: 12px;
+  }
+
+  .privacy {
+    font-size: 12px;
+    margin-left: 67px;
+  }
+}

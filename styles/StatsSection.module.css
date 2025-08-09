@@ -311,11 +311,113 @@
     gap: 82px 22px;
   }
 
-  .decor::after {
-    /* bottom: 10px; */
-  }
-
   .valueRow {
     margin-bottom: 14px;
+  }
+}
+
+/* ========= 744 PX BREAKPOINT — STATS ============ */
+@media (max-width: 744px) {
+  .section {
+    padding: 114px 20px 78px;
+  }
+
+  /* горизонтальная линия чуть выше и короче */
+  .hLine {
+    top: 82px;
+    left: 20px;
+    width: calc(100% - 40px);
+  }
+
+  /* шапка: слева <ABOUT US>, ниже заголовок и текст */
+  .headerRow {
+    margin-top: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 34px;
+  }
+
+  .about {
+    gap: 15px;
+    margin-left: 0;
+    padding-top: 0;
+  }
+
+  .aboutText {
+    /* Inter 16 / 110% / -3% */
+    font-size: 16px;
+    letter-spacing: -0.03em;
+  }
+
+  .rightText {
+    margin-right: 0;
+  }
+
+  .title {
+    /* Anton 80 / 110% / -2% */
+    font-size: 80px;
+    line-height: 110%;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+
+  .subtext {
+    /* Inter 18 / 110% / -3% */
+    font-size: 18px;
+    line-height: 110%;
+    letter-spacing: -0.03em;
+    margin-bottom: 91px;
+    max-width: 456px;
+  }
+
+  /* сетка «шахматка»: 2 колонки, карточка ↔ пропуск */
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    gap: 34px 16px;
+    grid-template-areas:
+      "cell1 ."
+      ". cell2"
+      "cell3 ."
+      ". cell4";
+  }
+
+  /* карточка — типографика из макета */
+  .note {
+    /* (01) — Inter 18 italic, right */
+    font-size: 18px;
+  }
+
+  .value {
+    /* 140 Anton */
+    font-size: 140px;
+    letter-spacing: -0.01em;
+  }
+
+  .desc {
+    /* Inter 18 */
+    font-size: 18px;
+    max-width: 273px;
+  }
+
+  /* линия в карточке ближе к контенту, чтобы на планшете не «липла» к краю */
+  .card {
+    padding-left: 22px;
+  }
+  .decor {
+    left: 0;
+  }
+
+  /* фоновые SVG */
+  .statsGraphBg .statsGraphSvg {
+    width: 140%;
+  }
+  .gradLeft {
+    top: 140px;
+  }
+  .gradRight {
+    right: -20px;
+    bottom: 24px;
+    opacity: 0;
   }
 }

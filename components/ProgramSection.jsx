@@ -74,17 +74,26 @@ export default function ProgramSection() {
   }, [opened]);
 
   return (
-    <section className={styles.programSection}>
+    <section className={styles.programSection} id="program">
       <span className={styles.hLine} />
       <div className={styles.columns}>
         <div className={styles.stickyColumn}>
           <h2 className={styles.title}>
-            NEW PROGRAM <br /> — 37 MODULES <br />
-            <span className={styles.primary}>
-              A STEP-BY-STEP SYSTEM TO BUILD
+            <span className={styles.titleDesktop}>
+              NEW PROGRAM <br /> — 28 MODULES <br />
+              <span className={styles.primary}>
+                A STEP-BY-STEP SYSTEM TO BUILD
+              </span>
+              <br /> REAL TRADING SKILLS
             </span>
-            <br />
-            REAL TRADING SKILLS
+
+            <span className={styles.titleTablet}>
+              NEW PROGRAM <br /> — 28 MODULES <br />
+              <span className={styles.primary}>
+                A STEP-BY-STEP SYSTEM TO BUILD
+              </span>{" "}
+              REAL TRADING <br /> SKILLS
+            </span>
           </h2>
         </div>
 

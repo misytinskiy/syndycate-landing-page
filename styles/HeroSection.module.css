@@ -379,3 +379,105 @@
     margin-right: -28px;
   }
 }
+
+/* ========= 744 PX BREAKPOINT — HERO ============ */
+@media (max-width: 744px) {
+  .hero {
+    padding: 24px 20px 80px;
+  }
+
+  .timer {
+    font-size: 18px;
+  }
+  .timerValue {
+    font-size: 30px;
+  }
+  .timerValue span {
+    font-size: 30px;
+  }
+  .timerWrapper {
+    justify-content: left;
+    margin: 8px 0 78px;
+  }
+
+  .title {
+    font-size: 120px; /* как в макете планшета */
+    max-width: none;
+  }
+
+  .cryptoIcons {
+    height: 103px;
+    min-width: 188.7px;
+    padding: 6px 12px;
+    margin-left: 21px;
+    border-radius: 36px;
+    transform: translateY(-6%);
+  }
+  .cryptoIcons svg {
+    width: 160px;
+    height: 48px;
+  }
+
+  .footerRow {
+    margin-top: 37px;
+  }
+  .bottomRight {
+    position: static;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+
+  .signIn {
+    margin-top: 23px;
+  }
+  .signInText {
+    width: 247px;
+    height: 46px;
+    font-size: 16px;
+  }
+  .signInArrow {
+    width: 46px;
+    height: 46px;
+  }
+
+  .graphBg {
+    left: 22px;
+    right: 0;
+    bottom: 248px;
+  }
+
+  .scrollDown {
+    bottom: -8px;
+  }
+  .scrollBtn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .footerRow {
+    position: relative;
+  }
+
+  .scrollDown {
+    position: absolute;
+    right: 20px; /* от края как в макете */
+    left: auto; /* убираем центрирование */
+    bottom: 0; /* как у тебя, можно подправить */
+    transform: none; /* убираем translateX(-50%) */
+    z-index: 3; /* поверх фона */
+  }
+
+  .scrollBtn {
+    position: absolute;
+    right: -20px; /* кнопка упирается в правый край блока scrollDown */
+    left: auto;
+    bottom: 0; /* выровнять внутри контейнера */
+    transform: none; /* убираем перенос в центр */
+    width: 40px;
+    height: 40px;
+  }
+
+  .scrollBtn svg {
+    display: block;
+  }
+}

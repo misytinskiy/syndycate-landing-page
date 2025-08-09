@@ -178,3 +178,79 @@
     /* переносы вручную из строки с <br/> уже учтены через dangerouslySetInnerHTML */
   }
 }
+
+/* ========= 744 PX BREAKPOINT — ADVANTAGES (хедер и баннер в колонку, карточки 2×) ========== */
+@media (max-width: 744px) {
+  .section {
+    padding: 90px 14px 100px 20px;
+  }
+
+  /* верхняя строка — в колонку */
+  .headerRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    margin-right: 0;
+    margin-bottom: 59px;
+  }
+
+  .aboutText {
+    font-size: 16px;
+  }
+
+  .rightTitle {
+    margin-top: 0;
+  }
+
+  .title {
+    font-size: 80px; /* Anton 80 */
+    line-height: 110%;
+    letter-spacing: -0.02em;
+  }
+
+  .subtext {
+    margin-top: 23px;
+    font-size: 24px; /* Inter 24 */
+    line-height: 110%;
+    max-width: 500px;
+  }
+
+  /* баннер */
+  .bannerWrap {
+    height: 430px;
+    margin: 0 -20px 36px;
+    width: calc(100% + 40px);
+  }
+
+  /* нижний блок — в колонку */
+  .bottom {
+    flex-direction: column;
+    gap: 57px;
+  }
+
+  .lead {
+    flex: none;
+    font-size: 24px;
+    line-height: 120%;
+    letter-spacing: -0.035em;
+    max-width: none;
+  }
+
+  /* карточки остаются в две колонки */
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 7px;
+    row-gap: 72px;
+  }
+
+  .value {
+    font-size: 80px;
+    letter-spacing: -0.01em;
+  }
+
+  .desc {
+    font-size: 18px;
+    line-height: 110%;
+    max-width: 330px;
+  }
+}

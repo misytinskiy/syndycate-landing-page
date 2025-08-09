@@ -55,3 +55,26 @@
     height: 60px;
   }
 }
+
+@media (max-width: 744px) {
+  .wrapper {
+    height: 100px;
+  }
+
+  .text {
+    font-size: 40px;
+  }
+
+  .item {
+    gap: 24px;
+  }
+
+  .track {
+    gap: 24px;
+  }
+
+  .track svg {
+    width: 62px;
+    height: 62px;
+  }
+}

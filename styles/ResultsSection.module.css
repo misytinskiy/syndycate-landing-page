@@ -175,3 +175,59 @@
     font-size: 16px;
   }
 }
+
+@media (max-width: 744px) {
+  /* колонка вместо двух колоночной сетки */
+  .section {
+    padding: 80px 21px 90px 21px;
+  }
+
+  .columns {
+    display: flex;
+    flex-direction: column;
+    gap: 59px;
+  }
+
+  /* заголовок по макету */
+  .title {
+    font-size: 80px;
+    line-height: 110%;
+    margin: 0; /* убираем лишние отступы, он и так сверху секции */
+  }
+
+  /* контентный столбик теперь просто последовательность: список, гиф, кнопка */
+  .right {
+    gap: 46px; /* расстояние между списком, гифкой и кнопкой */
+  }
+
+  /* список */
+  .listText {
+    font-size: 24px; /* как в макете */
+    max-width: 500px; /* чтобы переносы были “красивые” */
+  }
+  .listRow {
+    padding: 21px 0; /* как на предыдущих блоках при 1280 */
+  }
+
+  /* медиа: центрируем и ограничиваем ширину/высоту по фигме */
+  .gifWrap {
+    max-width: 704px; /* фигма: 704x400 */
+    height: 400px;
+    margin: 0 auto; /* по центру */
+  }
+
+  /* кнопка: тоже фикс ширина/высота по фигме и по центру */
+  .fullRow {
+    height: 46px; /* Fixed(46px) */
+    margin: 0 auto; /* центр */
+    gap: 4px;
+  }
+  .fullTextBtn {
+    font-size: 16px;
+    height: 46px;
+  }
+  .fullArrowBtn {
+    width: 46px;
+    height: 46px;
+  }
+}
