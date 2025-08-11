@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import styles from "@/styles/ProgramSection.module.css";
+import { flushSync } from "react-dom";
 
-/* полный список из 37 модулей */
 const modules = [
   "Introduction",
   "Market Structure",
@@ -35,49 +35,111 @@ const modules = [
 ];
 
 export default function ProgramSection() {
-  const [opened, setOpened] = useState(false);
-
+  const [isExpanded, setIsExpanded] = useState(false); // вместо opened/showAll
   const [openedIdx, setOpenedIdx] = useState(null);
-  const [showAll, setShowAll] = useState(false);
-
-  const rowRefs = useRef([]);
 
   const wrapperRef = useRef(null);
+  const listRef = useRef(null);
+  const rowRefs = useRef([]);
 
-  /* когда openedIdx меняется → скроллим к строке */
+  // скролл к открытому пункту
   useEffect(() => {
-    if (openedIdx === null) return;
+    if (openedIdx == null) return;
     const el = rowRefs.current[openedIdx];
-    if (el) {
-      el.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest", // «как можно ближе», чуть подвинет страницу
-      });
-    }
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }, [openedIdx]);
 
-  const isFirstRender = useRef(true);
+  const VISIBLE_COUNT = 8;
+  const DURATION = 1000;
 
-  /* скроллим ТОЛЬКО при реальном сворачивании */
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false; // первый вызов пропускаем
+  const easeOutQuad = (t) => t * (2 - t);
+  const smoothFollow = (delta) => {
+    if (delta <= 0) return;
+    const startY = window.scrollY || document.documentElement.scrollTop;
+    const t0 = performance.now();
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / DURATION);
+      const y = startY - delta * easeOutQuad(p);
+      window.scrollTo(0, y);
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  const toggleExpand = () => {
+    const wrapper = wrapperRef.current;
+    const list = listRef.current;
+    if (!wrapper || !list) {
+      setIsExpanded((v) => !v);
       return;
     }
 
-    if (!opened && wrapperRef.current) {
-      wrapperRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
+    const startH = wrapper.getBoundingClientRect().height;
+    wrapper.style.height = `${startH}px`;
+    wrapper.classList.add(styles.animating);
+    void wrapper.offsetHeight;
+
+    if (!isExpanded) {
+      // expand как было
+      setIsExpanded(true);
+      requestAnimationFrame(() => {
+        const endH = wrapper.scrollHeight;
+        wrapper.style.height = `${endH}px`;
       });
+      const onEnd = (e) => {
+        if (e.propertyName !== "height") return;
+        wrapper.classList.remove(styles.animating);
+        wrapper.style.height = "";
+        wrapper.removeEventListener("transitionend", onEnd);
+      };
+      wrapper.addEventListener("transitionend", onEnd);
+      return;
     }
-  }, [opened]);
+
+    // collapse — расчёт целевой высоты без урезания списка
+    const targetRow = list.children[VISIBLE_COUNT - 1] || list.lastElementChild;
+    const wrapperTop = wrapper.getBoundingClientRect().top;
+    const endH = targetRow
+      ? targetRow.getBoundingClientRect().bottom - wrapperTop
+      : 0;
+
+    const delta = startH - endH;
+    smoothFollow(delta);
+
+    // едем к endH
+    requestAnimationFrame(() => {
+      wrapper.style.height = `${endH}px`;
+    });
+
+    const onEnd = (e) => {
+      if (e.propertyName !== "height") return;
+      wrapper.removeEventListener("transitionend", onEnd);
+
+      // ЛОК: не отпускаем высоту, пока не урежем список
+      wrapper.style.height = `${endH}px`;
+
+      // Синхронно урезаем список, чтобы не было кадра с auto и полным списком
+      flushSync(() => setIsExpanded(false));
+
+      // Теперь, когда DOM уже с 8 пунктами, можно отпустить height на следующий кадр
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          wrapper.classList.remove(styles.animating);
+          wrapper.style.height = "";
+        });
+      });
+    };
+    wrapper.addEventListener("transitionend", onEnd);
+  };
+  // какие элементы отображать
+  const visibleModules = isExpanded ? modules : modules.slice(0, 8);
 
   return (
     <section className={styles.programSection} id="program">
       <span className={styles.hLine} />
       <div className={styles.columns}>
         <div className={styles.stickyColumn}>
+          {/* твой заголовок как был */}
           <h2 className={styles.title}>
             <span className={styles.titleDesktop}>
               NEW PROGRAM <br /> — 28 MODULES <br />
@@ -98,6 +160,7 @@ export default function ProgramSection() {
         </div>
 
         <div className={styles.contentColumn}>
+          {/* абзацы как были */}
           <p className={styles.paragraph}>
             THE PROGRAM IS DESIGNED FOR BOTH BEGINNERS AND EXPERIENCED TRADERS.
             YOU’LL GAIN STRUCTURED THEORETICAL AND PRACTICAL KNOWLEDGE, MASTER
@@ -110,36 +173,31 @@ export default function ProgramSection() {
             <span> ADAPT TO THE MARKET — IT WILL NEVER ADAPT TO YOU</span>
           </p>
 
-          <div
-            className={`${styles.moduleWrapper} ${
-              opened ? styles.expanded : ""
-            }`}
-            ref={wrapperRef}
-          >
-            <ul className={styles.moduleList}>
-              {modules.map((item, i) => {
-                const idx = showAll ? i : i; // индекс видимого
-                const opened = openedIdx === idx; // открыт ли сейчас
+          {/* обёртка с анимируемой высотой */}
+          <div ref={wrapperRef} className={styles.moduleWrapper}>
+            <ul ref={listRef} className={styles.moduleList}>
+              {visibleModules.map((item, i) => {
+                const idx = i; // индекс в видимом списке
+                const opened = openedIdx === idx;
                 return (
+                  // в map:
                   <li
                     key={item}
                     className={`${styles.moduleItem} ${
                       opened ? styles.open : ""
                     }`}
-                    ref={(el) => (rowRefs.current[i] = el)}
+                    ref={(el) => (rowRefs.current[idx] = el)}
                   >
-                    {/* clickable row */}
                     <button
                       className={styles.rowBtn}
                       onClick={() => setOpenedIdx(opened ? null : idx)}
                     >
                       <div className={styles.leftPart}>
                         <span className={styles.index}>
-                          /{String(i + 1).padStart(2, "0")}
+                          /{String(modules.indexOf(item) + 1).padStart(2, "0")}
                         </span>
                         <span className={styles.moduleTitle}>{item}</span>
                       </div>
-
                       <span className={styles.iconBtn}>
                         <svg
                           width="12"
@@ -160,7 +218,6 @@ export default function ProgramSection() {
                       </span>
                     </button>
 
-                    {/* раскрывающийся ответ */}
                     <div className={styles.answerWrapper}>
                       <p className={styles.answer}>
                         TEST TEXT • HERE WILL BE A SHORT DESCRIPTION OF THE
@@ -173,14 +230,14 @@ export default function ProgramSection() {
             </ul>
           </div>
 
-          {/* кнопка «The whole program» */}
-          <div className={styles.fullRow} onClick={() => setOpened(!opened)}>
+          {/* кнопка */}
+          <div className={styles.fullRow} onClick={toggleExpand}>
             <button className={styles.fullTextBtn}>
-              {opened ? "Hide program" : "The whole program"}
+              {isExpanded ? "Hide program" : "The whole program"}
             </button>
             <button
               className={`${styles.fullArrowBtn} ${
-                opened ? styles.rotated : ""
+                isExpanded ? styles.rotated : ""
               }`}
             >
               <svg

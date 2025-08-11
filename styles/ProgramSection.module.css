@@ -106,13 +106,14 @@
 /* контейнер для плавного раскрытия */
 .moduleWrapper {
   overflow: hidden;
-  max-height: 820px;
-  transition: max-height 0.6s ease-in-out;
+  height: auto;
+  /* max-height: none !important;
+  transition: max-height 0.6s ease-in-out; */
 }
 
-.moduleWrapper.expanded {
-  max-height: 5000px; /* «бесконечная» высота для 37 строк */
-}
+/* .moduleWrapper.expanded {
+  max-height: 5000px; 
+} */
 
 /* сам список */
 .moduleList {
@@ -363,6 +364,15 @@
 
 .titleTablet {
   display: none;
+}
+
+.moduleWrapper {
+  overflow: hidden;
+}
+
+/* класс включает плавную анимацию высоты */
+.animating {
+  transition: height 1s ease-in-out;
 }
 
 @media (max-width: 1280px) {
