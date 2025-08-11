@@ -421,3 +421,97 @@
     opacity: 0;
   }
 }
+
+/* ========= 320 PX BREAKPOINT — STATS (one column) ============ */
+@media (max-width: 360px) {
+  .section {
+    padding: 96px 12px 64px;
+  }
+
+  /* верхняя линия */
+  .hLine {
+    top: 62px;
+    left: 12px;
+    width: calc(100% - 27px);
+  }
+
+  /* шапка */
+  .headerRow {
+    margin-top: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 33px;
+  }
+
+  .aboutText {
+    /* Inter 12 / -3% */
+    font-size: 12px;
+    letter-spacing: -0.03em;
+  }
+
+  .title {
+    /* Anton 56 / -2% */
+    font-size: 56px;
+    line-height: 110%;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+
+  .subtext {
+    /* Inter 16 */
+    font-size: 16px;
+    line-height: 110%;
+    letter-spacing: -0.03em;
+    margin-bottom: 59px;
+    max-width: 100%;
+  }
+
+  /* карточки — одна под другой */
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 36px;
+    grid-template-areas:
+      "cell1"
+      "cell2"
+      "cell3"
+      "cell4";
+  }
+
+  .card {
+    padding-left: 33px;
+  }
+
+  .decor {
+    left: 3px;
+  }
+
+  .note {
+    /* (01) — Inter 14 italic */
+    font-size: 14px;
+  }
+
+  .valueRow {
+    margin-bottom: 42px;
+  }
+
+  .value {
+    /* Anton 120 */
+    font-size: 120px;
+    letter-spacing: -0.01em;
+  }
+
+  .desc {
+    /* Inter 16 */
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  /* фоны можно чуть приглушить/не тянуть за экран */
+  .statsGraphSvg {
+    width: 130%;
+  }
+  .gradRight {
+    opacity: 0;
+  } /* чтоб не лезла в контент */
+}

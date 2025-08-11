@@ -179,3 +179,58 @@
     font-size: 18px;
   }
 }
+
+@media (max-width: 320px) {
+  .section {
+    padding: 60px 12px;
+  }
+
+  .faq {
+    font-size: 56px; /* Anton 56 / 110% / -2% */
+    line-height: 110%;
+    letter-spacing: -0.02em;
+    margin: 0 0 41px;
+  }
+
+  .columns {
+    gap: 0;
+  } /* уже одна колонка */
+
+  .questionRow {
+    padding: 25px 0; /* компактнее строки */
+  }
+
+  .questionRow span {
+    font-size: 16px;
+    max-width: 237px;
+  }
+
+  .question {
+    font-size: 16px; /* Inter 16 / 110% / -3% */
+    line-height: 110%;
+    letter-spacing: -0.03em;
+  }
+
+  .iconBox {
+    width: 40px; /* 32×32 в макете */
+    height: 40px;
+    border-radius: 3px;
+  }
+  .icon {
+    transform-origin: center;
+  }
+
+  .answer {
+    font-size: 14px; /* Inter 14 / 110% / -3% */
+    line-height: 110%;
+    letter-spacing: -0.03em;
+    padding-bottom: 20px;
+    margin-top: -10px;
+    max-width: 178px;
+  }
+
+  /* высота раскрытия покороче — умещается в 320 */
+  .open .answerWrapper {
+    max-height: 88px;
+  }
+}

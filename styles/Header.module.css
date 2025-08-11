@@ -265,3 +265,45 @@
     bottom: 16px;
   }
 }
+
+@media (max-width: 320px) {
+  .header {
+    padding: 26px 12px 23px;
+  }
+
+  .logo {
+    font-size: 32px;
+  }
+
+  .menuBtn {
+    height: 40px;
+    width: 77px;
+    font-size: 12px;
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: 320px) {
+  .overlayLogo {
+    font-size: 36px;
+  }
+
+  .overlayNav button {
+    font-size: 54px;
+  }
+
+  .overlaySocials {
+    margin-top: 40px;
+    gap: 20px;
+  }
+
+  .overlaySocials button svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .overlaySocials button {
+    width: 48px;
+    height: 48px;
+  }
+}

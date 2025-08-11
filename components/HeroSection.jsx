@@ -103,6 +103,27 @@ export default function HeroSection() {
           />
         </svg>
       </div>
+
+      <div className={styles.scrollUnderTimer}>
+        <button onClick={scrollToNext} className={styles.scrollBtn}>
+          {" "}
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 40 40"
+            className={arrowUp ? styles.up : ""}
+          >
+            <circle cx="20" cy="20" r="19.5" fill="none" stroke="white" />
+            <path
+              d="M13 16.5L20 23.5L27 16.5"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
       <div className={styles.titleWrap}>
         <h1 className={styles.title}>
           THE
@@ -182,11 +203,8 @@ export default function HeroSection() {
 
           <div className={styles.bottomRight}>
             <p>
-              CLOSED-COMMUNITY TRAINING
-              <br />
-              FOR THOSE WHO WANT TO MASTER THE
-              <br />
-              MARKET AND TRADE WITH CONFIDENCE
+              CLOSED-COMMUNITY TRAINING FOR THOSE WHO WANT TO MASTER THE MARKET
+              AND TRADE WITH CONFIDENCE
             </p>
             <div className={styles.signIn}>
               <button className={styles.signInText}>Reserve your spot</button>

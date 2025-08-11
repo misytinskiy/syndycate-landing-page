@@ -131,6 +131,13 @@
   width: 56px;
 }
 
+.listRow svg {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  align-self: center;
+}
+
 @media (max-width: 1280px) {
   .section {
     padding-top: 148px;
@@ -224,6 +231,70 @@
   }
   .fullTextBtn {
     font-size: 16px;
+    height: 46px;
+  }
+  .fullArrowBtn {
+    width: 46px;
+    height: 46px;
+  }
+}
+
+@media (max-width: 320px) {
+  .section {
+    padding: 60px 12px 70px;
+  }
+
+  .columns {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  /* Заголовок */
+  .title {
+    font-size: 56px;
+
+    letter-spacing: -0.02em;
+  }
+
+  /* Список */
+  .listText {
+    font-size: 18px; /* компактный размер */
+    letter-spacing: -0.03em;
+    max-width: none;
+  }
+  .listRow {
+    padding: 24px 0;
+  }
+
+  .listRow span {
+    max-width: 236px;
+  }
+
+  .listRow svg {
+    height: 26px;
+    width: 26px;
+  }
+
+  .right {
+    gap: 36px;
+  }
+
+  /* Гифка */
+  .gifWrap {
+    height: 371px; /* пропорционально уменьшено */
+    margin: 0 auto;
+  }
+
+  /* Кнопка */
+  .fullRow {
+    flex-direction: row;
+    height: 40px;
+    margin: 0 auto;
+    gap: 4px;
+    width: 100%;
+  }
+  .fullTextBtn {
+    font-size: 14px;
     height: 46px;
   }
   .fullArrowBtn {

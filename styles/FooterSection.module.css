@@ -132,3 +132,42 @@
     margin-left: 67px;
   }
 }
+
+@media (max-width: 320px) {
+  .section {
+    padding: 94px 12px 40px;
+  }
+
+  .hLine {
+    top: 63px;
+    left: 14px;
+    width: calc(100% - 30px);
+  }
+
+  .wordmark {
+    font-size: 74px;
+    margin-bottom: 20px;
+  }
+
+  .metaRow {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px; /* расстояние между элементами */
+    font-size: 10px;
+    letter-spacing: -0.03em;
+  }
+
+  .metaRow .meta:nth-of-type(2) {
+    order: 2; /* ALL RIGHTS RESERVED */
+  }
+
+  .metaRow .meta:first-of-type {
+    order: 3; /* ©2025 */
+  }
+
+  .privacy {
+    margin-left: 0;
+    font-size: 10px;
+    order: 1;
+  }
+}

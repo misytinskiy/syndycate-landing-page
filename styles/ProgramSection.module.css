@@ -501,3 +501,92 @@
     display: none;
   }
 }
+
+/* ==== 320 px (и ниже) — ProgramSection ==== */
+@media (max-width: 360px) {
+  .programSection {
+    padding: 97px 12px 64px 12px;
+  }
+
+  /* горизонтальная линия */
+  .hLine {
+    top: 62px;
+    left: 15px;
+    width: calc(100% - 30px);
+  }
+
+  /* заголовок */
+  .title {
+    font-size: 56px; /* Anton 56 */
+    line-height: 110%;
+    letter-spacing: -0.02em;
+    margin: 0 0 8px;
+  }
+
+  /* абзацы под заголовком */
+  .paragraph {
+    font-size: 16px; /* Inter 16 */
+    line-height: 110%;
+    letter-spacing: -0.03em;
+    margin-bottom: 23px;
+  }
+
+  .paragraph:first-of-type {
+    margin-bottom: 20px;
+  }
+  /* левая часть строки: номер + название */
+  .leftPart {
+    gap: 31px;
+    align-self: self-start;
+  }
+
+  .index {
+    /* /01 — Inter 12 italic, 500 */
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 500;
+    min-width: 32px;
+    letter-spacing: -0.03em;
+  }
+  .moduleTitle {
+    /* название модуля */
+    font-size: 16px;
+    letter-spacing: -0.03em;
+  }
+
+  .moduleList {
+    margin: 17px 0 12px;
+  }
+
+  /* раскрывашка */
+  .answer {
+    font-size: 16px;
+    padding: 14px 0 18px;
+  }
+  .open .answerWrapper {
+    max-height: 120px;
+  }
+
+  /* кнопка "The whole program" */
+  .fullRow {
+    margin-top: 10px;
+  }
+
+  .rowBtn {
+    padding: 18px 0;
+  }
+
+  .fullTextBtn {
+    height: 40px;
+    font-size: 14px;
+  }
+  .fullArrowBtn {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* тяжёлые декорации (если есть) */
+  .gradLeft {
+    display: none;
+  }
+}

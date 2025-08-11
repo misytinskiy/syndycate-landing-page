@@ -254,3 +254,82 @@
     max-width: 330px;
   }
 }
+
+/* ========= 320 PX (iPhone SE и т.п.) ========== */
+@media (max-width: 320px) {
+  .section {
+    padding: 60px 12px 60px; /* боковые по 16–20px из макета */
+  }
+
+  /* верхний ряд в колонку + типографика */
+  .headerRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 33px;
+    margin-bottom: 36px;
+    margin-right: 0;
+  }
+  .aboutText {
+    /* <our advantages> */
+    font-size: 12px;
+    letter-spacing: -0.03em;
+  }
+  .title {
+    /* SYNDICATE COMMUNITY SERVER */
+    font-size: 56px;
+    line-height: 110%;
+    letter-spacing: -0.02em;
+  }
+  .subtext {
+    /* цитата */
+    font-size: 16px;
+    line-height: 110%;
+    max-width: none;
+    margin-top: 26px;
+  }
+
+  /* баннер */
+  .bannerWrap {
+    height: 360px; /* из фрейма 320×360 */
+    margin: 0 -16px 36px; /* на всю ширину экрана */
+    width: calc(100% + 32px);
+  }
+
+  /* нижний блок — всё в колонку */
+  .bottom {
+    flex-direction: column;
+    gap: 46px;
+  }
+  .lead {
+    flex: none;
+    font-size: 16px;
+    line-height: 120%;
+
+    max-width: none;
+  }
+
+  /* карточки: одна колонка */
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    row-gap: 38px;
+    column-gap: 0;
+  }
+  .card {
+    gap: 12px;
+  }
+
+  .value {
+    /* число/лейбл */
+    font-size: 56px;
+    line-height: 100%;
+    letter-spacing: -0.01em;
+    width: 296px; /* как в макете (необязательно) */
+    max-width: 100%;
+  }
+  .desc {
+    font-size: 16px;
+    line-height: 110%;
+    letter-spacing: -0.03em;
+    max-width: none;
+  }
+}

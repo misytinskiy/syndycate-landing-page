@@ -31,7 +31,7 @@
   font-size: 18px;
   font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
   color: var(--color-primary);
 }
 
@@ -319,5 +319,73 @@
   .bulletIcon {
     margin-right: 6px;
     margin-top: -2px;
+  }
+}
+
+/* ======= 320 PX (и ниже) — WHO IS FOR ======= */
+@media (max-width: 360px) {
+  .section {
+    padding: 69px 12px 60px; /* боковые по 20px */
+  }
+
+  /* верхняя строка */
+  .headerRow {
+    gap: 38px;
+    margin-bottom: 41px;
+  }
+  .aboutText {
+    font-size: 12px; /* Inter 12 / 110% / -3% */
+    letter-spacing: -0.035em;
+  }
+  .title {
+    font-size: 56px; /* Anton 56 / 110% / -2% */
+    line-height: 110%;
+    letter-spacing: -0.02em;
+    margin-top: -4px;
+    margin-right: 0;
+  }
+
+  /* элемент списка */
+  .item {
+    padding: 24px 0;
+    gap: 7px;
+  }
+  .number {
+    width: 30px;
+    min-width: 35px;
+    font-size: 12px; /* Inter 12 Italic */
+    line-height: 110%;
+  }
+  .content {
+    margin-left: 0; /* колонка сразу после номера */
+  }
+
+  .itemHeader {
+    margin-bottom: 8px;
+  }
+  .itemTitle {
+    font-size: 16px; /* Inter 16 Medium */
+    font-weight: 500;
+    letter-spacing: -0.035em;
+  }
+  .square {
+    width: 5px;
+    height: 5px;
+  }
+
+  .list {
+    margin-top: 10px;
+    gap: 16px;
+    max-width: none;
+  }
+  .bullet {
+    font-size: 14px; /* Inter 14 / 120% / -3% */
+    line-height: 120%;
+    letter-spacing: -0.03em;
+    max-width: 100%;
+  }
+  .bulletIcon {
+    margin-right: 6px;
+    margin-top: -1px;
   }
 }
