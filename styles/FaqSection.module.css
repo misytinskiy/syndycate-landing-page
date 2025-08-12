@@ -234,3 +234,16 @@
     max-height: 88px;
   }
 }
+
+.questionRow {
+  color: var(--color-secondary);
+  background: transparent;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* текст вопроса — тоже явно */
+.question {
+  color: var(--color-secondary);
+}

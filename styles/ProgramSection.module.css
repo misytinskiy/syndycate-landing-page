@@ -646,3 +646,18 @@
     transition: none;
   }
 }
+
+.rowBtn {
+  color: var(--color-secondary);
+  background: transparent;
+  border: none;
+  /* иногда помогает, если у браузера «системные» стили */
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* на всякий случай фиксируем и дочерние */
+.index,
+.moduleTitle {
+  color: var(--color-secondary);
+}
