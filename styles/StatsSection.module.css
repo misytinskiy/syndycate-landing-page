@@ -260,7 +260,7 @@
   height: auto;
 }
 
-@media (max-width: 1512px) {
+@media (max-width: 1536px) {
   .section {
     padding-top: 150px;
     padding-left: 50px;
@@ -423,7 +423,7 @@
 }
 
 /* ========= 320 PX BREAKPOINT — STATS (one column) ============ */
-@media (max-width: 360px) {
+@media (max-width: 430px) {
   .section {
     padding: 96px 12px 64px;
   }

@@ -119,7 +119,7 @@
 }
 
 /* ======================== 1280px layout — Advantages ======================== */
-@media (max-width: 1512px) {
+@media (max-width: 1536px) {
   .section {
     /* padding: 157px 40px; было 150px 50px */
     padding: 159px 50px 150px;
@@ -255,7 +255,7 @@
 }
 
 /* ========= 320 PX (iPhone SE и т.п.) ========== */
-@media (max-width: 320px) {
+@media (max-width: 430px) {
   .section {
     padding: 60px 12px 60px; /* боковые по 16–20px из макета */
   }

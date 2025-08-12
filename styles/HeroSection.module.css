@@ -18,7 +18,7 @@
   color: white;
   text-align: center;
   position: relative;
-  z-index: 2;
+  z-index: 1000;
 }
 
 .timer span {
@@ -321,15 +321,6 @@
   display: none;
 }
 
-@media (max-height: 1030px) {
-  .hero {
-    padding: 47px 50px 100px 50px;
-  }
-  .timerWrapper {
-    margin-bottom: -29px;
-  }
-}
-
 @media (max-height: 941px) {
   .title {
     font-size: 167px;
@@ -340,7 +331,7 @@
   }
 }
 
-@media (max-width: 1512px) {
+@media (max-width: 1536px) {
   .hero {
     padding-top: 40px;
   }
@@ -511,7 +502,7 @@
 }
 
 /* ======== 320px layout (целевой мини-брейкпоинт) ======== */
-@media (max-width: 360px) {
+@media (max-width: 430px) {
   /* боковые отступы */
   .hero {
     padding: 21px 12px 80px;
@@ -616,5 +607,26 @@
 
   .signInText {
     font-size: 14px;
+  }
+}
+
+.hero {
+  /* height: calc(100vh - 82px); */ /* убрать */
+  min-height: calc(100vh - 82px); /* фолбэк */
+  min-height: calc(100dvh - 82px); /* корректно без DevTools */
+}
+
+@media (max-height: 1030px) {
+  .hero {
+    padding: 47px 50px 100px 50px;
+  }
+  .timerWrapper {
+    margin-bottom: -29px;
+  }
+}
+
+@media (max-height: 1030px) {
+  .title {
+    font-size: 121px;
   }
 }

@@ -235,7 +235,7 @@
   /* margin-right: 4px; */
 }
 
-@media (max-width: 1512px) {
+@media (max-width: 1536px) {
   .hLine {
     top: 119px;
     left: 53px;
@@ -326,7 +326,7 @@
 
   .oldPrice {
     margin-left: 0;
-    margin-top: -10px;
+
     align-self: flex-start;
     font-size: 14px;
   }
@@ -413,7 +413,6 @@
   }
   .oldPrice {
     font-size: 14px;
-    margin-top: -6px;
   }
 
   .fullRow {
@@ -432,7 +431,7 @@
 }
 
 /* ========= 320 PX — PARTICIPATION (TARIFFS) ============ */
-@media (max-width: 320px) {
+@media (max-width: 430px) {
   .section {
     padding: 114px 12px 60px;
   }

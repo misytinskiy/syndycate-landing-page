@@ -165,7 +165,7 @@
   margin-top: -2px;
 }
 
-@media (max-width: 1512px) {
+@media (max-width: 1536px) {
   .section {
     padding-top: 158px;
   }
@@ -330,7 +330,7 @@
 }
 
 /* ======= 320 PX (и ниже) — WHO IS FOR ======= */
-@media (max-width: 360px) {
+@media (max-width: 430px) {
   .section {
     padding: 69px 12px 60px; /* боковые по 20px */
   }
