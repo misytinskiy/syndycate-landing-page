@@ -119,7 +119,7 @@
 }
 
 /* ======================== 1280px layout — Advantages ======================== */
-@media (max-width: 1280px) {
+@media (max-width: 1512px) {
   .section {
     /* padding: 157px 40px; было 150px 50px */
     padding: 159px 50px 150px;
@@ -179,8 +179,7 @@
   }
 }
 
-/* ========= 744 PX BREAKPOINT — ADVANTAGES (хедер и баннер в колонку, карточки 2×) ========== */
-@media (max-width: 744px) {
+@media (max-width: 982px) {
   .section {
     padding: 90px 14px 100px 20px;
   }

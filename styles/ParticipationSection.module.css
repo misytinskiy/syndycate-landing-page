@@ -190,6 +190,12 @@
   gap: 4px;
 }
 
+.priceWrap {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
 .fullTextBtn {
   flex: 1;
   background: rgba(14, 254, 242, 1);
@@ -225,10 +231,11 @@
   font-family: var(--font-anton);
   font-size: 55px;
   letter-spacing: -0.01em;
+  line-height: 100%;
   /* margin-right: 4px; */
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1512px) {
   .hLine {
     top: 119px;
     left: 53px;
@@ -326,7 +333,7 @@
 }
 
 /* ========= 744 PX BREAKPOINT — PARTICIPATION (TARIFFS) ============ */
-@media (max-width: 744px) {
+@media (max-width: 982px) {
   .section {
     padding: 115px 20px 80px;
   }

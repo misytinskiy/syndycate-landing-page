@@ -81,7 +81,7 @@
 }
 
 /* ========= 1200–1280 PX tweaks (как было) ============ */
-@media (max-width: 744px) {
+@media (max-width: 982px) {
   .logo {
     font-size: 40px;
     line-height: 1;

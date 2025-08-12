@@ -165,7 +165,7 @@
   margin-top: -2px;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1512px) {
   .section {
     padding-top: 158px;
   }
@@ -230,9 +230,16 @@
   }
 }
 
-@media (max-width: 744px) {
+@media (max-width: 982px) {
   .section {
     padding: 89px 20px 57px 21px;
+  }
+
+  .modalGrid {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 21px;
   }
 
   .headerRow {

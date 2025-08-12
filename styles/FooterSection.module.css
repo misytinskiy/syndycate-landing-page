@@ -68,6 +68,7 @@
 .privacy {
   color: var(--color-secondary);
   text-decoration: underline;
+  text-underline-offset: 3px;
   white-space: nowrap;
   margin-left: 138px;
 }
@@ -76,7 +77,7 @@
   color: var(--color-primary);
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1512px) {
   .section {
     padding-top: 137px;
     padding-bottom: 100px;
@@ -107,7 +108,7 @@
   }
 }
 
-@media (max-width: 744px) {
+@media (max-width: 982px) {
   .section {
     padding: 113px 20px 50px 20px;
   }

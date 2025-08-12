@@ -5,6 +5,7 @@
   padding: 59px 50px 100px 50px;
   overflow: hidden;
   z-index: 0;
+  height: calc(100vh - 82px);
 }
 
 .timer {
@@ -320,7 +321,26 @@
   display: none;
 }
 
-@media (max-width: 1280px) {
+@media (max-height: 1030px) {
+  .hero {
+    padding: 47px 50px 100px 50px;
+  }
+  .timerWrapper {
+    margin-bottom: -29px;
+  }
+}
+
+@media (max-height: 941px) {
+  .title {
+    font-size: 167px;
+  }
+
+  .cryptoIcons {
+    min-width: 263px;
+  }
+}
+
+@media (max-width: 1512px) {
   .hero {
     padding-top: 40px;
   }
@@ -389,7 +409,7 @@
 }
 
 /* ========= 744 PX BREAKPOINT — HERO ============ */
-@media (max-width: 744px) {
+@media (max-width: 982px) {
   .hero {
     padding: 24px 20px 80px;
   }

@@ -6,6 +6,9 @@
   align-items: center;
   justify-content: center;
   z-index: 10000;
+  overflow-y: auto; /* ← скроллим оверлей */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 .modal {
@@ -17,9 +20,11 @@
   padding: 70px;
   display: grid;
   /* grid-template-columns: 1fr 1fr; */
-  gap: 120px;
+  gap: 21px;
   position: relative;
   color: var(--color-secondary);
+  overflow: auto; /* ← внутренний скролл, если нужно */
+  -webkit-overflow-scrolling: touch;
 }
 
 /* заголовки слева */
@@ -48,6 +53,15 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
+  justify-content: space-between;
+
+  height: 100%;
+}
+
+.inputsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 .inputWrap {
   display: block;
@@ -80,7 +94,9 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  margin-top: 8px;
+  margin-top: 36px;
+  /* margin-bottom: 34px; */
+  max-width: 336px;
 }
 .checkboxRow input {
   margin-top: 4px;
@@ -99,6 +115,7 @@
   padding: 0;
   color: rgba(14, 254, 242, 1);
   text-decoration: underline;
+  text-underline-offset: 3px;
   cursor: pointer;
   font: inherit;
   text-transform: inherit;
@@ -109,13 +126,17 @@
   display: flex;
   gap: 10px;
   align-items: center;
-  margin-top: 8px;
+  margin-top: 56px;
   font-family: var(--font-inter);
   font-size: 18px;
   text-transform: uppercase;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.3);
   letter-spacing: -0.035em;
+}
+
+.inlineSupport button {
+  font-size: 22px;
 }
 
 /* правая колонка (копируем стили карточки, слегка уплотнил) */
@@ -167,9 +188,10 @@
 .bottomRow {
   /* margin-top: auto; */
   display: flex;
-  justify-content: space-between;
+
   align-items: center;
-  gap: 12px;
+
+  gap: 25px;
 }
 .priceWrap {
   display: flex;
@@ -249,7 +271,7 @@
 .modalGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 120px;
+  gap: 21px;
   width: 100%;
   height: 100%;
   /* min-height: 610px;  */
@@ -261,6 +283,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 81%;
 }
 .rightCol {
   display: flex;
@@ -419,14 +442,19 @@
   box-shadow: none !important;
 }
 
-@media (max-width: 1280px) {
-  .modal {
-    width: min(100vw - 40px, 1080px);
+@media (max-width: 1512px) {
+  /* .modal {
+    width: 982px;
+    height: 614px;
     padding: 50px;
     gap: 80px;
   }
   .title {
-    font-size: 60px;
+    font-size: 72px;
+  }
+
+  .mode {
+    font-size: 14px;
   }
   .bullet {
     font-size: 18px;
@@ -444,14 +472,401 @@
   }
   .ctaRow {
     height: 50px;
+  } */
+
+  .modal {
+    width: 982px;
+    height: 614px;
+    padding: 54px;
+    gap: 40px; /* чуть меньше, чем 80 — ближе к макету */
+    min-height: auto;
+  }
+
+  /* Заголовки слева */
+  .title {
+    font-size: 72px;
+  }
+  .mode {
+    font-size: 14px;
+    letter-spacing: -0.03em;
+  }
+
+  /* Поля и плейсхолдеры: Inter 14 / 110% / -3% / Uppercase */
+  .inputsContainer {
+    gap: 10px;
+  }
+  .input {
+    height: 46px;
+    font-size: 14px;
+  }
+  .input::placeholder {
+    font-size: 14px;
+    letter-spacing: -0.03em;
+  }
+
+  /* Кастомный select — как инпут: 14px */
+  .selectTrigger {
+    height: 46px;
+    font-size: 14px;
+    letter-spacing: -0.03em;
+  }
+  .option {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  /* Чекбокс 18×18 и текст 14px / 100% */
+  .checkboxRow {
+    margin-top: 40px;
+    gap: 8px;
+    max-width: 336px;
+  }
+  .checkboxRow input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    border-radius: 4px;
+  }
+  .checkboxRow input[type="checkbox"]::after {
+    left: 2px;
+    top: 3px;
+    width: 12px;
+    height: 9px; /* под новый бокс */
+  }
+  .cbText {
+    font-size: 14px;
+    line-height: 110%;
+    letter-spacing: -0.03em;
+  }
+
+  /* Низкий текст и SUPPORT */
+  .inlineSupport {
+    font-size: 14px;
+    letter-spacing: -0.03em;
+  }
+  .inlineSupport button {
+    font-size: 16px;
+  }
+
+  /* Отступ подчёркивания для PRIVACY POLICY и SUPPORT */
+  .linkBtn {
+    text-underline-offset: 2px;
+  }
+
+  /* Правый столбец */
+  .bullet {
+    font-size: 18px;
+  } /* как на скрине */
+  .extraText {
+    font-size: 16px;
+  }
+
+  /* Цена и CTA */
+  .price,
+  .priceSymbol {
+    font-size: 40px;
+  }
+  .ctaRow {
+    height: 46px;
+    width: 236px;
   }
 }
-@media (max-width: 920px) {
+@media (max-width: 982px) {
+  .overlay {
+    padding: 0 8px;
+  } /* чуть воздуха от краёв */
+
   .modal {
-    grid-template-columns: 1fr;
-    gap: 32px;
+    width: 704px;
+    min-height: 896px;
+    height: auto; /* фикс по макету */
+    padding: 27px; /* как в фигме на планшете */
+    gap: 57px;
   }
-  .bottomRow {
+
+  .modalGrid {
+    grid-template-columns: 1fr; /* в колонку */
+    gap: 8px;
+    height: 100%;
+  }
+
+  .extra {
+    margin-top: 51px;
+  }
+
+  .leftCol {
+    width: 100%;
+  }
+  .rightCol {
+    justify-content: flex-start;
+  }
+
+  /* заголовки */
+  .title {
+    font-size: 60px;
+  } /* Anton 60 / 100% / -1% */
+  .mode {
+    font-size: 16px;
+    line-height: 110%;
+    letter-spacing: -0.03em;
+  }
+
+  /* инпуты и плейсхолдеры: Inter 14 / 110% / -3% */
+  .input {
+    font-size: 18px;
+  }
+  .input::placeholder {
+    font-size: 18px;
+  }
+
+  /* чекбокс 22×22 и текст 18 */
+  .checkboxRow {
     margin-top: 24px;
+    max-width: 100%;
+  }
+  .checkboxRow input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    flex: none;
+  }
+  .checkboxRow input[type="checkbox"]::after {
+    left: 3px;
+    top: 4px;
+    width: 14.63px;
+    height: 11px;
+  }
+  .cbText {
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: -0.03em;
+  }
+
+  /* "or contact us directly" — 14px, SUPPORT — 16px */
+  .inlineSupport {
+    font-size: 14px;
+  }
+  .inlineSupport button {
+    font-size: 16px;
+  }
+
+  /* список/экстра справа (теперь под формой) */
+  .bullet {
+    font-size: 18px;
+  } /* Inter 18 / 110% / -3% */
+  .extraText {
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0;
+  }
+
+  /* низ: цена + кнопка */
+  .price,
+  .priceSymbol {
+    font-size: 40px;
+  }
+  .oldPrice {
+    font-size: 14px;
+    margin-top: -6px;
+  }
+
+  .bottomRow {
+    margin-top: 12px;
+    gap: 12px;
+    justify-content: space-between;
+  }
+
+  .ctaRow {
+    width: 236px;
+    height: 46px;
+  }
+  .ctaText {
+    font-size: 16px;
+  }
+  .ctaArrow {
+    width: 46px;
+    height: 46px;
+  }
+
+  .leftCol {
+    display: contents;
+  } /* headings, form становятся соседями rightCol */
+  .form {
+    display: contents;
+  } /* из формы нам нужен доступ к inputsContainer/checkbox/support */
+
+  .headings {
+    order: 1;
+    /* margin-bottom: 11px; */
+  } /* BEGINNER + mode */
+  .rightCol {
+    order: 2;
+  } /* буллеты + extra + цена/кнопка как сейчас */
+  .inputsContainer {
+    order: 3;
+    margin-top: 15px;
+    gap: 22px;
+  } /* поля формы идут после правой колонки */
+  .checkboxRow {
+    order: 4;
+  }
+  .inlineSupport {
+    order: 5;
+  }
+}
+
+/* ========= 320 px (и около того) ========= */
+@media (max-width: 360px) {
+  .modal {
+    max-width: 296px;
+    padding: 10px;
+    height: auto;
+    gap: 18px;
+  }
+
+  .modalGrid {
+    grid-template-columns: 1fr; /* две колонки -> одна */
+    gap: 0px;
+    align-items: start;
+  }
+
+  .extra {
+    margin-top: 0;
+  }
+  .leftCol,
+  .rightCol {
+    width: 100%;
+  }
+
+  /* Заголовки */
+  .title {
+    /* Anton 48 / 100% / -1% */
+    font-size: 48px;
+    letter-spacing: -0.01em;
+  }
+  .mode {
+    /* Inter Italic 12 / 110% / -3% */
+    font-size: 12px;
+    letter-spacing: -0.03em;
+  }
+
+  /* Инпуты и плейсхолдеры — 14px */
+  .input {
+    font-size: 14px;
+  }
+  .input::placeholder {
+    font-size: 14px;
+    letter-spacing: -0.03em;
+  }
+
+  /* Чекбокс: 22×22 как просил для мобилы */
+  .checkboxRow input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    flex: 0 0 22px;
+  }
+  .cbText {
+    /* Inter 14 / 100% / -3% */
+    font-size: 14px;
+    letter-spacing: -0.03em;
+    line-height: 100%;
+  }
+
+  /* privacy policy / support */
+  .linkBtn {
+    text-underline-offset: 3px; /* небольшой отступ подчеркивания */
+  }
+  .inlineSupport {
+    font-size: 14px; /* Inter 14 / 110% / -3% */
+    letter-spacing: -0.03em;
+  }
+  .inlineSupport button {
+    font-size: 16px; /* SUPPORT 16 */
+  }
+
+  /* Буллеты + extra */
+  .bullet {
+    /* Inter 14 / 110% / -3% */
+    font-size: 14px;
+    line-height: 110%;
+    letter-spacing: -0.03em;
+  }
+  .extraText {
+    /* Inter 14 / 100% */
+    font-size: 14px;
+    line-height: 110%;
+  }
+
+  /* Низ: цена и кнопка */
+  .price,
+  .priceSymbol {
+    /* Anton 40 / 100% / -1% */
+    font-size: 40px;
+    letter-spacing: -0.01em;
+  }
+
+  .bottomRow {
+    gap: 16px;
+    flex-direction: column;
+  }
+
+  .ctaRow {
+    height: 46px; /* Hug (46px) */
+    gap: 4px; /* как в макете */
+    width: 100%;
+    max-width: 276px; /* Fill (276px) */
+  }
+  .ctaText {
+    font-size: 14px;
+  }
+  .ctaArrow {
+    width: 46px;
+  } /* стрелка 46 */
+
+  .priceWrap {
+    flex-direction: row;
+    align-self: flex-start;
+  }
+
+  .leftCol {
+    display: contents;
+  }
+  .rightCol {
+    display: contents;
+  }
+
+  .extraText {
+    margin-bottom: 11px;
+  }
+
+  .input {
+    height: 28px;
+  }
+
+  .inputsContainer {
+    margin-top: 0px;
+    gap: 5px;
+  }
+
+  .headings {
+    order: 1;
+    margin-bottom: 21px;
+  } /* заголовок сверху */
+  .list {
+    order: 2;
+  } /* список плюсов */
+  .extra {
+    order: 3;
+  } /* * и строки под ним */
+  .inputsContainer {
+    order: 4;
+  } /* поля формы вставляются ПОСЛЕ списка */
+  .bottomRow {
+    order: 5;
+  } /* цена + CTA под полями */
+  .checkboxRow {
+    order: 6;
+  }
+  .inlineSupport {
+    order: 7;
   }
 }

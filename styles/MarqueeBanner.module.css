@@ -42,7 +42,7 @@
   } /* половина, т.к. дублируем строку */
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1512px) {
   .wrapper {
     height: 115px;
   }
@@ -56,7 +56,7 @@
   }
 }
 
-@media (max-width: 744px) {
+@media (max-width: 982px) {
   .wrapper {
     height: 100px;
   }

@@ -60,70 +60,70 @@ export default function TariffForm({ tariff, onClose, onSubmit }) {
     <div className={styles.modalGrid} role="document">
       {/* LEFT */}
       <div className={styles.leftCol}>
-        <div className={styles.headings}>
-          <h3 className={styles.title}>{tariff?.title}</h3>
-          <p className={styles.mode}>{tariff?.mode}</p>
-        </div>
-
         <form className={styles.form} onSubmit={handleSubmit}>
-          <input
-            className={styles.input}
-            placeholder="NAME"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <div className={styles.headings}>
+            <h3 className={styles.title}>{tariff?.title}</h3>
+            <p className={styles.mode}>{tariff?.mode}</p>
+          </div>
 
-          <CustomSelect
-            value={method}
-            onChange={(val) => {
-              setMethod(val);
-              setDetails("");
-            }}
-            placeholder="CHOOSE CONTACT METHOD"
-            options={[
-              { value: "call", label: "CALL ME" },
-              { value: "telegram", label: "TELEGRAM" },
-              { value: "whatsapp", label: "WHATSAPP" },
-            ]}
-          />
-
-          {!!method && (
+          <div className={styles.inputsContainer}>
             <input
               className={styles.input}
-              placeholder={detailsPlaceholder}
-              value={details}
-              onChange={(e) => setDetails(e.target.value)}
+              placeholder="NAME"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
-          )}
+            <CustomSelect
+              value={method}
+              onChange={(val) => {
+                setMethod(val);
+                setDetails("");
+              }}
+              placeholder="CHOOSE CONTACT METHOD"
+              options={[
+                { value: "call", label: "CALL ME" },
+                { value: "telegram", label: "TELEGRAM" },
+                { value: "whatsapp", label: "WHATSAPP" },
+              ]}
+            />
+            {!!method && (
+              <input
+                className={styles.input}
+                placeholder={detailsPlaceholder}
+                value={details}
+                onChange={(e) => setDetails(e.target.value)}
+              />
+            )}
+            <label className={styles.checkboxRow}>
+              <input
+                type="checkbox"
+                checked={accept}
+                onChange={(e) => setAccept(e.target.checked)}
+              />
 
-          <label className={styles.checkboxRow}>
-            <input
-              type="checkbox"
-              checked={accept}
-              onChange={(e) => setAccept(e.target.checked)}
-            />
-            <span className={styles.cbText}>
-              I ACCEPT THE{" "}
+              <span className={styles.cbText}>
+                I ACCEPT THE{" "}
+                <button
+                  type="button"
+                  className={styles.linkBtn}
+                  onClick={() => (window.location.href = "/privacy-policy")}
+                >
+                  PRIVACY POLICY
+                </button>{" "}
+                AND CONTRACTUAL OFFERS
+              </span>
+            </label>
+
+            <div className={styles.inlineSupport}>
+              <span>OR CONTACT US DIRECTLY</span>
               <button
                 type="button"
                 className={styles.linkBtn}
-                onClick={() => (window.location.href = "/privacy-policy")}
+                onClick={() => (window.location.href = "/support")}
               >
-                PRIVACY POLICY
-              </button>{" "}
-              AND CONTRACTUAL OFFERS
-            </span>
-          </label>
-
-          <div className={styles.inlineSupport}>
-            <span>OR CONTACT US DIRECTLY</span>
-            <button
-              type="button"
-              className={styles.linkBtn}
-              onClick={() => (window.location.href = "/support")}
-            >
-              SUPPORT
-            </button>
+                SUPPORT
+              </button>
+            </div>
           </div>
         </form>
       </div>
