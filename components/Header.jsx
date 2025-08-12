@@ -29,7 +29,7 @@ export default function Header() {
     // ждём, пока меню заедет назад (анимация 450ms), и скроллим
     setTimeout(() => {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 460);
+    }, 160);
   }, []);
 
   return (
@@ -117,6 +117,7 @@ export default function Header() {
               viewBox="0 0 64 64"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className={styles.socialIcon}
             >
               <rect width="64" height="64" rx="32" fill="white" />
               <path

@@ -302,3 +302,47 @@
     height: 46px;
   }
 }
+
+/* --- hover как в hero: светлее фон + scale, и разъезд пары --- */
+@media (hover: hover) and (pointer: fine) {
+  .fullRow {
+    transition: gap 0.15s ease;
+  }
+  .fullRow:hover {
+    gap: 6px;
+  }
+
+  .fullTextBtn,
+  .fullArrowBtn {
+    transition: transform 0.15s ease, background-color 0.15s ease,
+      box-shadow 0.15s ease;
+    will-change: transform;
+  }
+
+  .fullRow:hover .fullTextBtn,
+  .fullRow:hover .fullArrowBtn {
+    transform: scale(1.01);
+    background-color: #27fff7; /* чуть светлее основного */
+    box-shadow: 0 6px 18px rgba(14, 254, 242, 0.18);
+    cursor: pointer;
+  }
+
+  .fullTextBtn:active,
+  .fullArrowBtn:active {
+    transform: scale(0.97);
+  }
+}
+
+.fullTextBtn:focus-visible,
+.fullArrowBtn:focus-visible {
+  outline: 2px solid rgba(14, 254, 242, 0.9);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fullRow,
+  .fullTextBtn,
+  .fullArrowBtn {
+    transition: none;
+  }
+}

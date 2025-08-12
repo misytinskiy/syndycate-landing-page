@@ -561,3 +561,63 @@
     height: 46px;
   }
 }
+
+@media (hover: hover) and (pointer: fine) {
+  .fullTextBtn,
+  .fullArrowBtn {
+    cursor: pointer;
+  }
+
+  .fullTextBtn,
+  .fullArrowBtn {
+    transition: transform 0.15s ease, background-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+
+  .fullRow:hover .fullTextBtn,
+  .fullRow:hover .fullArrowBtn {
+    background-color: #42fff6; /* светлее */
+  }
+}
+
+.fullRow:active.fullTextBtn,
+.fullRow:active .fullArrowBtn {
+  transform: scale(0.97);
+}
+
+.fullTextBtn:focus-visible,
+.fullArrowBtn:focus-visible {
+  outline: 2px solid rgba(14, 254, 242, 0.9);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fullRow,
+  .fullTextBtn,
+  .fullArrowBtn {
+    transition: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .fullRow:hover .fullTextBtn,
+  .fullRow:hover .fullArrowBtn {
+    background-color: #42fff6;
+    background: color-mix(in srgb, rgba(14, 254, 242, 1) 88%, white);
+  }
+
+  /* фокус с клавиатуры — та же подсветка */
+  .fullTextBtn:focus-visible,
+  .fullArrowBtn:focus-visible {
+    transform: scale(1.01);
+    background-color: #42fff6;
+
+    outline: none;
+  }
+}
+
+/* «нажатие» */
+.fullRow:active .fullTextBtn,
+.fullRow:active .fullArrowBtn {
+  transform: scale(0.97);
+}

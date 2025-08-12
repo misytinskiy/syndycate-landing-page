@@ -1,6 +1,6 @@
 "use client";
 import styles from "@/styles/HeroSection.module.css";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function HeroSection() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0 });
@@ -60,6 +60,15 @@ export default function HeroSection() {
     window.scrollTo({ top: offsetTop, behavior: "smooth" });
   };
 
+  const goTo = useCallback((id) => {
+    const el = document.getElementById(id) || document.querySelector(id);
+    if (!el) return;
+
+    setTimeout(() => {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 160);
+  }, []);
+
   return (
     <section className={styles.hero}>
       <div className={styles.timerWrapper}>
@@ -106,7 +115,6 @@ export default function HeroSection() {
 
       <div className={styles.scrollUnderTimer}>
         <button onClick={scrollToNext} className={styles.scrollBtn}>
-          {" "}
           <svg
             width="40"
             height="40"
@@ -207,8 +215,16 @@ export default function HeroSection() {
               AND TRADE WITH CONFIDENCE
             </p>
             <div className={styles.signIn}>
-              <button className={styles.signInText}>Reserve your spot</button>
-              <button className={styles.signInArrow}>
+              <button
+                className={styles.signInText}
+                onClick={() => goTo("tariffs")}
+              >
+                Reserve your spot
+              </button>
+              <button
+                className={styles.signInArrow}
+                onClick={() => goTo("tariffs")}
+              >
                 <svg
                   width="12"
                   height="12"

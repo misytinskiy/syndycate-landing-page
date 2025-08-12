@@ -600,3 +600,49 @@
     display: none;
   }
 }
+
+@media (hover: hover) and (pointer: fine) {
+  /* разъезжаемся чуть при ховере всей пары */
+  .fullRow {
+    transition: gap 0.15s ease;
+  }
+  .fullRow:hover {
+    gap: 16px; /* было 4px — станет 10px на ховере */
+  }
+
+  /* подсветка ТОЛЬКО рамки + лёгкое увеличение */
+  .fullTextBtn,
+  .fullArrowBtn {
+    position: relative;
+    transition: transform 0.15s ease, box-shadow 0.15s ease,
+      border-color 0.15s ease;
+  }
+  .fullRow:hover .fullTextBtn,
+  .fullRow:hover .fullArrowBtn {
+    transform: scale(1.04);
+    border-color: rgba(14, 254, 242, 1); /* акцентный цвет */
+    /* лёгкое свечение по контуру вместо заливки */
+  }
+
+  /* клик — микроотдача */
+  .fullTextBtn:active,
+  .fullArrowBtn:active {
+    transform: scale(0.98);
+  }
+}
+
+/* доступность */
+.fullTextBtn:focus-visible,
+.fullArrowBtn:focus-visible {
+  outline: 2px solid rgba(14, 254, 242, 0.9);
+  outline-offset: 2px;
+}
+
+/* если анимации выключены в ОС */
+@media (prefers-reduced-motion: reduce) {
+  .fullRow,
+  .fullTextBtn,
+  .fullArrowBtn {
+    transition: none;
+  }
+}

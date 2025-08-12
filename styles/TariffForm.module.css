@@ -479,7 +479,7 @@
     height: 614px;
     padding: 54px;
     gap: 40px; /* чуть меньше, чем 80 — ближе к макету */
-    min-height: auto;
+    /* min-height: auto; */
   }
 
   /* Заголовки слева */
@@ -579,7 +579,7 @@
   .modal {
     width: 704px;
     min-height: 896px;
-    height: auto; /* фикс по макету */
+    /* height: auto;  */
     padding: 27px; /* как в фигме на планшете */
     gap: 57px;
   }
@@ -719,7 +719,7 @@
   .modal {
     max-width: 296px;
     padding: 10px;
-    height: auto;
+    /* height: auto; */
     gap: 18px;
   }
 
@@ -869,4 +869,75 @@
   .inlineSupport {
     order: 7;
   }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ctaText,
+  .ctaArrow {
+    cursor: pointer;
+  }
+
+  .ctaText,
+  .ctaArrow {
+    transition: transform 0.15s ease, background-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+
+  .ctaRow:hover .ctaText,
+  .ctaRow:hover .ctaArrow {
+    background-color: #42fff6; /* светлее */
+  }
+
+  .ctaRow:active .ctaText,
+  .ctaRow:active .ctaArrow {
+    transform: scale(0.97);
+  }
+}
+
+.ctaText:focus-visible,
+.ctaArrow:focus-visible {
+  outline: 2px solid rgba(14, 254, 242, 0.9);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ctaRow,
+  .ctaText,
+  .ctaArrow {
+    transition: none;
+  }
+}
+
+@media (max-width: 982px) {
+  .overlay {
+    align-items: flex-start; /* больше не центрируем по вертикали */
+    justify-content: center; /* по горизонтали — можно центр */
+    padding-block: 16px; /* запас сверху/снизу, чтобы «дотянуться» */
+    min-height: 100dvh; /* правильная высота на iOS */
+    overflow-y: auto; /* скроллит родитель */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: auto; /* убираем «ловушку» скролла */
+  }
+
+  .modal {
+    height: auto; /* чтоб росла по контенту */
+    max-height: none;
+    overflow: visible; /* отключаем внутренний скролл */
+    margin: 0 auto; /* центр по горизонтали */
+  }
+}
+
+/* Совсем узкие (если нужно) */
+@media (max-width: 430px) {
+  .overlay {
+    padding-block: 12px; /* поменьше отступы */
+  }
+}
+
+.linkBtn {
+  transition: color 0.15s ease;
+}
+
+.linkBtn:hover {
+  color: #64fcf4;
 }

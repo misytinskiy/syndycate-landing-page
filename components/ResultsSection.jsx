@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import styles from "@/styles/ResultsSection.module.css";
-import React from "react";
+import React, { useCallback } from "react";
 
 const bullets = [
   ["BUILD YOUR OWN OPTIMIZED", "TRADING STRATEGY"],
@@ -12,6 +12,15 @@ const bullets = [
 ];
 
 export default function ResultsSection() {
+  const goTo = useCallback((id) => {
+    const el = document.getElementById(id) || document.querySelector(id);
+    if (!el) return;
+
+    setTimeout(() => {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 160);
+  }, []);
+
   return (
     <section className={styles.section} id="results">
       <div className={styles.columns}>
@@ -68,8 +77,16 @@ export default function ResultsSection() {
 
           {/* кнопка */}
           <div className={styles.fullRow}>
-            <button className={styles.fullTextBtn}>Reserve your spot</button>
-            <button className={styles.fullArrowBtn}>
+            <button
+              className={styles.fullTextBtn}
+              onClick={() => goTo("tariffs")}
+            >
+              Reserve your spot
+            </button>
+            <button
+              className={styles.fullArrowBtn}
+              onClick={() => goTo("tariffs")}
+            >
               <svg
                 width="12"
                 height="12"

@@ -107,7 +107,7 @@
   text-transform: uppercase;
 
   color: var(--color-secondary);
-  z-index: 2;
+  z-index: 1000;
 }
 
 .signIn {
@@ -271,7 +271,7 @@
   left: 50%;
   bottom: 3px;
   transform: translateX(-50%);
-  z-index: 2;
+  z-index: 1000;
 }
 
 .scrollBtn {
@@ -534,6 +534,8 @@
   .hero {
     display: flex;
     flex-direction: column;
+
+    align-items: center;
   }
   .titleWrap {
     order: 1;
@@ -565,7 +567,7 @@
   }
 
   .footerRow {
-    margin-top: 24px;
+    margin-top: 0;
   }
 
   /* Кнопка скролла: показываем новую под таймером,
@@ -616,7 +618,7 @@
   min-height: calc(100dvh - 82px); /* корректно без DevTools */
 }
 
-@media (max-height: 1030px) {
+@media (min-width: 983px) and (hover: hover) and (pointer: fine) and (max-height: 1030px) {
   .hero {
     padding: 47px 50px 100px 50px;
   }
@@ -625,8 +627,74 @@
   }
 }
 
-@media (max-height: 1030px) {
+@media (min-width: 983px) and (hover: hover) and (pointer: fine) and (max-height: 1030px) {
   .title {
     font-size: 121px;
   }
+}
+
+/* базовые переходы для CTA */
+.signInText,
+.signInArrow {
+  transition: transform 160ms ease, background-color 160ms ease,
+    box-shadow 160ms ease;
+  will-change: transform, background-color;
+}
+
+/* ховер только на устройствах с курсором (десктопы) */
+/* исходный зазор + анимация его изменения */
+.signIn {
+  gap: 4px;
+  transition: gap 160ms ease;
+}
+
+/* плавность, масштаб и точки роста */
+.signInText,
+.signInArrow {
+  transition: transform 160ms ease, background-color 160ms ease,
+    box-shadow 160ms ease;
+  will-change: transform, background-color;
+}
+.signInText {
+  transform-origin: right center;
+} /* расширяется влево, от стыка */
+.signInArrow {
+  transform-origin: left center;
+} /* расширяется вправо, от стыка */
+
+/* hover только на десктопах */
+@media (hover: hover) and (pointer: fine) {
+  .scrollBtn svg:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+
+  .signIn:hover {
+    gap: 5px;
+  } /* чуть разъезжаются */
+
+  .signIn:hover .signInText,
+  .signIn:hover .signInArrow {
+    transform: scale(1.01);
+    background: #27fff7;
+    background: color-mix(in srgb, rgba(14, 254, 242, 1) 88%, white);
+    box-shadow: 0 6px 18px rgba(14, 254, 242, 0.25);
+    cursor: pointer;
+  }
+
+  /* фокус с клавиатуры — та же подсветка */
+  .signInText:focus-visible,
+  .signInArrow:focus-visible {
+    transform: scale(1.01);
+    background: #27fff7;
+    background: color-mix(in srgb, rgba(14, 254, 242, 1) 88%, white);
+    box-shadow: 0 6px 18px rgba(14, 254, 242, 0.25);
+    outline: none;
+  }
+}
+
+/* «нажатие» */
+.signIn:active .signInText,
+.signIn:active .signInArrow {
+  transform: scale(0.97);
 }
