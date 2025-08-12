@@ -26,7 +26,7 @@ const tariffs = [
       "Community Access: 1 months free",
     ],
     price: "$149",
-    cta: "Buy now",
+    cta: "Reserve your spot",
   },
   {
     id: "t2",
@@ -189,7 +189,7 @@ export default function ParticipationSection() {
                   className={styles.fullTextBtn}
                   onClick={() => setActive(t)}
                 >
-                  Reserve your spot
+                  {t.cta}
                 </button>
                 <button
                   className={styles.fullArrowBtn}
