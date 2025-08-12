@@ -1,5 +1,8 @@
 "use client";
 import styles from "@/styles/ParticipationSection.module.css";
+import tStyles from "@/styles/TariffForm.module.css";
+import TariffForm from "@/components/TariffForm";
+import { useCallback, useEffect, useState } from "react";
 
 /** данные по тарифам */
 const tariffs = [
@@ -75,6 +78,37 @@ const tariffs = [
 ];
 
 export default function ParticipationSection() {
+  const [active, setActive] = useState(null);
+
+  // закрытие по Esc
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "Escape") setActive(null);
+    };
+    if (active) document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [active]);
+
+  // блокировка скролла под модалкой
+  useEffect(() => {
+    if (!active) return;
+    const { style } = document.documentElement;
+    const prev = style.overflow;
+    style.overflow = "hidden";
+    return () => {
+      style.overflow = prev || "";
+    };
+  }, [active]);
+
+  const handleOverlayClick = useCallback((e) => {
+    // закрываем, если клик мимо карточки
+    if (e.target.dataset.overlay === "1") setActive(null);
+  }, []);
+
+  const handleFormSubmit = async (payload) => {
+    // TODO: сюда интеграция с бэком/телеграмом/почтой
+    console.log("FORM SUBMIT:", payload);
+  };
   return (
     <section className={styles.section} id="tariffs">
       {/* линия */}
@@ -151,10 +185,16 @@ export default function ParticipationSection() {
               </div>
 
               <div className={styles.fullRow}>
-                <button className={styles.fullTextBtn}>
+                <button
+                  className={styles.fullTextBtn}
+                  onClick={() => setActive(t)}
+                >
                   Reserve your spot
                 </button>
-                <button className={styles.fullArrowBtn}>
+                <button
+                  className={styles.fullArrowBtn}
+                  onClick={() => setActive(t)}
+                >
                   <svg
                     width="12"
                     height="12"
@@ -176,6 +216,35 @@ export default function ParticipationSection() {
           </div>
         ))}
       </div>
+
+      {active && (
+        <div
+          className={tStyles.overlay}
+          data-overlay="1"
+          onClick={handleOverlayClick}
+        >
+          <div
+            className={tStyles.modal}
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+          >
+            <button
+              className={tStyles.close}
+              aria-label="Close"
+              onClick={() => setActive(null)}
+            >
+              ×
+            </button>
+
+            <TariffForm
+              tariff={active}
+              onClose={() => setActive(null)}
+              onSubmit={handleFormSubmit}
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }

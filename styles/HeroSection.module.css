@@ -251,9 +251,13 @@
   position: relative;
 }
 
-/* .bottomRight {
+.bottomRight {
   margin-left: auto;
-} */
+}
+
+.bottomRight p {
+  max-width: 446px;
+}
 
 .titleWrap {
   display: block;
