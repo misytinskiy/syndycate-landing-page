@@ -6,6 +6,13 @@
   overflow: hidden;
 }
 
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 32px;
+}
+
 /* ───────── линия ───────── */
 .hLine {
   position: absolute;
@@ -33,7 +40,6 @@
 
 /* ───────── <TARIFFS> ───────── */
 .about {
-  margin-top: 45px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,14 +61,14 @@
 
 /* ───────── заголовок ───────── */
 .title {
-  margin-top: 32px;
-  text-align: center;
+  text-align: left;
   font-family: var(--font-anton);
   font-size: 125px;
   font-weight: 400;
   line-height: 110%;
   letter-spacing: -0.02em;
   text-transform: uppercase;
+  margin-right: 275px;
 }
 
 /* ───────── grid ───────── */
@@ -258,7 +264,7 @@
 
   .title {
     font-size: 80px;
-    margin-top: 36px;
+    margin-right: 190px;
   }
 
   .card {
@@ -336,6 +342,10 @@
 @media (max-width: 982px) {
   .section {
     padding: 115px 20px 80px;
+  }
+
+  .sectionHeader {
+    flex-direction: column;
   }
 
   .hLine {

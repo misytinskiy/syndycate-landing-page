@@ -312,11 +312,6 @@
   transition: border, color 0.15s ease;
 }
 
-.nav button:hover {
-  border: 1px solid rgb(49, 49, 49);
-  color: rgb(241, 233, 233);
-}
-
 /* .socialIcon:hover {
   transform: scale(2.1);
   cursor: pointer;

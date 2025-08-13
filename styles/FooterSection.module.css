@@ -77,6 +77,24 @@
   color: var(--color-primary);
 }
 
+@media (max-width: 1917px) {
+  .wordmark {
+    font-size: 381px;
+  }
+}
+
+@media (max-width: 1616px) {
+  .wordmark {
+    font-size: 362px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .wordmark {
+    font-size: 222px;
+  }
+}
+
 @media (max-width: 1536px) {
   .section {
     padding-top: 137px;
@@ -105,6 +123,12 @@
   .privacy {
     font-size: 14px;
     margin-left: 104px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .wordmark {
+    font-size: 219px;
   }
 }
 

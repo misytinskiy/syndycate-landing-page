@@ -1,5 +1,8 @@
 "use client";
 import styles from "@/styles/StatsSection.module.css";
+import { useRef, useLayoutEffect } from "react";
+import { gsap } from "gsap";
+import { useFloatingBlobs } from "@/lib/useFloatingBlobs";
 
 const stats = [
   {
@@ -37,8 +40,20 @@ const stats = [
 ];
 
 export default function StatsSection() {
+  const sectionRef = useRef(null);
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
+
+  useFloatingBlobs(sectionRef, [leftRef, rightRef], {
+    clampToContainer: true,
+    speedRange: [18, 28],
+    scaleRange: [1.02, 1.06],
+    rotateRange: [-3, 3],
+    ease: "sine.inOut",
+  });
+
   return (
-    <section className={styles.section} id="next">
+    <section className={styles.section} id="next" ref={sectionRef}>
       {/* ───── декоративная горизонтальная линия ───── */}
       <span className={styles.hLine} />
 
@@ -137,81 +152,30 @@ export default function StatsSection() {
       </div>
 
       {/* ───── фоновые градиенты ───── */}
-      <span className={styles.gradLeft}>
+      <span className={styles.gradLeft} ref={leftRef}>
         <svg
-          width="150"
-          height="802"
-          viewBox="0 0 150 802"
+          width="259"
+          height="516"
+          viewBox="0 0 259 516"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          overflow="visible"
         >
-          <g opacity="0.6" filter="url(#filter0_f_500_2228)">
+          <g opacity="0.6" filter="url(#filter0_if_500_2179)">
             <circle
-              cx="-251"
-              cy="401"
-              r="221"
-              fill="url(#paint0_linear_500_2228)"
+              cx="-27"
+              cy="230"
+              r="106"
+              fill="url(#paint0_linear_500_2179)"
             />
           </g>
           <defs>
             <filter
-              id="filter0_f_500_2228"
-              x="-652"
-              y="0"
-              width="802"
-              height="802"
-              filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
-            >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feBlend
-                mode="normal"
-                in="SourceGraphic"
-                in2="BackgroundImageFix"
-                result="shape"
-              />
-              <feGaussianBlur
-                stdDeviation="90"
-                result="effect1_foregroundBlur_500_2228"
-              />
-            </filter>
-            <linearGradient
-              id="paint0_linear_500_2228"
-              x1="-251"
-              y1="180"
-              x2="-251"
-              y2="622"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stop-color="#0EFEF2" />
-              <stop offset="1" stop-color="#0A0A0A" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </span>
-      <span className={styles.gradRight}>
-        <svg
-          width="240"
-          height="644"
-          viewBox="0 0 240 644"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g opacity="0.6" filter="url(#filter0_if_500_2262)">
-            <circle
-              cx="401"
-              cy="401"
-              r="221"
-              fill="url(#paint0_linear_500_2262)"
-            />
-          </g>
-          <defs>
-            <filter
-              id="filter0_if_500_2262"
-              x="0"
-              y="0"
-              width="802"
-              height="802"
+              id="filter0_if_500_2179"
+              x="-313"
+              y="-56"
+              width="572"
+              height="572"
               filterUnits="userSpaceOnUse"
               color-interpolation-filters="sRGB"
             >
@@ -243,19 +207,95 @@ export default function StatsSection() {
               <feBlend
                 mode="normal"
                 in2="shape"
-                result="effect1_innerShadow_500_2262"
+                result="effect1_innerShadow_500_2179"
               />
               <feGaussianBlur
                 stdDeviation="90"
-                result="effect2_foregroundBlur_500_2262"
+                result="effect2_foregroundBlur_500_2179"
               />
             </filter>
             <linearGradient
-              id="paint0_linear_500_2262"
-              x1="401"
-              y1="180"
-              x2="401"
-              y2="622"
+              id="paint0_linear_500_2179"
+              x1="-27"
+              y1="124"
+              x2="-27"
+              y2="336"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#0EFEF2" />
+              <stop offset="1" stop-color="#0A0A0A" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </span>
+      <span className={styles.gradRight} ref={rightRef}>
+        <svg
+          width="259"
+          height="516"
+          viewBox="0 0 259 516"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          overflow="visible"
+        >
+          <g opacity="0.6" filter="url(#filter0_if_500_2179)">
+            <circle
+              cx="-27"
+              cy="230"
+              r="106"
+              fill="url(#paint0_linear_500_2179)"
+            />
+          </g>
+          <defs>
+            <filter
+              id="filter0_if_500_2179"
+              x="-313"
+              y="-56"
+              width="572"
+              height="572"
+              filterUnits="userSpaceOnUse"
+              color-interpolation-filters="sRGB"
+            >
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feBlend
+                mode="normal"
+                in="SourceGraphic"
+                in2="BackgroundImageFix"
+                result="shape"
+              />
+              <feColorMatrix
+                in="SourceAlpha"
+                type="matrix"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                result="hardAlpha"
+              />
+              <feOffset dy="4" />
+              <feGaussianBlur stdDeviation="11.6" />
+              <feComposite
+                in2="hardAlpha"
+                operator="arithmetic"
+                k2="-1"
+                k3="1"
+              />
+              <feColorMatrix
+                type="matrix"
+                values="0 0 0 0 0 0 0 0 0 1 0 0 0 0 0.95 0 0 0 0.4 0"
+              />
+              <feBlend
+                mode="normal"
+                in2="shape"
+                result="effect1_innerShadow_500_2179"
+              />
+              <feGaussianBlur
+                stdDeviation="90"
+                result="effect2_foregroundBlur_500_2179"
+              />
+            </filter>
+            <linearGradient
+              id="paint0_linear_500_2179"
+              x1="-27"
+              y1="124"
+              x2="-27"
+              y2="336"
               gradientUnits="userSpaceOnUse"
             >
               <stop stop-color="#0EFEF2" />

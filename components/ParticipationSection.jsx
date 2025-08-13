@@ -71,7 +71,7 @@ const tariffs = [
       "WE WORK WITH YOU UNTIL YOU GET RESULTS",
       "PERSONALIZED ANALYSIS AND TAILORED TRADING STRATEGY",
     ],
-    extra: ["Community Access: 2 months free"],
+    extra: ["Community Access: lifetime"],
     price: "$???",
     cta: "Check with support",
   },
@@ -79,11 +79,32 @@ const tariffs = [
 
 export default function ParticipationSection() {
   const [active, setActive] = useState(null);
+  const [opening, setOpening] = useState(false);
+  const [closing, setClosing] = useState(false);
+
+  const openModal = (t) => {
+    setClosing(false);
+    setActive(t);
+    setOpening(false);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => setOpening(true));
+    });
+  };
+
+  const startClose = () => {
+    setOpening(false);
+    setClosing(true);
+    setTimeout(() => {
+      setActive(null);
+      setClosing(false);
+    }, 300);
+  };
 
   // закрытие по Esc
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === "Escape") setActive(null);
+      if (e.key === "Escape") startClose();
     };
     if (active) document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
@@ -101,8 +122,7 @@ export default function ParticipationSection() {
   }, [active]);
 
   const handleOverlayClick = useCallback((e) => {
-    // закрываем, если клик мимо карточки
-    if (e.target.dataset.overlay === "1") setActive(null);
+    if (e.target.dataset.overlay === "1") startClose();
   }, []);
 
   const handleFormSubmit = async (payload) => {
@@ -111,22 +131,20 @@ export default function ParticipationSection() {
   };
   return (
     <section className={styles.section} id="tariffs">
-      {/* линия */}
       <span className={styles.hLine} />
 
-      {/* <TARIFFS> */}
-      <div className={styles.about}>
-        <span className={styles.bracket} />
-        <span className={styles.aboutText}>TARIFFS</span>
-        <span className={styles.bracket} />
+      <div className={styles.sectionHeader}>
+        <div className={styles.about}>
+          <span className={styles.bracket} />
+          <span className={styles.aboutText}>TARIFFS</span>
+          <span className={styles.bracket} />
+        </div>
+        <h2 className={styles.title}>
+          PARTICIPATION
+          <br />
+          FORMATS
+        </h2>
       </div>
-
-      {/* заголовок */}
-      <h2 className={styles.title}>
-        PARTICIPATION
-        <br />
-        FORMATS
-      </h2>
 
       <div className={styles.grid}>
         {tariffs.map((t) => (
@@ -181,19 +199,19 @@ export default function ParticipationSection() {
                   </span>
                 </div>
 
-                {t.oldPrice && <s className={styles.oldPrice}>{t.oldPrice}</s>}
+                {/* {t.oldPrice && <s className={styles.oldPrice}>{t.oldPrice}</s>} */}
               </div>
 
               <div className={styles.fullRow}>
                 <button
                   className={styles.fullTextBtn}
-                  onClick={() => setActive(t)}
+                  onClick={() => openModal(t)}
                 >
                   {t.cta}
                 </button>
                 <button
                   className={styles.fullArrowBtn}
-                  onClick={() => setActive(t)}
+                  onClick={() => openModal(t)}
                 >
                   <svg
                     width="12"
@@ -205,9 +223,9 @@ export default function ParticipationSection() {
                     <path
                       d="M10.9497 1.04936L1.05025 10.9489M10.9497 1.04936V10.9489M10.9497 1.04936H1.05025"
                       stroke="black"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </button>
@@ -219,7 +237,9 @@ export default function ParticipationSection() {
 
       {active && (
         <div
-          className={tStyles.overlay}
+          className={`${tStyles.overlay} ${
+            closing ? tStyles.closing : opening ? tStyles.open : tStyles.preOpen
+          }`}
           data-overlay="1"
           onClick={handleOverlayClick}
         >
@@ -232,14 +252,14 @@ export default function ParticipationSection() {
             <button
               className={tStyles.close}
               aria-label="Close"
-              onClick={() => setActive(null)}
+              onClick={startClose}
             >
               ×
             </button>
 
             <TariffForm
               tariff={active}
-              onClose={() => setActive(null)}
+              onClose={startClose}
               onSubmit={handleFormSubmit}
             />
           </div>

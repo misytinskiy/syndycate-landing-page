@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import styles from "@/styles/ResultsSection.module.css";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useFloatingBlobs } from "@/lib/useFloatingBlobs";
 
 const bullets = [
   ["BUILD YOUR OWN OPTIMIZED", "TRADING STRATEGY"],
@@ -12,17 +13,46 @@ const bullets = [
 ];
 
 export default function ResultsSection() {
+  const [arrowDown, setArrowDown] = useState(false);
+
+  const sectionRef = useRef(null);
+  const gradRef = useRef(null);
+
+  useFloatingBlobs(sectionRef, [gradRef], {
+    clampToContainer: true,
+    speedRange: [18, 28],
+    scaleRange: [1.02, 1.06],
+    rotateRange: [-3, 3],
+    ease: "sine.inOut",
+  });
+
   const goTo = useCallback((id) => {
     const el = document.getElementById(id) || document.querySelector(id);
     if (!el) return;
+
+    setArrowDown(true);
 
     setTimeout(() => {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 160);
   }, []);
 
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setArrowDown(false);
+        }
+      },
+      { threshold: 0.35 } // ~треть секции видна — считаем "вернулись"
+    );
+    obs.observe(sectionRef.current);
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <section className={styles.section} id="results">
+    <section className={styles.section} id="results" ref={sectionRef}>
       <div className={styles.columns}>
         {/* ─── левая колонка: только заголовок ─── */}
         <h2 className={styles.title}>
@@ -93,6 +123,9 @@ export default function ResultsSection() {
                 viewBox="0 0 12 12"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                className={`${styles.arrow} ${
+                  arrowDown ? styles.arrowDown : ""
+                }`}
               >
                 <path
                   d="M10.9497 1.04936L1.05025 10.9489M10.9497 1.04936V10.9489M10.9497 1.04936H1.05025"
@@ -106,6 +139,82 @@ export default function ResultsSection() {
           </div>
         </div>
       </div>
+      <span className={styles.gradient} ref={gradRef}>
+        <svg
+          width="259"
+          height="516"
+          viewBox="0 0 259 516"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          overflow="visible"
+        >
+          <g opacity="0.6" filter="url(#filter0_if_500_2179)">
+            <circle
+              cx="-27"
+              cy="230"
+              r="106"
+              fill="url(#paint0_linear_500_2179)"
+            />
+          </g>
+          <defs>
+            <filter
+              id="filter0_if_500_2179"
+              x="-313"
+              y="-56"
+              width="572"
+              height="572"
+              filterUnits="userSpaceOnUse"
+              color-interpolation-filters="sRGB"
+            >
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feBlend
+                mode="normal"
+                in="SourceGraphic"
+                in2="BackgroundImageFix"
+                result="shape"
+              />
+              <feColorMatrix
+                in="SourceAlpha"
+                type="matrix"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                result="hardAlpha"
+              />
+              <feOffset dy="4" />
+              <feGaussianBlur stdDeviation="11.6" />
+              <feComposite
+                in2="hardAlpha"
+                operator="arithmetic"
+                k2="-1"
+                k3="1"
+              />
+              <feColorMatrix
+                type="matrix"
+                values="0 0 0 0 0 0 0 0 0 1 0 0 0 0 0.95 0 0 0 0.4 0"
+              />
+              <feBlend
+                mode="normal"
+                in2="shape"
+                result="effect1_innerShadow_500_2179"
+              />
+              <feGaussianBlur
+                stdDeviation="90"
+                result="effect2_foregroundBlur_500_2179"
+              />
+            </filter>
+            <linearGradient
+              id="paint0_linear_500_2179"
+              x1="-27"
+              y1="124"
+              x2="-27"
+              y2="336"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#0EFEF2" />
+              <stop offset="1" stop-color="#0A0A0A" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </span>
     </section>
   );
 }

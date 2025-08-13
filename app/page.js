@@ -13,7 +13,7 @@ import WhoIsForSection from "@/components/WhoIsForSection";
 export default function Home() {
   return (
     <>
-      <div
+      {/* <div
         style={{
           position: "absolute",
           top: 100,
@@ -27,7 +27,7 @@ export default function Home() {
           zIndex: 1,
           pointerEvents: "none",
         }}
-      />
+      /> */}
       <Header />
       <HeroSection />
       <MarqueeBanner />

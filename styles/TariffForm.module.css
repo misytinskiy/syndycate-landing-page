@@ -941,3 +941,48 @@
 .linkBtn:hover {
   color: #64fcf4;
 }
+
+/* Базовый слой оверлея — прозрачный и невидимый по умолчанию */
+.overlay {
+  position: fixed; /* как у вас было */
+  inset: 0; /* как у вас было */
+  /* ...остальные ваши стили overlay... */
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  /* По желанию: backdrop-фейд */
+}
+
+/* Когда открыт — показываем */
+.overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Когда закрываем — прячем (триггерим transition) */
+.overlay.closing {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Модалка: лёгкий slide+scale и прозрачность */
+.modal {
+  /* ваши текущие стили modal: позиционирование, размеры, фон и т.п. */
+
+  transform: translateY(16px) scale(0.98);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* В открытом состоянии — на место и видимая */
+.overlay.open .modal {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* В закрытии — уезжает вниз и тускнеет */
+.overlay.closing .modal {
+  transform: translateY(16px) scale(0.98);
+  opacity: 0;
+}

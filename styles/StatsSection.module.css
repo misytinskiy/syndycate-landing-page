@@ -2,6 +2,9 @@
   background: var(--color-dark-secondary);
   padding: 172px 61px 150px 50px;
   color: var(--color-secondary);
+  overflow: hidden;
+  position: relative;
+  contain: layout paint;
 }
 
 .header {
@@ -215,32 +218,20 @@
 }
 
 /* ───────── фоновые градиенты ───────── */
-.gradLeft,
+/* .gradLeft,
 .gradRight {
   position: absolute;
-  /* width: 442px;
-  height: 442px; */
-  /* border-radius: 50%; */
-  /* background: linear-gradient(
-    180deg,
-    rgba(14, 218, 254, 1) 0%,
-    rgba(10, 10, 10, 1) 100%
-  ); */
-  /* opacity: 0.6; */
-  /* filter: blur(180px); */
 }
 
-/* верхний слева (уходит за левый край) */
 .gradLeft {
   top: 183px;
   left: 0px;
 }
 
-/* нижний справа (22 px от правого края) */
 .gradRight {
   bottom: 32px;
   right: 0;
-}
+} */
 
 .section {
   overflow: hidden; /* чтобы SVG не выходил за пределы */
@@ -256,7 +247,7 @@
 }
 
 .statsGraphSvg {
-  width: 100vw; /* растягиваем на ширину экрана */
+  width: 100%; /* растягиваем на ширину экрана */
   height: auto;
 }
 
@@ -514,4 +505,31 @@
   .gradRight {
     opacity: 0;
   } /* чтоб не лезла в контент */
+}
+
+.hLine,
+.headerRow,
+.grid {
+  position: relative;
+  z-index: 1;
+}
+
+/* фоновый график — самый задний */
+.statsGraphBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0; /* можно -1, но 0 достаточно */
+  pointer-events: none;
+}
+
+/* градиенты: внутри секции, под контентом, над графиком (или на одном слое) */
+.gradLeft,
+.gradRight {
+  position: absolute;
+  top: 0; /* ВАЖНО: базовая точка — левый верх секции */
+  left: 0; /* ВАЖНО */
+  z-index: 0; /* если нужно поверх графика: 1; если под контентом — 0 */
+  will-change: transform;
+  pointer-events: none;
+  display: block;
 }

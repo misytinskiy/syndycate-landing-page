@@ -9,7 +9,7 @@
   background: var(--color-dark-secondary);
   color: var(--color-secondary);
   position: relative;
-  overflow: visible;
+  overflow: hidden;
 }
 
 /* левая и правая колонки */
@@ -660,4 +660,14 @@
 .index,
 .moduleTitle {
   color: var(--color-secondary);
+}
+
+.gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  will-change: transform;
+  pointer-events: none;
+  display: block;
 }

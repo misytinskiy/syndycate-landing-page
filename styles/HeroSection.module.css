@@ -110,11 +110,15 @@
   z-index: 1000;
 }
 
+.bottomRight p {
+  z-index: 2000;
+}
+
 .signIn {
   display: flex;
   margin-top: 10px;
   position: relative;
-  z-index: 2;
+  z-index: 200;
 }
 
 .mainBtn {
@@ -536,6 +540,7 @@
     flex-direction: column;
 
     align-items: center;
+    justify-content: space-between;
   }
   .titleWrap {
     order: 1;
@@ -543,7 +548,7 @@
   .timerWrapper {
     order: 2;
     justify-content: center;
-    margin: 188px 0 0;
+    margin: 0 0 0;
   }
 
   .timerWrapper svg {
