@@ -5,6 +5,7 @@
   padding: 20px 50px 16px;
   position: relative;
   z-index: 2;
+  background: var(--color-dark-secondary);
 }
 
 .logo {
