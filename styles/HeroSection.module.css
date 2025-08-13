@@ -720,3 +720,24 @@
 .signIn:active .signInArrow {
   transform: scale(0.97);
 }
+
+/* базовый фолбэк */
+.hero {
+  min-height: calc(100vh - 82px);
+}
+
+/* современные браузеры: фиксируемся по малой вьюпорте -> не прыгает */
+@supports (height: 100svh) {
+  .hero {
+    min-height: calc(100svh - 82px);
+  }
+}
+
+/* если хочешь всё же растягиваться на десктопах/планшетах */
+@media (min-width: 983px) {
+  @supports (height: 100lvh) {
+    .hero {
+      min-height: calc(100lvh - 82px);
+    } /* ok на больших экранщиках */
+  }
+}

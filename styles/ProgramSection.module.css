@@ -383,6 +383,7 @@
   will-change: transform;
   pointer-events: none;
   display: block;
+  transform: translateZ(0);
 }
 
 @media (max-width: 1536px) {
@@ -670,8 +671,5 @@
   -webkit-appearance: none;
 }
 
-/* на всякий случай фиксируем и дочерние */
-.index,
-.moduleTitle {
-  color: var(--color-secondary);
+.rowAnimating {
 }

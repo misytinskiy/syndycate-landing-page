@@ -507,7 +507,6 @@
   } /* чтоб не лезла в контент */
 }
 
-.hLine,
 .headerRow,
 .grid {
   position: relative;

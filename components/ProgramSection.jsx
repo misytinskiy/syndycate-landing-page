@@ -150,13 +150,17 @@ export default function ProgramSection() {
 
   const sectionRef = useRef(null);
   const gradRef = useRef(null);
+  const rowAnimTimerRef = useRef(null);
 
   useFloatingBlobs(sectionRef, [gradRef], {
-    clampToContainer: true,
-    speedRange: [18, 28],
-    scaleRange: [1.02, 1.06],
-    rotateRange: [-3, 3],
-    ease: "sine.inOut",
+    boundsStrategy: "stick",
+    freezeWhileResizing: true,
+    reflowDuration: 0.25,
+    reflowEase: "power2.out",
+    freezeOn: [
+      { ref: wrapperRef, className: styles.animating }, // анимация «весь список»
+      { ref: listRef, className: styles.rowAnimating }, // анимация «одна строка»
+    ],
   });
 
   useEffect(() => {
@@ -164,6 +168,30 @@ export default function ProgramSection() {
     const el = rowRefs.current[openedIdx];
     if (el) el.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }, [openedIdx]);
+
+  const toggleRow = (idx) => {
+    const list = listRef.current;
+    const row = rowRefs.current[idx];
+    const answer = row?.querySelector(`.${styles.answerWrapper}`);
+
+    // если по какой-то причине не нашли элементы — просто переключаем
+    if (!list || !answer) {
+      setOpenedIdx((cur) => (cur === idx ? null : idx));
+      return;
+    }
+
+    // сообщаем хуку, что идёт локальная анимация высоты
+    list.classList.add(styles.rowAnimating);
+
+    const off = (e) => {
+      if (e.propertyName !== "max-height") return; // ждём конца transition у answerWrapper
+      list.classList.remove(styles.rowAnimating);
+      answer.removeEventListener("transitionend", off);
+    };
+    answer.addEventListener("transitionend", off);
+
+    setOpenedIdx((cur) => (cur === idx ? null : idx));
+  };
 
   const VISIBLE_COUNT = 8;
   const DURATION = 1000;
@@ -284,59 +312,6 @@ export default function ProgramSection() {
 
           {/* обёртка с анимируемой высотой */}
           <div ref={wrapperRef} className={styles.moduleWrapper}>
-            {/* <ul ref={listRef} className={styles.moduleList}>
-              {visibleModules.map((item, i) => {
-                const idx = i; // индекс в видимом списке
-                const opened = openedIdx === idx;
-                return (
-                  // в map:
-                  <li
-                    key={item}
-                    className={`${styles.moduleItem} ${
-                      opened ? styles.open : ""
-                    }`}
-                    ref={(el) => (rowRefs.current[idx] = el)}
-                  >
-                    <button
-                      className={styles.rowBtn}
-                      onClick={() => setOpenedIdx(opened ? null : idx)}
-                    >
-                      <div className={styles.leftPart}>
-                        <span className={styles.index}>
-                          /{String(modules.indexOf(item) + 1).padStart(2, "0")}
-                        </span>
-                        <span className={styles.moduleTitle}>{item}</span>
-                      </div>
-                      <span className={styles.iconBtn}>
-                        <svg
-                          width="12"
-                          height="12"
-                          viewBox="0 0 12 12"
-                          fill="none"
-                          className={styles.icon}
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M10.95 1.05L1.05 10.95M10.95 1.05V10.95M10.95 1.05H1.05"
-                            stroke="#0EFEF2"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </span>
-                    </button>
-
-                    <div className={styles.answerWrapper}>
-                      <p className={styles.answer}>
-                        TEST TEXT • HERE WILL BE A SHORT DESCRIPTION OF THE
-                        MODULE.
-                      </p>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul> */}
             <ul ref={listRef} className={styles.moduleList}>
               {visibleModules.map((item, i) => {
                 const idx = i; // индекс внутри текущего (видимого) списка
@@ -352,7 +327,7 @@ export default function ProgramSection() {
                   >
                     <button
                       className={styles.rowBtn}
-                      onClick={() => setOpenedIdx(opened ? null : idx)}
+                      onClick={() => toggleRow(idx)}
                     >
                       <div className={styles.leftPart}>
                         <span className={styles.index}>
