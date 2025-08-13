@@ -375,6 +375,16 @@
   transition: height 1s ease-in-out;
 }
 
+.gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  will-change: transform;
+  pointer-events: none;
+  display: block;
+}
+
 @media (max-width: 1536px) {
   .title {
     font-size: 80px;
@@ -599,6 +609,10 @@
   .gradLeft {
     display: none;
   }
+
+  .gradient {
+    display: none;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -660,14 +674,4 @@
 .index,
 .moduleTitle {
   color: var(--color-secondary);
-}
-
-.gradient {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  will-change: transform;
-  pointer-events: none;
-  display: block;
 }

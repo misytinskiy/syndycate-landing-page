@@ -580,7 +580,7 @@
      а старую прячем на этом брейкпоинте */
   .scrollUnderTimer {
     order: 3;
-    margin-top: 11px;
+
     display: flex;
     justify-content: center;
   }
@@ -624,6 +624,20 @@
   /* height: calc(100vh - 82px); */ /* убрать */
   min-height: calc(100vh - 82px); /* фолбэк */
   min-height: calc(100dvh - 82px); /* корректно без DevTools */
+}
+
+@media (max-height: 797px) {
+  .hero {
+    padding-bottom: 40px;
+  }
+
+  .title {
+    font-size: 64px;
+  }
+
+  .bottomRight {
+    font-size: 14px;
+  }
 }
 
 @media (min-width: 983px) and (hover: hover) and (pointer: fine) and (max-height: 1030px) {
