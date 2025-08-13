@@ -640,6 +640,56 @@
   }
 }
 
+@media (max-height: 664px) {
+  .hero {
+    padding-bottom: 29px;
+    padding-top: 11px;
+  }
+
+  .cryptoIcons {
+    min-width: 90px;
+  }
+
+  .title {
+    font-size: 62px;
+  }
+
+  .signInText {
+    height: 42px;
+  }
+
+  .signInArrow {
+    height: 42px;
+    width: 42px;
+  }
+
+  .bottomRight {
+    font-size: 12px;
+    margin-top: 16px;
+  }
+
+  .timer {
+    font-size: 13px;
+  }
+
+  .signIn {
+    margin-top: 19px;
+  }
+
+  .timerValue {
+    font-size: 22px;
+  }
+
+  .timerValue span {
+    font-size: 22px;
+  }
+
+  .scrollBtn {
+    width: 36px;
+    height: 36px;
+  }
+}
+
 @media (min-width: 983px) and (hover: hover) and (pointer: fine) and (max-height: 1030px) {
   .hero {
     padding: 47px 50px 100px 50px;
