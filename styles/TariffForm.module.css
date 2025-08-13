@@ -910,7 +910,7 @@
 
 @media (max-width: 982px) {
   .overlay {
-    align-items: flex-start; /* больше не центрируем по вертикали */
+    align-items: center; /* больше не центрируем по вертикали */
     justify-content: center; /* по горизонтали — можно центр */
     padding-block: 16px; /* запас сверху/снизу, чтобы «дотянуться» */
     min-height: 100dvh; /* правильная высота на iOS */

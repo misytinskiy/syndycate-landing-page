@@ -96,7 +96,7 @@ export default function ResultsSection() {
           {/* гифка вместо картинки */}
           <div className={styles.gifWrap}>
             <Image
-              src="/program-results.gif" /* поставьте свою гифку */
+              src="/programResults.gif"
               alt="Example trading gif"
               fill
               sizes="(max-width: 768px) 100vw, 904px"
