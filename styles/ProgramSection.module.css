@@ -678,3 +678,7 @@
 
 .rowAnimating {
 }
+
+.wrapper {
+  overflow: hidden;
+}

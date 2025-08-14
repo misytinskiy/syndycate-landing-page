@@ -317,3 +317,13 @@
   transform: scale(2.1);
   cursor: pointer;
 } */
+
+@media (max-height: 863px) and (min-width: 480px) {
+  .overlaySocials {
+    margin-top: 35px;
+  }
+
+  .overlayNav button {
+    font-size: 109px;
+  }
+}
