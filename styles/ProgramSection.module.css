@@ -276,12 +276,15 @@
   line-height: 110%;
   text-transform: uppercase;
   margin: 0;
+  z-index: 10; /* выше градиента */
 }
 
 .columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: start;
+  position: relative;
+  z-index: 5; /* выше градиента */
 }
 
 .stickyColumn {
@@ -305,6 +308,8 @@
   align-items: center;
   text-align: left;
   cursor: pointer;
+  position: relative;
+  z-index: 5; /* выше градиента */
 }
 
 /* убираем padding на .moduleItem, потому что он переехал в .rowBtn */

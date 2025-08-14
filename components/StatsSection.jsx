@@ -45,11 +45,9 @@ export default function StatsSection() {
   const rightRef = useRef(null);
 
   useFloatingBlobs(sectionRef, [leftRef, rightRef], {
-    clampToContainer: true,
-    speedRange: [18, 28],
+    speedRange: [8, 15], // ускорили как в ProgramSection
     scaleRange: [1.02, 1.06],
     rotateRange: [-3, 3],
-    ease: "sine.inOut",
   });
 
   return (

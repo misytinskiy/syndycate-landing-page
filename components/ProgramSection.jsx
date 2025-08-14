@@ -152,16 +152,74 @@ export default function ProgramSection() {
   const gradRef = useRef(null);
   const rowAnimTimerRef = useRef(null);
 
-  useFloatingBlobs(sectionRef, [gradRef], {
-    boundsStrategy: "stick",
-    freezeWhileResizing: true,
-    reflowDuration: 0.25,
-    reflowEase: "power2.out",
-    freezeOn: [
-      { ref: wrapperRef, className: styles.animating }, // анимация «весь список»
-      { ref: listRef, className: styles.rowAnimating }, // анимация «одна строка»
-    ],
-  });
+  // Создаём градиент только один раз при монтировании компонента
+  useEffect(() => {
+    if (gradRef.current && !gradRef.current.dataset.initialized) {
+      gradRef.current.dataset.initialized = "true";
+
+      // Запускаем анимацию градиента напрямую, без хука
+      const gradient = gradRef.current;
+      const section = sectionRef.current;
+
+      if (gradient && section) {
+        const sectionRect = section.getBoundingClientRect();
+        const gradientWidth = 200; // примерная ширина градиента
+        const gradientHeight = 200; // примерная высота градиента
+
+        // Фиксируем размеры секции
+        const fixedWidth = sectionRect.width;
+        const fixedHeight = sectionRect.height;
+
+        // Функция для случайного числа
+        const random = (min, max) => Math.random() * (max - min) + min;
+
+        // Функция для движения градиента
+        const moveGradient = () => {
+          const maxX = Math.max(0, fixedWidth - gradientWidth);
+          const maxY = Math.max(0, fixedHeight - gradientHeight);
+
+          const targetX = random(0, maxX);
+          const targetY = random(0, maxY);
+          const duration = random(8, 15) * 1000; // ускорили с 15-25 до 8-15 секунд
+
+          const animation = gradient.animate(
+            [
+              {
+                top: gradient.style.top || "0px",
+                left: gradient.style.left || "0px",
+              },
+              {
+                top: `${targetY}px`,
+                left: `${targetX}px`,
+              },
+            ],
+            {
+              duration,
+              easing: "ease-in-out",
+              fill: "forwards",
+            }
+          );
+
+          animation.onfinish = () => {
+            gradient.style.top = `${targetY}px`;
+            gradient.style.left = `${targetX}px`;
+            moveGradient(); // рекурсивно создаём новую анимацию
+          };
+        };
+
+        // Устанавливаем начальную позицию
+        const startX = random(0, Math.max(0, fixedWidth - gradientWidth));
+        const startY = random(0, Math.max(0, fixedHeight - gradientHeight));
+        gradient.style.position = "absolute";
+        gradient.style.top = `${startY}px`;
+        gradient.style.left = `${startX}px`;
+        gradient.style.zIndex = "0"; // низкий z-index чтобы не перекрывать элементы
+
+        // Запускаем анимацию
+        moveGradient();
+      }
+    }
+  }, []); // пустой массив зависимостей - выполняется только один раз
 
   useEffect(() => {
     if (openedIdx == null) return;
