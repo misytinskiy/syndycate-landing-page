@@ -41,7 +41,7 @@ export default function AdvantagesSection() {
   const gradRef = useRef(null);
 
   useFloatingBlobs(sectionRef, [gradRef], {
-    speedRange: [8, 15], // ускорили как в ProgramSection
+    speedRange: [5, 10], // ускорили ещё больше
     scaleRange: [1.02, 1.06],
     rotateRange: [-3, 3],
   });

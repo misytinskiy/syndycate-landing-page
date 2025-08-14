@@ -180,7 +180,7 @@ export default function ProgramSection() {
 
           const targetX = random(0, maxX);
           const targetY = random(0, maxY);
-          const duration = random(8, 15) * 1000; // ускорили с 15-25 до 8-15 секунд
+          const duration = random(5, 10) * 1000; // ускорили с 8-15 до 5-10 секунд
 
           const animation = gradient.animate(
             [
