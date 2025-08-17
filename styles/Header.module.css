@@ -74,6 +74,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.15s ease; /* плавный переход для анимации */
+  cursor: pointer; /* курсор-указатель */
+}
+
+/* ховер эффект для иконок соц сетей */
+.circle:hover {
+  transform: scale(1.1); /* небольшой скейл при наведении */
 }
 
 /* кнопка меню — по умолчанию скрыта (видна на ≤1280px) */

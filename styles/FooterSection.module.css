@@ -196,3 +196,7 @@
     order: 1;
   }
 }
+
+.wordmark {
+  white-space: nowrap;
+}
