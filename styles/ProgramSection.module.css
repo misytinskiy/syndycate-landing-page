@@ -378,6 +378,8 @@
 .answerWrapper {
   max-height: 0;
   transition: max-height 0.5s ease-in-out;
+  /* Выравниваем answer с title */
+  padding-left: 228px; /* 204px (gap) + 30px (index width) */
 }
 .answer {
   font-family: var(--font-inter);
@@ -386,6 +388,13 @@
   text-transform: uppercase;
   color: rgba(125, 125, 125, 1);
   padding: 20px 0 26px; /* совпадает с высотой questionRow */
+  max-width: 587px;
+}
+
+@media (max-width: 1779px) {
+  .answer {
+    max-width: 484px;
+  }
 }
 
 /* открытое состояние */
@@ -452,6 +461,11 @@
     gap: 174px;
   }
 
+  /* Выравниваем answer с title на планшетах */
+  .answerWrapper {
+    padding-left: 222px; /* 174px (gap) + 48px (index width) */
+  }
+
   .moduleTitle {
     font-size: 18px;
   }
@@ -468,6 +482,14 @@
   .fullArrowBtn {
     width: 46px;
     height: 46px;
+  }
+
+  .answer {
+    max-width: 420px;
+  }
+
+  .answerWrapper {
+    padding-left: 198px;
   }
 }
 
@@ -538,6 +560,11 @@
     gap: 151px; /* номер ближе к названию */
   }
 
+  /* Выравниваем answer с title на планшетах 744px */
+  .answerWrapper {
+    padding-left: 199px; /* 151px (gap) + 48px (index width) */
+  }
+
   .index {
     font-size: 18px; /* /01 — italic 18px в макете */
     min-width: 48px; /* чтобы колонки ровно сходились */
@@ -603,6 +630,11 @@
   .leftPart {
     gap: 31px;
     align-self: self-start;
+  }
+
+  /* Выравниваем answer с title на мобильных */
+  .answerWrapper {
+    padding-left: 63px; /* 31px (gap) + 32px (index width) */
   }
 
   .index {

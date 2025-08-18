@@ -38,9 +38,10 @@ const cards = [
 
 export default function AdvantagesSection() {
   const sectionRef = useRef(null);
+  const headerRowRef = useRef(null);
   const gradRef = useRef(null);
 
-  useFloatingBlobs(sectionRef, [gradRef], {
+  useFloatingBlobs(headerRowRef, [gradRef], {
     speedRange: [12, 20], // замедлили движение
     scaleRange: [1.02, 1.06],
     rotateRange: [-3, 3],
@@ -49,7 +50,83 @@ export default function AdvantagesSection() {
   return (
     <section className={styles.section} id="advantages" ref={sectionRef}>
       {/* ───── ДЕКОРАТИВНЫЙ HEADER ROW ───── */}
-      <div className={styles.headerRow}>
+      <div className={styles.headerRow} ref={headerRowRef}>
+        <span className={styles.gradient} ref={gradRef}>
+          <svg
+            width="173"
+            height="344"
+            viewBox="0 0 259 516"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            overflow="visible"
+          >
+            <g opacity="0.6" filter="url(#filter0_if_500_2179)">
+              <circle
+                cx="-27"
+                cy="230"
+                r="106"
+                fill="url(#paint0_linear_500_2179)"
+              />
+            </g>
+            <defs>
+              <filter
+                id="filter0_if_500_2179"
+                x="-313"
+                y="-56"
+                width="572"
+                height="572"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"
+                />
+                <feOffset dy="4" />
+                <feGaussianBlur stdDeviation="11.6" />
+                <feComposite
+                  in2="hardAlpha"
+                  operator="arithmetic"
+                  k2="-1"
+                  k3="1"
+                />
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 1 0 0 0 0 0.95 0 0 0 0.4 0"
+                />
+                <feBlend
+                  mode="normal"
+                  in2="shape"
+                  result="effect1_innerShadow_500_2179"
+                />
+                <feGaussianBlur
+                  stdDeviation="90"
+                  result="effect2_foregroundBlur_500_2179"
+                />
+              </filter>
+              <linearGradient
+                id="paint0_linear_500_2179"
+                x1="-27"
+                y1="124"
+                x2="-27"
+                y2="336"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#0EFEF2" />
+                <stop offset="1" stop-color="#0A0A0A" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
         {/* слева <OUR ADVANTAGES> */}
         <div className={styles.about}>
           <span className={styles.bracket} />
@@ -100,82 +177,6 @@ export default function AdvantagesSection() {
           ))}
         </div>
       </div>
-      <span className={styles.gradient} ref={gradRef}>
-        <svg
-          width="259"
-          height="516"
-          viewBox="0 0 259 516"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          overflow="visible"
-        >
-          <g opacity="0.6" filter="url(#filter0_if_500_2179)">
-            <circle
-              cx="-27"
-              cy="230"
-              r="106"
-              fill="url(#paint0_linear_500_2179)"
-            />
-          </g>
-          <defs>
-            <filter
-              id="filter0_if_500_2179"
-              x="-313"
-              y="-56"
-              width="572"
-              height="572"
-              filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
-            >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feBlend
-                mode="normal"
-                in="SourceGraphic"
-                in2="BackgroundImageFix"
-                result="shape"
-              />
-              <feColorMatrix
-                in="SourceAlpha"
-                type="matrix"
-                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                result="hardAlpha"
-              />
-              <feOffset dy="4" />
-              <feGaussianBlur stdDeviation="11.6" />
-              <feComposite
-                in2="hardAlpha"
-                operator="arithmetic"
-                k2="-1"
-                k3="1"
-              />
-              <feColorMatrix
-                type="matrix"
-                values="0 0 0 0 0 0 0 0 0 1 0 0 0 0 0.95 0 0 0 0.4 0"
-              />
-              <feBlend
-                mode="normal"
-                in2="shape"
-                result="effect1_innerShadow_500_2179"
-              />
-              <feGaussianBlur
-                stdDeviation="90"
-                result="effect2_foregroundBlur_500_2179"
-              />
-            </filter>
-            <linearGradient
-              id="paint0_linear_500_2179"
-              x1="-27"
-              y1="124"
-              x2="-27"
-              y2="336"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stop-color="#0EFEF2" />
-              <stop offset="1" stop-color="#0A0A0A" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </span>
     </section>
   );
 }
