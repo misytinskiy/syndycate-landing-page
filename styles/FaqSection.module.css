@@ -72,10 +72,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
 }
 
 .icon {
   transition: transform 0.35s ease-in-out;
+}
+
+/* hover эффект для questionRow */
+.questionRow:hover .iconBox {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.questionRow:hover .icon {
+  transform: rotate(45deg);
+}
+
+.questionRow:hover .icon path {
+  stroke: rgba(0, 0, 0, 1);
 }
 
 /* скрытый / открытый ответ */

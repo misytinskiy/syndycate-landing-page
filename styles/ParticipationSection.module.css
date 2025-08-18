@@ -215,6 +215,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 5px;
+  cursor: pointer; /* курсор-указатель */
 }
 
 .fullArrowBtn {
@@ -225,6 +226,13 @@
   align-items: center;
   justify-content: center;
   border-radius: 5px;
+  cursor: pointer; /* курсор-указатель */
+}
+
+/* добавляем transition для SVG стрелочки внутри */
+.fullArrowBtn svg {
+  transition: transform 0.35s ease; /* плавная анимация вращения */
+  transform-origin: center center; /* центр вращения */
 }
 
 .muted {
@@ -588,11 +596,22 @@
   .fullRow:hover .fullArrowBtn {
     background-color: #42fff6; /* светлее */
   }
+
+  /* ховер эффект для стрелки в кнопке fullArrowBtn */
+  .fullRow:hover .fullArrowBtn svg {
+    transform: rotate(
+      90deg
+    ); /* SVG стрелочка разворачивается на 45 градусов вниз */
+  }
+
+  /* подсветка тенью для всей кнопки fullRow при ховере */
+  .fullRow:hover {
+    filter: drop-shadow(0 0 5px rgba(14, 254, 242, 0.4)); /* цветная тень */
+  }
 }
 
-.fullRow:active.fullTextBtn,
-.fullRow:active .fullArrowBtn {
-  transform: scale(0.97);
+.fullRow:active {
+  transform: scale(0.991);
 }
 
 .fullTextBtn:focus-visible,
@@ -627,7 +646,8 @@
 }
 
 /* «нажатие» */
-.fullRow:active .fullTextBtn,
-.fullRow:active .fullArrowBtn {
-  transform: scale(0.97);
+
+/* активное состояние для стрелки - при нажатии разворачивается на 90 градусов */
+.fullArrowBtn:active svg {
+  transform: rotate(90deg); /* SVG стрелочка на 90° */
 }

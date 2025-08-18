@@ -129,7 +129,21 @@
   align-items: center;
   justify-content: center;
   z-index: 10;
+  cursor: pointer;
 }
+
+.fullRow:hover .fullArrowBtn svg {
+  transform: rotate(90deg);
+}
+
+.fullRow:hover {
+  filter: drop-shadow(0 0 5px rgba(14, 254, 242, 0.4));
+}
+
+.fullRow:active {
+  transform: scale(0.991);
+}
+
 .fullTextBtn {
   flex: 1;
 }
@@ -312,30 +326,26 @@
 /* --- hover как в hero: светлее фон + scale, и разъезд пары --- */
 @media (hover: hover) and (pointer: fine) {
   .fullRow {
-    transition: gap 0.15s ease;
+    /* убираем transition */
   }
   .fullRow:hover {
-    gap: 6px;
+    /* убираем ховер эффект */
   }
 
   .fullTextBtn,
   .fullArrowBtn {
-    transition: transform 0.15s ease, background-color 0.15s ease,
-      box-shadow 0.15s ease;
-    will-change: transform;
+    /* убираем transition */
+    /* убираем will-change */
   }
 
   .fullRow:hover .fullTextBtn,
   .fullRow:hover .fullArrowBtn {
-    transform: scale(1.01);
-    background-color: #27fff7; /* чуть светлее основного */
-    box-shadow: 0 6px 18px rgba(14, 254, 242, 0.18);
-    cursor: pointer;
+    /* убираем ховер эффект */
   }
 
   .fullTextBtn:active,
   .fullArrowBtn:active {
-    transform: scale(0.97);
+    /* убираем активный эффект */
   }
 }
 

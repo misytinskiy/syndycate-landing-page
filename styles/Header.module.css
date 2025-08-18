@@ -43,7 +43,9 @@
   border: 1px solid rgba(33, 33, 33, 1);
   color: rgba(186, 186, 186, 1);
   border-radius: 4px;
-  cursor: pointer;
+  cursor: pointer !important; /* принудительно устанавливаем курсор */
+  pointer-events: auto; /* гарантируем, что события мыши работают */
+  transition: color 0.15s ease, border-color 0.15s ease; /* плавный переход для ховер эффектов */
 }
 .button1 {
   padding: 10px 11px;
@@ -53,6 +55,15 @@
 }
 .button3 {
   padding: 10px 37px;
+}
+
+/* ховер эффекты для кнопок навигации */
+.nav button:hover,
+.nav button:focus,
+.nav button:active {
+  color: var(--color-primary); /* цвет текста на primary */
+  border-color: var(--color-primary); /* цвет бордера на primary */
+  cursor: pointer !important; /* дополнительная гарантия курсора */
 }
 
 .circles {
@@ -224,7 +235,7 @@
   padding: 0;
 }
 .overlayNav button:hover {
-  border-color: var(--color-primary);
+  /* убираем ховер эффект */
 }
 
 /* соцсети */
@@ -258,7 +269,7 @@
   cursor: pointer;
 }
 .overlayClose svg {
-  transition: transform 0.5s ease;
+  /* убираем transition */
 }
 .up svg {
   transform: rotate(180deg);
@@ -317,7 +328,7 @@
 }
 
 .nav button {
-  transition: border, color 0.15s ease;
+  /* убираем transition */
 }
 
 /* .socialIcon:hover {
