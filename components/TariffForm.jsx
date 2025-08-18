@@ -1,6 +1,7 @@
 "use client";
 import { useMemo, useState } from "react";
 import styles from "@/styles/TariffForm.module.css";
+import { downloadPrivacyPolicy } from "@/lib/downloadUtils";
 import CustomSelect from "./CustomSelect";
 
 export default function TariffForm({ tariff, onClose, onSubmit }) {
@@ -106,7 +107,7 @@ export default function TariffForm({ tariff, onClose, onSubmit }) {
                 <button
                   type="button"
                   className={styles.linkBtn}
-                  onClick={() => (window.location.href = "/privacy-policy")}
+                  onClick={downloadPrivacyPolicy}
                 >
                   PRIVACY POLICY
                 </button>{" "}

@@ -660,6 +660,17 @@
   .bottomRight {
     font-size: 14px;
   }
+
+  .cryptoIcons {
+    height: 59px;
+    min-width: 100px;
+    margin-left: 10px;
+  }
+
+  .cryptoIcons svg {
+    width: 70px;
+    height: 24px;
+  }
 }
 
 @media (max-height: 664px) {

@@ -69,7 +69,13 @@ export default function WhoIsForSection() {
               <ul className={styles.list}>
                 {item.bullets.map((b, i) => (
                   <li key={i} className={styles.bullet}>
-                    <span className={styles.bulletIcon}>&lt;</span>
+                    <span
+                      className={`${styles.bulletIcon} ${
+                        styles[`delay${i % 6}`]
+                      }`}
+                    >
+                      &lt;
+                    </span>
                     {b}
                   </li>
                 ))}

@@ -1,6 +1,6 @@
 "use client";
-import Link from "next/link";
 import styles from "@/styles/FooterSection.module.css";
+import { downloadPrivacyPolicy } from "@/lib/downloadUtils";
 
 export default function FooterSection() {
   return (
@@ -15,9 +15,9 @@ export default function FooterSection() {
       <div className={styles.metaRow}>
         <span className={styles.meta}>©2025</span>
 
-        <Link href="/privacy-policy" className={styles.privacy}>
+        <button className={styles.privacy} onClick={downloadPrivacyPolicy}>
           PRIVACY POLICY
-        </Link>
+        </button>
 
         <span className={styles.meta}>ALL RIGHTS RESERVED</span>
       </div>
