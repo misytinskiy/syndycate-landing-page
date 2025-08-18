@@ -600,7 +600,7 @@
   /* ховер эффект для стрелки в кнопке fullArrowBtn */
   .fullRow:hover .fullArrowBtn svg {
     transform: rotate(
-      90deg
+      45deg
     ); /* SVG стрелочка разворачивается на 45 градусов вниз */
   }
 

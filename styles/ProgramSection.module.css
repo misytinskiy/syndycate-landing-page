@@ -367,7 +367,7 @@
 }
 
 .rowBtn:hover .icon {
-  transform: rotate(45deg);
+  /* transform: rotate(45deg); */
 }
 
 .rowBtn:hover .icon path {

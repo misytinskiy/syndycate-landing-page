@@ -85,10 +85,6 @@
   border-color: var(--color-primary);
 }
 
-.questionRow:hover .icon {
-  transform: rotate(45deg);
-}
-
 .questionRow:hover .icon path {
   stroke: rgba(0, 0, 0, 1);
 }

@@ -879,8 +879,8 @@
 
   .ctaText,
   .ctaArrow {
-    transition: transform 0.15s ease, background-color 0.15s ease,
-      box-shadow 0.15s ease;
+    /* transition: transform 0.15s ease, background-color 0.15s ease,
+      box-shadow 0.15s ease; */
   }
 
   .ctaRow:hover .ctaText,
@@ -901,11 +901,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ctaRow,
+  /* .ctaRow,
   .ctaText,
   .ctaArrow {
     transition: none;
-  }
+  } */
 }
 
 @media (max-width: 982px) {
@@ -935,11 +935,19 @@
 }
 
 .linkBtn {
-  transition: color 0.15s ease;
+  transition: all 0.3s ease;
+}
+
+.ctaArrow svg {
+  transition: transform 0.3s ease;
 }
 
 .linkBtn:hover {
   color: #64fcf4;
+}
+
+.ctaRow:hover .ctaArrow svg {
+  transform: rotate(45deg);
 }
 
 /* Базовый слой оверлея — прозрачный и невидимый по умолчанию */

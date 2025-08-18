@@ -173,9 +173,6 @@ export default function TariffForm({ tariff, onClose, onSubmit }) {
                 {(tariff?.price || "").replace("$", "")}
               </span>
             </div>
-            {/* {tariff?.oldPrice && (
-              <s className={styles.oldPrice}>{tariff.oldPrice}</s>
-            )} */}
           </div>
           <div className={styles.ctaRow}>
             <button
