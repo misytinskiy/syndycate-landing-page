@@ -628,9 +628,9 @@
 
   /* фон-график чуть ниже, чтобы не перекрывал таймер/кнопку */
   .graphBg {
-    bottom: 200px;
+    bottom: -140px;
     left: 0;
-    transform: scale(5.5); /* увеличиваем график на 50% */
+    transform: scaley(7) scaleX(3.5); /* увеличиваем график на 50% */
     transform-origin: center bottom; /* масштабируем от центра снизу */
   }
 

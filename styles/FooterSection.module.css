@@ -161,6 +161,12 @@
   }
 }
 
+@media (max-width: 736px) {
+  .wordmark {
+    font-size: 94px;
+  }
+}
+
 @media (max-width: 430px) {
   .section {
     padding: 94px 12px 40px;
