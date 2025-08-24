@@ -98,7 +98,17 @@ export default function StatsSection() {
           className={styles.statsGraphSvg}
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g opacity="0.04" filter="url(#filter0_i_166_50)">
+          <defs>
+            <mask id="topOnlyMask">
+              <rect width="100%" height="100%" fill="white" />
+              <rect x="0" y="1000" width="100%" height="100%" fill="black" />
+            </mask>
+          </defs>
+          <g
+            opacity="0.04"
+            filter="url(#filter0_i_166_50)"
+            mask="url(#topOnlyMask)"
+          >
             <path
               d="M55.902 39.9013L-32 73V1151H1952V10L1884.78 126.609L1768.44 190.77L1674 267.5L1520.5 243.5L1426.5 330.5L1396.5 393L1320.5 578L1307 633.5L1281.5 617L1232 660.5L1187.5 718.5L1110 691.5L1006.5 727.5L951.5 769.5L905 691.5L829 670.5L790 599L762 617L646.914 524.303L568.836 492.732L421.988 546.199L269.969 505.462L249.286 538.561L206.37 505.462L168.106 590.5L55.902 39.9013Z"
               stroke="#0EDAFE"
@@ -127,7 +137,7 @@ export default function StatsSection() {
                 values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
                 result="hardAlpha"
               />
-              <feOffset dy="4" />
+              <feOffset dy="-4" />
               <feGaussianBlur stdDeviation="11.6" />
               <feComposite
                 in2="hardAlpha"

@@ -237,6 +237,7 @@
   height: 1080px;
   pointer-events: none;
   z-index: 1;
+  opacity: 80%;
 }
 
 .dashLine {
