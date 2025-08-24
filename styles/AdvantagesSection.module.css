@@ -359,6 +359,27 @@
   display: block;
 }
 
+/* Предотвращаем проблему с белым кругом при повороте экрана */
+.gradient svg {
+  /* Принудительно устанавливаем цвета для предотвращения проблем с CSS переменными */
+  color: #0efef2;
+  fill: #0efef2;
+}
+
+.gradient svg circle {
+  /* Fallback цвет для круга */
+  fill: #0efef2;
+}
+
+/* Специальные стили для планшетов при повороте экрана */
+@media (orientation: landscape) and (max-width: 1024px) {
+  .gradient svg {
+    /* Принудительно перерисовываем SVG при изменении ориентации */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+}
+
 /* Специальный класс для градиента в AdvantagesSection */
 .advantagesGradient {
   position: absolute;
