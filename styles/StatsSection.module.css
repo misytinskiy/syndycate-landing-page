@@ -275,6 +275,8 @@
 
   .statsGraphSvg {
     height: 76%;
+    transform: scaleY(1.7);
+    bottom: -143px;
   }
 
   .headerRow {
@@ -312,6 +314,15 @@
 
   .valueRow {
     margin-bottom: 14px;
+  }
+}
+
+@media (max-width: 1068px) {
+  .statsGraphSvg {
+    height: 76%;
+    transform: scaleY(2.1);
+    bottom: -206px;
+    /* transform-origin: center bottom; */
   }
 }
 
