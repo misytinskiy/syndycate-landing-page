@@ -30,6 +30,23 @@ const stencil = localFont({
 export const metadata = {
   title: "SNDCT",
   description: "THE NEW ERA OF TRADING IN ISRAEL",
+  icons: {
+    icon: [
+      { url: "/favicon-dark-theme.svg", type: "image/svg+xml" },
+      {
+        url: "/favicon-light-theme.svg",
+        type: "image/svg+xml",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/favicon-dark-theme.svg",
+        type: "image/svg+xml",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({ children }) {
