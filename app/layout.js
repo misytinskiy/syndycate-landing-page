@@ -32,7 +32,7 @@ export const metadata = {
   description: "THE NEW ERA OF TRADING IN ISRAEL",
   icons: {
     icon: [
-      { url: "/favicon-dark-theme.svg", type: "image/svg+xml" },
+      { url: "/favicon-light-theme.svg", type: "image/svg+xml" },
       {
         url: "/favicon-light-theme.svg",
         type: "image/svg+xml",
