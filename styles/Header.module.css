@@ -8,6 +8,16 @@
   background: var(--color-dark-secondary);
 }
 
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoImage {
+  flex-shrink: 0;
+}
+
 .logo {
   font-family: var(--font-stencil);
   font-weight: 400;
@@ -87,6 +97,7 @@
   justify-content: center;
   transition: transform 0.15s ease; /* плавный переход для анимации */
   cursor: pointer; /* курсор-указатель */
+  text-decoration: none; /* убираем подчеркивание ссылки */
 }
 
 /* ховер эффект для иконок соц сетей */
@@ -101,6 +112,15 @@
 
 /* ========= 1200–1280 PX tweaks (как было) ============ */
 @media (max-width: 982px) {
+  .logoContainer {
+    gap: 8px;
+  }
+
+  .logoImage {
+    width: 36px;
+    height: 36px;
+  }
+
   .logo {
     font-size: 40px;
     line-height: 1;
@@ -147,6 +167,16 @@
   .header {
     padding: 27px 20px 23px;
   }
+
+  .logoContainer {
+    gap: 6px;
+  }
+
+  .logoImage {
+    width: 32px;
+    height: 32px;
+  }
+
   .logo {
     font-size: 40px;
     line-height: 1;
@@ -245,7 +275,7 @@
   gap: 16px;
   justify-content: center;
 }
-.overlaySocials button {
+.overlaySocials a {
   width: 64px;
   height: 64px;
   border-radius: 32px;
@@ -253,6 +283,7 @@
   border: none;
   display: grid;
   place-items: center;
+  text-decoration: none; /* убираем подчеркивание ссылки */
 }
 
 /* низ: кнопка-стрелка закрыть */
@@ -290,6 +321,15 @@
     padding: 26px 12px 23px;
   }
 
+  .logoContainer {
+    gap: 5px;
+  }
+
+  .logoImage {
+    width: 28px;
+    height: 28px;
+  }
+
   .logo {
     font-size: 32px;
   }
@@ -316,12 +356,12 @@
     gap: 20px;
   }
 
-  .overlaySocials button svg {
+  .overlaySocials a svg {
     width: 48px;
     height: 48px;
   }
 
-  .overlaySocials button {
+  .overlaySocials a {
     width: 48px;
     height: 48px;
   }

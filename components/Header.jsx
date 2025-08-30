@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState, useCallback } from "react";
 import styles from "@/styles/Header.module.css";
+import Image from "next/image";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -34,7 +35,16 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>SNDCT</div>
+      <div className={styles.logoContainer}>
+        <Image
+          src="/logo.svg"
+          alt="SNDCT Logo"
+          width={40}
+          height={40}
+          className={styles.logoImage}
+        />
+        <div className={styles.logo}>SNDCT</div>
+      </div>
       <div className={styles.line} />
 
       {/* десктопная навигация (>1280px) */}
@@ -51,7 +61,13 @@ export default function Header() {
           </button>
         </nav>
         <div className={styles.circlesRow}>
-          <div className={styles.circle}>
+          <a
+            href="https://t.me/syndicatefxx"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.circle}
+            aria-label="Telegram"
+          >
             <svg
               width="24"
               height="24"
@@ -64,8 +80,14 @@ export default function Header() {
                 fill="#0A0A0A"
               />
             </svg>
-          </div>
-          <div className={styles.circle}>
+          </a>
+          <a
+            href="https://www.instagram.com/syndicatefx.co/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.circle}
+            aria-label="Instagram"
+          >
             <svg
               width="24"
               height="24"
@@ -78,7 +100,7 @@ export default function Header() {
                 fill="#0A0A0A"
               />
             </svg>
-          </div>
+          </a>
         </div>
       </div>
 
@@ -110,7 +132,12 @@ export default function Header() {
         </nav>
 
         <div className={styles.overlaySocials}>
-          <button aria-label="Telegram">
+          <a
+            href="https://t.me/syndicatefxx"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Telegram"
+          >
             <svg
               width="64"
               height="64"
@@ -125,8 +152,13 @@ export default function Header() {
                 fill="#0A0A0A"
               />
             </svg>
-          </button>
-          <button aria-label="Instagram">
+          </a>
+          <a
+            href="https://www.instagram.com/syndicatefx.co/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
             <svg
               width="64"
               height="64"
@@ -140,7 +172,7 @@ export default function Header() {
                 fill="#0A0A0A"
               />
             </svg>
-          </button>
+          </a>
         </div>
 
         {/* кнопка-стрелка снизу — закрыть меню */}
