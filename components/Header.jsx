@@ -62,11 +62,11 @@ export default function Header() {
         </nav>
         <div className={styles.circlesRow}>
           <a
-            href="https://t.me/syndicatefxx"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.circle}
-            aria-label="Telegram"
+            aria-label="Instagram"
+            href="https://www.instagram.com/syndicatefx.co/"
           >
             <svg
               width="24"
@@ -82,11 +82,11 @@ export default function Header() {
             </svg>
           </a>
           <a
-            href="https://www.instagram.com/syndicatefx.co/"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.circle}
-            aria-label="Instagram"
+            href="https://t.me/syndicatefxx"
+            aria-label="Telegram"
           >
             <svg
               width="24"
@@ -133,10 +133,10 @@ export default function Header() {
 
         <div className={styles.overlaySocials}>
           <a
-            href="https://t.me/syndicatefxx"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Telegram"
+            href="https://t.me/syndicatefxx"
           >
             <svg
               width="64"
@@ -154,9 +154,9 @@ export default function Header() {
             </svg>
           </a>
           <a
-            href="https://www.instagram.com/syndicatefx.co/"
             target="_blank"
             rel="noopener noreferrer"
+            href="https://www.instagram.com/syndicatefx.co/"
             aria-label="Instagram"
           >
             <svg
