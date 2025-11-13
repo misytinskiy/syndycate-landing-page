@@ -2,9 +2,22 @@
 import { useEffect, useState, useCallback } from "react";
 import styles from "@/styles/Header.module.css";
 import Image from "next/image";
+import {
+  supportedLanguages,
+  useDictionary,
+  useLanguage,
+} from "./LanguageProvider";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const { language, setLanguage } = useLanguage();
+  const dictionary = useDictionary();
+  const navLabels = dictionary.header.nav;
+  const navItems = [
+    { id: "program", label: navLabels.program, className: styles.button1 },
+    { id: "tariffs", label: navLabels.tariffs, className: styles.button2 },
+    { id: "faq", label: navLabels.faq, className: styles.button3 },
+  ];
 
   // блокируем прокрутку фона, когда открыт оверлей
   useEffect(() => {
@@ -50,16 +63,32 @@ export default function Header() {
       {/* десктопная навигация (>1280px) */}
       <div className={styles.circles}>
         <nav className={styles.nav}>
-          <button className={styles.button1} onClick={() => goTo("program")}>
-            Program
-          </button>
-          <button className={styles.button2} onClick={() => goTo("tariffs")}>
-            Tariffs
-          </button>
-          <button className={styles.button3} onClick={() => goTo("faq")}>
-            FAQ
-          </button>
+          {navItems.map(({ id, label, className }) => (
+            <button
+              key={id}
+              type="button"
+              className={className}
+              onClick={() => goTo(id)}
+            >
+              {label}
+            </button>
+          ))}
         </nav>
+        <div className={styles.languageSwitch}>
+          {supportedLanguages.map(({ code, label }) => (
+            <button
+              key={code}
+              type="button"
+              onClick={() => setLanguage(code)}
+              className={`${styles.langBtn} ${
+                language === code ? styles.langBtnActive : ""
+              }`}
+              aria-pressed={language === code}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
         <div className={styles.circlesRow}>
           <a
             target="_blank"
@@ -111,7 +140,7 @@ export default function Header() {
         aria-expanded={open}
         aria-controls="menu-overlay"
       >
-        MENU
+        {dictionary.header.menuButton}
       </button>
 
       {/* оверлей-меню */}
@@ -126,10 +155,27 @@ export default function Header() {
         </div>
 
         <nav className={styles.overlayNav}>
-          <button onClick={() => goTo("program")}>Program</button>
-          <button onClick={() => goTo("tariffs")}>Tariffs</button>
-          <button onClick={() => goTo("faq")}>FAQ</button>
+          {navItems.map(({ id, label }) => (
+            <button key={id} type="button" onClick={() => goTo(id)}>
+              {label}
+            </button>
+          ))}
         </nav>
+        <div className={styles.overlayLangSwitch}>
+          {supportedLanguages.map(({ code, label }) => (
+            <button
+              key={code}
+              type="button"
+              onClick={() => setLanguage(code)}
+              className={`${styles.overlayLangBtn} ${
+                language === code ? styles.overlayLangBtnActive : ""
+              }`}
+              aria-pressed={language === code}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
 
         <div className={styles.overlaySocials}>
           <a

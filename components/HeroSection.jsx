@@ -1,10 +1,19 @@
 "use client";
 import styles from "@/styles/HeroSection.module.css";
 import { useCallback, useEffect, useState } from "react";
+import { useDictionary } from "./LanguageProvider";
 
 export default function HeroSection() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0 });
   const [arrowUp, setArrowUp] = useState(false);
+  const dictionary = useDictionary();
+  const heroCopy = dictionary.hero ?? {};
+  const timerCopy = heroCopy.timer ?? {};
+  const headingCopy = heroCopy.heading ?? {};
+  const [highlightFirst = "", highlightSecond = ""] =
+    headingCopy.highlightLines ?? [];
+  const subheadingLines = heroCopy.subheadingLines ?? [];
+  const ctaText = heroCopy.cta ?? "";
 
   useEffect(() => {
     const targetDate = new Date("2025-09-01T00:00:00");
@@ -87,14 +96,14 @@ export default function HeroSection() {
         </svg>
 
         <div className={styles.timer}>
-          <div>Time until start:</div>
+          <div>{timerCopy.label ?? ""}</div>
           <div className={styles.timerValue}>
             {timeLeft.days}
-            <span className={styles.gray}>D</span>:
+            <span className={styles.gray}>{timerCopy.days ?? ""}</span>:
             {String(timeLeft.hours).padStart(2, "0")}
-            <span className={styles.gray}>H</span>:
+            <span className={styles.gray}>{timerCopy.hours ?? ""}</span>:
             {String(timeLeft.minutes).padStart(2, "0")}
-            <span className={styles.gray}>M</span>
+            <span className={styles.gray}>{timerCopy.minutes ?? ""}</span>
           </div>
         </div>
 
@@ -134,7 +143,7 @@ export default function HeroSection() {
       </div>
       <div className={styles.titleWrap}>
         <h1 className={styles.title}>
-          THE
+          {headingCopy.topLine}
           <span className={styles.cryptoIcons}>
             <svg
               width="219"
@@ -180,12 +189,12 @@ export default function HeroSection() {
           </span>
           <br />
           <span className={styles.blue}>
-            NEW ERA
+            {highlightFirst}
             <br />
-            OF TRADING
+            {highlightSecond}
           </span>
           <br />
-          IN ISRAEL
+          {headingCopy.bottomLine}
         </h1>
 
         <div className={styles.footerRow}>
@@ -211,15 +220,19 @@ export default function HeroSection() {
 
           <div className={styles.bottomRight}>
             <p>
-              CLOSED-COMMUNITY TRAINING FOR THOSE WHO WANT TO MASTER THE MARKET
-              AND TRADE WITH CONFIDENCE
+              {subheadingLines.map((line, idx) => (
+                <span key={`${line}-${idx}`}>
+                  {line}
+                  {idx < subheadingLines.length - 1 && <br />}
+                </span>
+              ))}
             </p>
             <div className={styles.signIn}>
               <button
                 className={styles.signInText}
                 onClick={() => goTo("tariffs")}
               >
-                Reserve your spot
+                {ctaText}
               </button>
               <button
                 className={styles.signInArrow}

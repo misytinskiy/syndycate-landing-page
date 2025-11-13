@@ -8,6 +8,10 @@
   height: calc(100vh - 82px);
 }
 
+:global(.rtl) .hero {
+  direction: rtl;
+}
+
 .timer {
   font-family: var(--font-inter);
   font-weight: 400;
@@ -39,12 +43,20 @@
   margin-right: 4px;
 }
 
+:global(.rtl) .timerWrapper {
+  direction: ltr;
+  justify-content: flex-start;
+  margin-right: 0;
+  margin-left: 4px;
+}
+
 .timerValue {
   font-family: var(--font-anton);
   font-size: 40px;
   line-height: 100%;
   margin-top: 12px;
   letter-spacing: 0.03em;
+  direction: ltr;
 }
 
 .gray {
@@ -84,6 +96,12 @@
   min-width: 284px;
   transform: translateY(-5%) translateX(3%);
   margin-top: -9px;
+}
+
+:global(.rtl) .cryptoIcons {
+  margin-left: 0;
+  margin-right: 35px;
+  transform: translateY(-5%) translateX(-3%);
 }
 
 .arrow {
@@ -326,6 +344,12 @@
   text-align: left;
   font-size: 22px;
   letter-spacing: -0.035em;
+}
+
+:global(.rtl) .bottomRight {
+  right: auto;
+  left: 30px;
+  text-align: right;
 }
 
 .title {

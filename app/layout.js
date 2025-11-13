@@ -1,5 +1,6 @@
 import "./globals.css";
 import IntercomMessenger from "@/components/Intercom";
+import { LanguageProvider } from "@/components/LanguageProvider";
 import { Inter, Anton, Black_Ops_One } from "next/font/google";
 import localFont from "next/font/local";
 
@@ -55,8 +56,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${stencil.variable} ${inter.variable} ${anton.variable} ${blackOps.variable}`}
       >
-        {children}
-        <IntercomMessenger />
+        <LanguageProvider>
+          {children}
+          <IntercomMessenger />
+        </LanguageProvider>
       </body>
     </html>
   );
