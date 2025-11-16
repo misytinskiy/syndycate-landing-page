@@ -3,84 +3,16 @@ import styles from "@/styles/ParticipationSection.module.css";
 import tStyles from "@/styles/TariffForm.module.css";
 import TariffForm from "@/components/TariffForm";
 import { useCallback, useEffect, useState } from "react";
-
-/** данные по тарифам */
-const tariffs = [
-  {
-    id: "t1",
-    title: "BEGINNER",
-    mode: "SELF-PACED LEARNING",
-    bullets: [
-      "LIFETIME ACCESS TO MATERIALS",
-      "ACCESS TO MENTOR SETUPS",
-      "REGULAR UPDATES",
-      "NO LIVE CONFERENCES",
-      "NO HOMEWORK ASSIGNMENTS",
-      "NO TRADING STRATEGY OPTIMIZATION",
-      "NO ASSISTANCE WITH PROP CHALLENGE",
-      "NO FINAL EXAM",
-    ],
-    extra: [
-      "1 months of free community access",
-      "Prop firm account for top 1 student — not included",
-      "Community Access: 1 months free",
-    ],
-    price: "$149",
-    cta: "Reserve your spot",
-  },
-  {
-    id: "t2",
-    title: "ADVANCE",
-    mode: "GROUP LEARNING",
-    bullets: [
-      "LIFETIME ACCESS TO MATERIALS",
-      "ACCESS TO MENTOR SETUPS",
-      "CHAT WITH MENTORS",
-      "REGULAR UPDATES",
-      "LIVE CONFERENCES",
-      "HOMEWORK ASSIGNMENTS",
-      "TRADING STRATEGY OPTIMIZATION",
-      "HELP PASSING PROP CHALLENGE",
-      "FINAL EXAM",
-    ],
-    extra: [
-      "2 months of free community access",
-      "Prop firm account for the top 1 student in the group",
-      "Community Access: 2 months free",
-    ],
-    price: "$699",
-    oldPrice: "$749",
-    cta: "Reserve your spot",
-  },
-  {
-    id: "t3",
-    title: "MENTORSHIP",
-    mode: "INDIVIDUAL LEARNING",
-    bullets: [
-      "LIFETIME ACCESS TO MATERIALS",
-      "ACCESS TO MENTOR SETUPS",
-      "CHAT WITH MENTORS",
-      "REGULAR UPDATES",
-      "LIVE CONFERENCES",
-      "HOMEWORK ASSIGNMENTS",
-      "TRADING STRATEGY OPTIMIZATION",
-      "HELP PASSING PROP CHALLENGE",
-      "FINAL EXAM",
-      "ONGOING 1-ON-1 SUPPORT FROM YOUR MENTOR",
-      "LIFETIME ACCESS TO THE PRIVATE COMMUNITY",
-      "WE WORK WITH YOU UNTIL YOU GET RESULTS",
-      "PERSONALIZED ANALYSIS AND TAILORED TRADING STRATEGY",
-    ],
-    extra: ["Community Access: lifetime"],
-    price: "$???",
-    cta: "Check with support",
-  },
-];
+import { useDictionary } from "./LanguageProvider";
 
 export default function ParticipationSection() {
   const [active, setActive] = useState(null);
   const [opening, setOpening] = useState(false);
   const [closing, setClosing] = useState(false);
+  const participation = useDictionary().participation ?? {};
+  const tariffs = participation.tariffs ?? [];
+  const titleLines = participation.title ?? [];
+  const modalCloseLabel = participation.form?.modalClose || "Close";
 
   const openModal = (t) => {
     setClosing(false);
@@ -136,13 +68,15 @@ export default function ParticipationSection() {
       <div className={styles.sectionHeader}>
         <div className={styles.about}>
           <span className={styles.bracket} />
-          <span className={styles.aboutText}>TARIFFS</span>
+          <span className={styles.aboutText}>
+            {participation.tag || "TARIFFS"}
+          </span>
           <span className={styles.bracket} />
         </div>
         <h2 className={styles.title}>
-          PARTICIPATION
+          {titleLines[0] || "PARTICIPATION"}
           <br />
-          FORMATS
+          {titleLines[1] || "FORMATS"}
         </h2>
       </div>
 
@@ -153,17 +87,20 @@ export default function ParticipationSection() {
             <p className={styles.mode}>{t.mode}</p>
 
             <ul className={styles.list}>
-              {t.bullets.map((b) => {
+              {(t.bullets ?? []).map((b) => {
+                const text = typeof b === "string" ? b : b?.text || "";
                 const muted =
-                  b.startsWith("NO ") ||
-                  b.toLowerCase().includes("not included");
+                  typeof b === "string"
+                    ? b.startsWith("NO ") ||
+                      b.toLowerCase().includes("not included")
+                    : Boolean(b?.muted);
                 return (
                   <li
-                    key={b}
+                    key={`${t.id}-${text}`}
                     className={`${styles.bullet} ${muted ? styles.muted : ""}`}
                   >
                     <span className={styles.bulletIcon}>&lt;</span>
-                    {b}
+                    {text}
                   </li>
                 );
               })}
@@ -173,16 +110,20 @@ export default function ParticipationSection() {
             <div className={styles.extra}>
               <span className={styles.star}>*</span>
               <div className={styles.extraLines}>
-                {t.extra.map((e) => {
-                  const mutedExtra = e.toLowerCase().includes("not included");
+                {(t.extra ?? []).map((e) => {
+                  const text = typeof e === "string" ? e : e?.text || "";
+                  const mutedExtra =
+                    typeof e === "string"
+                      ? e.toLowerCase().includes("not included")
+                      : Boolean(e?.muted);
                   return (
                     <p
-                      key={e}
+                      key={`${t.id}-${text}`}
                       className={`${styles.extraText} ${
                         mutedExtra ? styles.muted : ""
                       }`}
                     >
-                      {e}
+                      {text}
                     </p>
                   );
                 })}
@@ -193,10 +134,19 @@ export default function ParticipationSection() {
             <div className={styles.bottomRow}>
               <div className={styles.priceWrap}>
                 <div>
-                  <span className={styles.priceSymbol}>$</span>
-                  <span className={styles.price}>
-                    {t.price.replace("$", "")}
-                  </span>
+                  {(() => {
+                    const price = t.price || "";
+                    const symbol = price.match(/^[^\d?]+/)?.[0] || "";
+                    const amount = price.slice(symbol.length);
+                    return (
+                      <>
+                        <span className={styles.priceSymbol}>
+                          {symbol || "$"}
+                        </span>
+                        <span className={styles.price}>{amount || price}</span>
+                      </>
+                    );
+                  })()}
                 </div>
 
                 {/* {t.oldPrice && <s className={styles.oldPrice}>{t.oldPrice}</s>} */}
@@ -251,7 +201,7 @@ export default function ParticipationSection() {
           >
             <button
               className={tStyles.close}
-              aria-label="Close"
+              aria-label={modalCloseLabel}
               onClick={startClose}
             >
               ×

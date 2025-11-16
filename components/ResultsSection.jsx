@@ -3,20 +3,15 @@ import Image from "next/image";
 import styles from "@/styles/ResultsSection.module.css";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useFloatingBlobs } from "@/lib/useFloatingBlobs";
-
-const bullets = [
-  ["BUILD YOUR OWN OPTIMIZED", "TRADING STRATEGY"],
-  ["UNDERSTAND MARKET LOGIC", "AT A DEEPER LEVEL"],
-  ["RECEIVE LIFETIME ACCESS TO UPDATED", "COURSE MATERIALS"],
-  ["STAY IN TOUCH WITH YOUR MENTORS EVEN AFTER THE PROGRAM ENDS"],
-  ["GAIN ACCESS TO A PRIVATE COMMUNITY OF TRADERS"],
-];
+import { useDictionary } from "./LanguageProvider";
 
 export default function ResultsSection() {
   const [arrowDown, setArrowDown] = useState(false);
 
   const sectionRef = useRef(null);
   const gradRef = useRef(null);
+  const resultsCopy = useDictionary().results ?? {};
+  const bullets = resultsCopy.bullets ?? [];
 
   useFloatingBlobs(sectionRef, [gradRef], {
     speedRange: [12, 20], // замедлили движение
@@ -54,25 +49,27 @@ export default function ResultsSection() {
       <div className={styles.columns}>
         {/* ─── левая колонка: только заголовок ─── */}
         <h2 className={styles.title}>
-          AFTER THE PROGRAM
+          {resultsCopy.title?.top}
           <br />
-          <span>YOU WILL</span>
+          <span>{resultsCopy.title?.highlight}</span>
         </h2>
 
         {/* ─── правая колонка ─── */}
         <div className={styles.right}>
           {/* список */}
           <ul className={styles.list}>
-            {bullets.map((lines, i) => (
-              <li key={i} className={styles.listRow}>
-                <span className={styles.listText}>
-                  {lines.map((ln, j) => (
-                    <React.Fragment key={j}>
-                      {ln}
-                      {j !== lines.length - 1 && <br />}
-                    </React.Fragment>
-                  ))}
-                </span>
+            {bullets.map((lines, i) => {
+              const bulletLines = Array.isArray(lines) ? lines : [lines];
+              return (
+                <li key={i} className={styles.listRow}>
+                  <span className={styles.listText}>
+                    {bulletLines.map((ln, j) => (
+                      <React.Fragment key={j}>
+                        {ln}
+                        {j !== bulletLines.length - 1 && <br />}
+                      </React.Fragment>
+                    ))}
+                  </span>
                 <svg
                   width="40"
                   height="40"
@@ -88,7 +85,8 @@ export default function ResultsSection() {
                   />
                 </svg>
               </li>
-            ))}
+              );
+            })}
           </ul>
 
           {/* гифка вместо картинки */}
@@ -109,7 +107,7 @@ export default function ResultsSection() {
               className={styles.fullTextBtn}
               onClick={() => goTo("tariffs")}
             >
-              Reserve your spot
+              {resultsCopy.cta || "Reserve your spot"}
             </button>
             <button
               className={styles.fullArrowBtn}

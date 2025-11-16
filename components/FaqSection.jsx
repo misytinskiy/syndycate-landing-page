@@ -1,45 +1,29 @@
 "use client";
 import { useState } from "react";
 import styles from "@/styles/FaqSection.module.css";
-
-const faqs = [
-  {
-    q: "HOW LONG WILL I HAVE ACCESS TO THE MATERIALS?",
-    a: "LIFETIME ACCESS WITH ALL PLANS",
-  },
-  {
-    q: "I MISSED A LIVE SESSION — WHAT SHOULD I DO?",
-    a: "EVERY SESSION IS RECORDED. THE REPLAY WILL BE IN YOUR DASHBOARD WITHIN 24 H.",
-  },
-  {
-    q: "I DON’T HAVE A TRADING DEPOSIT YET — WHAT SHOULD I DO?",
-    a: "THE COURSE TEACHES RISK-FREE SIMULATION FIRST. YOU CAN START WITHOUT CAPITAL.",
-  },
-  {
-    q: "CAN I JOIN THE COMMUNITY WITHOUT TAKING THE COURSE?",
-    a: "YES. COMMUNITY-ONLY ACCESS IS AVAILABLE AS A SEPARATE PLAN.",
-  },
-];
+import { useDictionary } from "./LanguageProvider";
 
 export default function FaqSection() {
   const [openId, setOpenId] = useState(null);
+  const faqCopy = useDictionary().faq ?? {};
+  const faqs = faqCopy.items ?? [];
 
   return (
     <section className={styles.section} id="faq">
       <div className={styles.columns}>
         {/* левая колонка */}
         <div className={styles.left}>
-          <h2 className={styles.faq}>FAQ</h2>
+          <h2 className={styles.faq}>{faqCopy.tag || "FAQ"}</h2>
         </div>
 
         {/* правая колонка */}
         <div className={styles.right}>
           <ul className={styles.list}>
-            {faqs.map(({ q, a }, i) => {
+            {faqs.map(({ question, answer }, i) => {
               const opened = openId === i;
               return (
                 <li
-                  key={q}
+                  key={question}
                   className={`${styles.item} ${opened ? styles.open : ""}`}
                 >
                   {/* вопросная строка */}
@@ -47,7 +31,7 @@ export default function FaqSection() {
                     className={styles.questionRow}
                     onClick={() => setOpenId(opened ? null : i)}
                   >
-                    <span className={styles.question}>{q}</span>
+                    <span className={styles.question}>{question}</span>
                     <span className={styles.iconBox}>
                       <svg
                         width="12"
@@ -70,7 +54,7 @@ export default function FaqSection() {
 
                   {/* ответ (collapsible) */}
                   <div className={styles.answerWrapper}>
-                    <p className={styles.answer}>{a}</p>
+                    <p className={styles.answer}>{answer}</p>
                   </div>
                 </li>
               );

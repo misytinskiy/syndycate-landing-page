@@ -1,144 +1,9 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import styles from "@/styles/ProgramSection.module.css";
 import { flushSync } from "react-dom";
 import { useFloatingBlobs } from "@/lib/useFloatingBlobs";
-
-export const modules = [
-  {
-    title: "Introduction",
-    answer:
-      "Understanding what is trading, how it works, and your first steps.",
-  },
-  {
-    title: "Market Structure",
-    answer:
-      "Market Structure Range, strong and weak swings, advanced structure.",
-  },
-  {
-    title: "Liquidity",
-    answer: "Definition, operating principles, and structural liquidity.",
-  },
-  {
-    title: "Premium / Discount Zones",
-    answer: "Using the Fibonacci grid and P/D zones.",
-  },
-  {
-    title: "Fair Value Gap",
-    answer:
-      "Market imbalance, efficient vs. inefficient price delivery, rebalancing and price interaction with gaps, IFVG.",
-  },
-  {
-    title: "Supply & Demand",
-    answer:
-      'Order Block, Blocks: Breaker, Mitigation, Rejection, Propulsion. "buy to sell" and "sell to buy" manipulation. Price delivery mechanics.',
-  },
-  {
-    title: "Order Flow",
-    answer:
-      "How price reacts to liquidity, order flow and its components, types of order flow, inducement, examples.",
-  },
-  {
-    title: "Multi-Timeframe Analysis",
-    answer:
-      "Effective chart analysis, optimal entry and target identification, recognition of key interest zones.",
-  },
-  {
-    title: "Sessions / Part 1",
-    answer:
-      "Optimal trading periods, liquidity across sessions, raids on previous session high/low, Asia/London and London/New York.",
-  },
-  {
-    title: "Sessions / Part 2",
-    answer:
-      "Session dynamics, workflow scheme, principle of operation based solely on liquidity and balance.",
-  },
-  {
-    title: "Market Context",
-    answer:
-      "How to identify context? Context interpretation from SNDCT mentors.",
-  },
-  {
-    title: "Risk Management",
-    answer:
-      "Risk/reward, how to calculate volume in TradingView for any asset, high vs low RR.",
-  },
-  {
-    title: "Backtest",
-    answer: "What is backtest. How to backtest correctly.",
-  },
-  {
-    title: "Statics",
-    answer:
-      "What is statics, statics in dynamics, how to create your own setup.",
-  },
-  {
-    title: "Dynamics",
-    answer: "What is dynamics, example of applying a dynamic approach.",
-  },
-  {
-    title: "Trading Strategy",
-    answer:
-      "Creating your own trading strategy, optimization, trading strategy templates.",
-  },
-  {
-    title: "Indices",
-    answer:
-      "How to trade indices, correlations between indices. GER40, NAS100, S&P500.",
-  },
-  {
-    title: "News",
-    answer:
-      "Forex news calendar, how news affects the market, NFP/CPI reports, FOMC meetings.",
-  },
-  {
-    title: "Useful",
-    answer:
-      "AMD/PO3, SMT Divergence, causes of resweeps, price assignment, and spread.",
-  },
-  {
-    title: "Technical Psychology",
-    answer:
-      "Trading plan and rules, managing emotions during trading, risk management and psychology.",
-  },
-  {
-    title: "Roadmap",
-    answer:
-      "Turning knowledge into action: steps to take after completing your course.",
-  },
-  {
-    title: "Crypto",
-    answer: "Trading features, spot, drop, farming/staking.",
-  },
-  {
-    title: "Prop Trading",
-    answer: "What is prop trading? How to choose the right prop? Prop FAQ.",
-  },
-  {
-    title: "Forex Market",
-    answer:
-      "Terminology, contract types, trading platforms, fundamentals of brokerage services, and market basics.",
-  },
-  {
-    title: "Algorithms & Dynamics",
-    answer: "Trading algorithms, models and long-term strategies.",
-  },
-  {
-    title: "Working with XAU",
-    answer:
-      "How to trade using 4H/15M charts? Understanding price action and key features.",
-  },
-  {
-    title: "Gold & Indices - Differences from forex",
-    answer:
-      "Timing manipulations, timing strategies for indices and gold, specifics of trading U.S. indices, and how to trade high risk/reward setups.",
-  },
-  {
-    title: "Market Manipulations",
-    answer:
-      "Why does sweep and reversal not happen? Reversals, why do we get BE and then TP? How to understand key fractals?",
-  },
-];
+import { useDictionary } from "./LanguageProvider";
 
 export default function ProgramSection() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -151,6 +16,32 @@ export default function ProgramSection() {
   const sectionRef = useRef(null);
   const gradRef = useRef(null);
   const rowAnimTimerRef = useRef(null);
+  const programCopy = useDictionary().program ?? {};
+  const modules = programCopy.modules ?? [];
+  const previewCount = Math.max(1, programCopy.previewCount ?? 8);
+  const titleDesktopLines = programCopy.titles?.desktop ?? [];
+  const titleTabletLines =
+    programCopy.titles?.tablet ?? programCopy.titles?.desktop ?? [];
+  const paragraphBlocks = programCopy.paragraphs ?? [];
+  const buttonLabels = programCopy.buttons ?? {};
+
+  const renderTitleLines = (lines = []) =>
+    lines.map((line, idx) => (
+      <Fragment key={`${line.text || idx}-${idx}`}>
+        <span className={line.highlight ? styles.primary : undefined}>
+          {line.text}
+        </span>
+        {idx < lines.length - 1 && <br />}
+      </Fragment>
+    ));
+
+  const renderParagraphLines = (lines = []) =>
+    lines.map((line, idx) => (
+      <Fragment key={`${line}-${idx}`}>
+        {line}
+        {idx < lines.length - 1 && <br />}
+      </Fragment>
+    ));
 
   // Создаём градиент только один раз при монтировании компонента
   useEffect(() => {
@@ -251,7 +142,6 @@ export default function ProgramSection() {
     setOpenedIdx((cur) => (cur === idx ? null : idx));
   };
 
-  const VISIBLE_COUNT = 8;
   const DURATION = 1000;
 
   const easeOutQuad = (t) => t * (2 - t);
@@ -297,7 +187,9 @@ export default function ProgramSection() {
       return;
     }
 
-    const targetRow = list.children[VISIBLE_COUNT - 1] || list.lastElementChild;
+    const targetIndex = Math.min(previewCount, list.children.length) - 1;
+    const targetRow =
+      targetIndex >= 0 ? list.children[targetIndex] : list.lastElementChild;
     const wrapperTop = wrapper.getBoundingClientRect().top;
     const endH = targetRow
       ? targetRow.getBoundingClientRect().bottom - wrapperTop
@@ -327,7 +219,7 @@ export default function ProgramSection() {
     };
     wrapper.addEventListener("transitionend", onEnd);
   };
-  const visibleModules = isExpanded ? modules : modules.slice(0, 8);
+  const visibleModules = isExpanded ? modules : modules.slice(0, previewCount);
 
   return (
     <section className={styles.programSection} id="program" ref={sectionRef}>
@@ -337,36 +229,23 @@ export default function ProgramSection() {
           {/* твой заголовок как был */}
           <h2 className={styles.title}>
             <span className={styles.titleDesktop}>
-              NEW PROGRAM <br /> — 28 MODULES <br />
-              <span className={styles.primary}>
-                A STEP-BY-STEP SYSTEM TO BUILD
-              </span>
-              <br /> REAL TRADING SKILLS
+              {renderTitleLines(titleDesktopLines)}
             </span>
 
             <span className={styles.titleTablet}>
-              NEW PROGRAM <br /> — 28 MODULES <br />
-              <span className={styles.primary}>
-                A STEP-BY-STEP SYSTEM TO BUILD
-              </span>{" "}
-              REAL TRADING <br /> SKILLS
+              {renderTitleLines(titleTabletLines)}
             </span>
           </h2>
         </div>
 
         <div className={styles.contentColumn}>
-          {/* абзацы как были */}
-          <p className={styles.paragraph}>
-            THE PROGRAM IS DESIGNED FOR BOTH BEGINNERS AND EXPERIENCED TRADERS.
-            YOU’LL GAIN STRUCTURED THEORETICAL AND PRACTICAL KNOWLEDGE, MASTER
-            ESSENTIAL TRADING TOOLS, AND DEVELOP THE DISCIPLINE REQUIRED TO
-            SUCCEED IN A MARKET THAT DOESN’T FORGIVE MISTAKES
-          </p>
-          <p className={styles.paragraph}>
-            THE COURSE IS CONSTANTLY UPDATED, ENSURING <br /> YOU ALWAYS HAVE
-            ACCESS TO THE LATEST VERSION.
-            <span> ADAPT TO THE MARKET — IT WILL NEVER ADAPT TO YOU</span>
-          </p>
+          {/* абзацы */}
+          {paragraphBlocks.map((para, idx) => (
+            <p className={styles.paragraph} key={`para-${idx}`}>
+              {renderParagraphLines(para.lines || [])}
+              {para.highlight && <span> {para.highlight}</span>}
+            </p>
+          ))}
 
           {/* обёртка с анимируемой высотой */}
           <div ref={wrapperRef} className={styles.moduleWrapper}>
@@ -425,7 +304,9 @@ export default function ProgramSection() {
           {/* кнопка */}
           <div className={styles.fullRow} onClick={toggleExpand}>
             <button className={styles.fullTextBtn}>
-              {isExpanded ? "Hide program" : "The whole program"}
+              {isExpanded
+                ? buttonLabels.collapse || "Hide program"
+                : buttonLabels.expand || "The whole program"}
             </button>
             <button
               className={`${styles.fullArrowBtn} ${

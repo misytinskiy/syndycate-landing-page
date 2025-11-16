@@ -3,46 +3,14 @@ import styles from "@/styles/StatsSection.module.css";
 import { useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { useFloatingBlobs } from "@/lib/useFloatingBlobs";
-
-const stats = [
-  {
-    id: "s1",
-    value: "28",
-    note: "(01)",
-    description:
-      "THEORETICAL & PRACTICAL MODULES DESIGNED FOR REAL TRADING RESULTS",
-    area: "cell1",
-  },
-  {
-    id: "s2",
-    value: "90+",
-    note: "(02)",
-    description:
-      "HOURS OF LIVE ONLINE SESSIONS WITH MENTORS (RECORDINGS INCLUDED)",
-    area: "cell2",
-  },
-  {
-    id: "s3",
-    value: "60",
-    note: "(03)",
-    description:
-      "DAYS OF ACCESS TO A PRIVATE SYNDICATE COMMUNITY WITH MARKET UPDATES",
-    area: "cell3",
-  },
-  {
-    id: "s4",
-    value: "42",
-    note: "(04)",
-    description:
-      "PRACTICAL ASSIGNMENTS WITH PERSONAL FEEDBACK + FINAL CERTIFICATION EXAM",
-    area: "cell4",
-  },
-];
+import { useDictionary } from "./LanguageProvider";
 
 export default function StatsSection() {
   const sectionRef = useRef(null);
   const leftRef = useRef(null);
   const rightRef = useRef(null);
+  const statsCopy = useDictionary().stats ?? {};
+  const stats = statsCopy.items ?? [];
 
   useFloatingBlobs(sectionRef, [leftRef, rightRef], {
     speedRange: [12, 20], // замедлили движение
@@ -60,28 +28,30 @@ export default function StatsSection() {
         {/* левый блок  */}
         <div className={styles.about}>
           <span className={styles.bracket} />
-          <span className={styles.aboutText}>&lt;ABOUT&nbsp;US&gt;</span>
+          <span className={styles.aboutText}>{statsCopy.tag}</span>
           <span className={styles.bracket} />
         </div>
 
         {/* правый блок  */}
         <div className={styles.rightText}>
           <h2 className={styles.title}>
-            <span className={styles.primary}>WHAT IS SYNDICATE</span>
+            <span className={styles.primary}>
+              {statsCopy.title?.primary}
+            </span>
             <br />
-            IN NUMBERS?
+            {statsCopy.title?.secondary}
           </h2>
-          <p className={styles.subtext}>
-            WE ARE HAPPY TO PROVIDE YOU WITH ALL OUR COMPETENCIES AND MANY YEARS
-            OF EXPERIENCE TO ACHIEVE YOUR FINANCIAL GOALS
-          </p>
+          <p className={styles.subtext}>{statsCopy.description}</p>
         </div>
       </div>
 
       {/* ───── сетка карточек ───── */}
       <div className={styles.grid}>
         {stats.map((stat) => (
-          <div key={stat.id} className={`${styles.card} ${styles[stat.area]}`}>
+          <div
+            key={stat.id || stat.note}
+            className={`${styles.card} ${styles[stat.area] ?? ""}`}
+          >
             <span className={styles.decor} />
             <div className={styles.note}>{stat.note}</div>
             <div className={styles.valueRow}>

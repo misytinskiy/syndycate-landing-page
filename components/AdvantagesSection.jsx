@@ -3,43 +3,16 @@ import Image from "next/image";
 import styles from "@/styles/AdvantagesSection.module.css";
 import { useFloatingBlobs } from "@/lib/useFloatingBlobs";
 import { useRef } from "react";
-
-const lead =
-  "We aim to see our students grow by making solid trades. No matter their starting point, they all come looking for the same thing: a real trading community driven by support and experience. After over three years of learning and evolving, we’ve built a space where pros mentor newcomers and everyone levels up together.";
-
-const cards = [
-  {
-    id: "a1",
-    value: "20",
-    desc: "CHANNELS FILLED WITH EDUCATIONAL CONTENT, HELPFUL LINKS, MARKET ANALYSIS, LIVE STREAMS, AND INTUITIVE NAVIGATION",
-  },
-  {
-    id: "a2",
-    value: "10",
-    desc: "CHATS FOR TRADE REVIEWS, MARKET TALKS, PSYCHOLOGY, AND REAL CONNECTION",
-  },
-  {
-    id: "a3",
-    value: "35+",
-    desc: "hours of educational materials <br/> and guides",
-  },
-  {
-    id: "a4",
-    value: "LIVE",
-    desc: "CALLS WHERE MENTORS HOST Q&A SESSIONS, ANALYZE THE MARKET, AND PERFORM BACKTESTING",
-  },
-  {
-    id: "a5",
-    value: "24/7",
-    desc: "HELP WITH ANY QUESTIONS THAT <br/> COME UP DURING LEARNING",
-  },
-  { id: "a6", value: "REGULAR", desc: "MORNING CALLS WITH MARKET OVERVIEWS" },
-];
+import { useDictionary } from "./LanguageProvider";
 
 export default function AdvantagesSection() {
   const sectionRef = useRef(null);
   const headerRowRef = useRef(null);
   const gradRef = useRef(null);
+  const dictionary = useDictionary();
+  const advantages = dictionary.advantages ?? {};
+  const cards = advantages.cards ?? [];
+  const titleLines = advantages.title ?? [];
 
   useFloatingBlobs(headerRowRef, [gradRef], {
     speedRange: [12, 20], // замедлили движение
@@ -130,20 +103,20 @@ export default function AdvantagesSection() {
         {/* слева <OUR ADVANTAGES> */}
         <div className={styles.about}>
           <span className={styles.bracket} />
-          <span className={styles.aboutText}>OUR&nbsp;ADVANTAGES</span>
+          <span className={styles.aboutText}>
+            {advantages.tag || "OUR ADVANTAGES"}
+          </span>
           <span className={styles.bracket} />
         </div>
 
         {/* справа заголовок + подзаголовок */}
         <div className={styles.rightTitle}>
           <h2 className={styles.title}>
-            SYNDICATE
+            {titleLines[0] || "SYNDICATE"}
             <br />
-            COMMUNITY SERVER
+            {titleLines[1] || "COMMUNITY SERVER"}
           </h2>
-          <p className={styles.subtext}>
-            “A FOCUSED ENVIRONMENT TURNS SLOW LEARNERS INTO FAST EARNERS.”
-          </p>
+          <p className={styles.subtext}>{advantages.quote}</p>
         </div>
       </div>
 
@@ -162,7 +135,7 @@ export default function AdvantagesSection() {
       {/* ───── НИЖНИЙ БЛОК ───── */}
       <div className={styles.bottom}>
         {/* левая колонка */}
-        <p className={styles.lead}>{lead}</p>
+        <p className={styles.lead}>{advantages.lead}</p>
 
         {/* правая колонка: карточки */}
         <div className={styles.cardsGrid}>
@@ -171,7 +144,7 @@ export default function AdvantagesSection() {
               <span className={styles.value}>{c.value}</span>
               <p
                 className={styles.desc}
-                dangerouslySetInnerHTML={{ __html: c.desc }}
+                dangerouslySetInnerHTML={{ __html: c.desc || "" }}
               />
             </div>
           ))}

@@ -1,7 +1,10 @@
 "use client";
 import styles from "@/styles/MarqueeBanner.module.css";
+import { useDictionary } from "./LanguageProvider";
 
 export default function MarqueeBanner() {
+  const marqueeText = useDictionary().marquee?.text;
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.track}>
@@ -22,7 +25,7 @@ export default function MarqueeBanner() {
             </svg>
 
             <span className={styles.text}>
-              You don’t need more time. You need the right space.
+              {marqueeText || "You don’t need more time. You need the right space."}
             </span>
           </span>
         ))}

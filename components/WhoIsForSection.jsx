@@ -1,57 +1,24 @@
 "use client";
 import styles from "@/styles/WhoIsForSection.module.css";
-
-const items = [
-  {
-    id: "w1",
-    number: "/01",
-    title: "STARTING FROM SCRATCH",
-    bullets: [
-      "YOU WANT TO START YOUR TRADING JOURNEY FROM ZERO AND BUILD A SOLID FOUNDATION WITH THE RIGHT KNOWLEDGE AND STRUCTURE.",
-    ],
-  },
-  {
-    id: "w2",
-    number: "/02",
-    title: "FIXING A BAD START",
-    bullets: [
-      "TRADING FEELS MESSY AND CHAOTIC",
-      "YOU'VE TRIED TOO MANY TOOLS BUT DON'T KNOW HOW TO USE THEM",
-      "YOU HAVE NO CLEAR STRATEGY",
-      "YOU'RE NOT CONFIDENT IN YOUR TRADES",
-      "YOU STRUGGLE WITH EMOTIONAL DISCIPLINE",
-      "YOU LACK A FULL-PICTURE UNDERSTANDING OF HOW MARKETS WORK",
-      "YOU WANT TO MANAGE YOUR FIRST LIVE TRADING ACCOUNT",
-    ],
-  },
-  {
-    id: "w3",
-    number: "/03",
-    title: "LEVELING UP",
-    bullets: [
-      "YOU WANT TO OPTIMIZE YOUR TRADING STRATEGY",
-      "YOU'RE LOOKING FOR A STRONG AND FOCUSED COMMUNITY",
-      "YOU AIM FOR STABILITY AND CONSISTENCY",
-      "YOU WANT TO ACCESS NEW TRADING MARKETS",
-      "YOU PLAN TO BUILD A PORTFOLIO ACROSS MULTIPLE PROP FIRMS",
-      "YOU'RE READY TO TURN TRADING INTO YOUR MAIN INCOME STREAM",
-    ],
-  },
-];
+import { useDictionary } from "./LanguageProvider";
 
 export default function WhoIsForSection() {
+  const whoCopy = useDictionary().whoIsFor ?? {};
+  const items = whoCopy.items ?? [];
+  const tag = whoCopy.tag || "WHO IS THIS FOR?";
+  const titlePrefix = whoCopy.title?.prefix || "WHO IS";
+  const titleSuffix = whoCopy.title?.suffix || "THIS FOR?";
+
   return (
     <section className={styles.section}>
       <div className={styles.headerRow}>
         <div className={styles.about}>
           <span className={styles.bracket} />
-          <span className={styles.aboutText}>
-            WHO&nbsp;IS&nbsp;THIS&nbsp;FOR?
-          </span>
+          <span className={styles.aboutText}>{tag}</span>
           <span className={styles.bracket} />
         </div>
         <h2 className={styles.title}>
-          <span>WHO IS</span> THIS FOR?
+          <span>{titlePrefix}</span> {titleSuffix}
         </h2>
       </div>
 
@@ -67,8 +34,8 @@ export default function WhoIsForSection() {
               </div>
 
               <ul className={styles.list}>
-                {item.bullets.map((b, i) => (
-                  <li key={i} className={styles.bullet}>
+                {item.bullets?.map((b, i) => (
+                  <li key={`${item.id}-${i}`} className={styles.bullet}>
                     <span
                       className={`${styles.bulletIcon} ${
                         styles[`delay${i % 6}`]

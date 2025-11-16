@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import styles from "@/styles/TariffForm.module.css";
 import { downloadPrivacyPolicy } from "@/lib/downloadUtils";
 import CustomSelect from "./CustomSelect";
+import { useDictionary } from "./LanguageProvider";
 
 export default function TariffForm({ tariff, onClose, onSubmit }) {
   const [name, setName] = useState("");
@@ -10,13 +11,24 @@ export default function TariffForm({ tariff, onClose, onSubmit }) {
   const [details, setDetails] = useState("");
   const [accept, setAccept] = useState(false);
   const [sending, setSending] = useState(false);
+  const formCopy = useDictionary().participation?.form ?? {};
+  const placeholders = formCopy.placeholders ?? {};
+  const contactOptions =
+    formCopy.contactOptions ?? [
+      { value: "call", label: "CALL ME" },
+      { value: "telegram", label: "TELEGRAM" },
+      { value: "whatsapp", label: "WHATSAPP" },
+    ];
+  const checkboxCopy = formCopy.checkbox ?? {};
+  const supportCopy = formCopy.support ?? {};
+  const ctaCopy = formCopy.cta ?? {};
 
   const detailsPlaceholder = useMemo(() => {
-    if (method === "telegram") return "TELEGRAM NICKNAME OR LINK";
-    if (method === "call") return "TELEPHONE NUMBER";
-    if (method === "whatsapp") return "WHATSAPP NUMBER";
+    if (method === "telegram") return placeholders.telegram || "";
+    if (method === "call") return placeholders.call || "";
+    if (method === "whatsapp") return placeholders.whatsapp || "";
     return "";
-  }, [method]);
+  }, [method, placeholders]);
 
   const canSubmit =
     !!name.trim() && !!method && !!details.trim() && accept && !sending;
@@ -70,7 +82,7 @@ export default function TariffForm({ tariff, onClose, onSubmit }) {
           <div className={styles.inputsContainer}>
             <input
               className={styles.input}
-              placeholder="NAME"
+              placeholder={placeholders.name || "NAME"}
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -80,12 +92,8 @@ export default function TariffForm({ tariff, onClose, onSubmit }) {
                 setMethod(val);
                 setDetails("");
               }}
-              placeholder="CHOOSE CONTACT METHOD"
-              options={[
-                { value: "call", label: "CALL ME" },
-                { value: "telegram", label: "TELEGRAM" },
-                { value: "whatsapp", label: "WHATSAPP" },
-              ]}
+              placeholder={placeholders.contactMethod || "CHOOSE CONTACT METHOD"}
+              options={contactOptions}
             />
             {!!method && (
               <input
@@ -103,26 +111,26 @@ export default function TariffForm({ tariff, onClose, onSubmit }) {
               />
 
               <span className={styles.cbText}>
-                I ACCEPT THE{" "}
+                {checkboxCopy.textBefore || "I ACCEPT THE"}{" "}
                 <button
                   type="button"
                   className={styles.linkBtn}
                   onClick={downloadPrivacyPolicy}
                 >
-                  PRIVACY POLICY
+                  {checkboxCopy.privacy || "PRIVACY POLICY"}
                 </button>{" "}
-                AND CONTRACTUAL OFFERS
+                {checkboxCopy.textAfter || "AND CONTRACTUAL OFFERS"}
               </span>
             </label>
 
             <div className={styles.inlineSupport}>
-              <span>OR CONTACT US DIRECTLY</span>
+              <span>{supportCopy.text || "OR CONTACT US DIRECTLY"}</span>
               <button
                 type="button"
                 className={styles.linkBtn}
                 onClick={() => (window.location.href = "/support")}
               >
-                SUPPORT
+                {supportCopy.link || "SUPPORT"}
               </button>
             </div>
           </div>
@@ -132,16 +140,19 @@ export default function TariffForm({ tariff, onClose, onSubmit }) {
       {/* RIGHT */}
       <div className={styles.rightCol}>
         <ul className={styles.list}>
-          {tariff?.bullets?.map((b) => {
+          {(tariff?.bullets ?? []).map((b) => {
+            const text = typeof b === "string" ? b : b?.text || "";
             const muted =
-              b.startsWith("NO ") || b.toLowerCase().includes("not included");
+              typeof b === "string"
+                ? b.startsWith("NO ") || b.toLowerCase().includes("not included")
+                : Boolean(b?.muted);
             return (
               <li
-                key={b}
+                key={`${tariff?.id || "tariff"}-${text}`}
                 className={`${styles.bullet} ${muted ? styles.muted : ""}`}
               >
                 <span className={styles.bulletIcon}>&lt;</span>
-                {b}
+                {text}
               </li>
             );
           })}
@@ -150,16 +161,20 @@ export default function TariffForm({ tariff, onClose, onSubmit }) {
         <div className={styles.extra}>
           <span className={styles.star}>*</span>
           <div className={styles.extraLines}>
-            {tariff?.extra?.map((e) => {
-              const mutedExtra = e.toLowerCase().includes("not included");
+            {(tariff?.extra ?? []).map((e) => {
+              const text = typeof e === "string" ? e : e?.text || "";
+              const mutedExtra =
+                typeof e === "string"
+                  ? e.toLowerCase().includes("not included")
+                  : Boolean(e?.muted);
               return (
                 <p
-                  key={e}
+                  key={`${tariff?.id || "tariff-extra"}-${text}`}
                   className={`${styles.extraText} ${
                     mutedExtra ? styles.muted : ""
                   }`}
                 >
-                  {e}
+                  {text}
                 </p>
               );
             })}
@@ -169,10 +184,19 @@ export default function TariffForm({ tariff, onClose, onSubmit }) {
         <div className={styles.bottomRow}>
           <div className={styles.priceWrap}>
             <div>
-              <span className={styles.priceSymbol}>$</span>
-              <span className={styles.price}>
-                {(tariff?.price || "").replace("$", "")}
-              </span>
+              {(() => {
+                const price = tariff?.price || "";
+                const symbol = price.match(/^[^\d?]+/)?.[0] || "";
+                const amount = price.slice(symbol.length);
+                return (
+                  <>
+                    <span className={styles.priceSymbol}>
+                      {symbol || "$"}
+                    </span>
+                    <span className={styles.price}>{amount || price}</span>
+                  </>
+                );
+              })()}
             </div>
           </div>
           <div className={styles.ctaRow}>
@@ -184,7 +208,9 @@ export default function TariffForm({ tariff, onClose, onSubmit }) {
               disabled={!canSubmit}
               onClick={handleSubmit}
             >
-              {sending ? "SENDING..." : tariff?.cta || "RESERVE YOUR SPOT"}
+              {sending
+                ? ctaCopy.sending || "SENDING..."
+                : tariff?.cta || ctaCopy.default || "RESERVE YOUR SPOT"}
             </button>
             <button
               type="button"
