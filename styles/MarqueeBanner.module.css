@@ -5,6 +5,7 @@
   overflow: hidden;
   background: #ffffff; /* белый фон, как в Figma */
   position: relative;
+  direction: ltr; /* сохраняем направление анимации независимо от языка */
 }
 
 .track {
