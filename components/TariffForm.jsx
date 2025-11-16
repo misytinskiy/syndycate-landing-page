@@ -128,7 +128,9 @@ export default function TariffForm({ tariff, onClose, onSubmit }) {
               <button
                 type="button"
                 className={styles.linkBtn}
-                onClick={() => (window.location.href = "/support")}
+                onClick={() =>
+                  window.open("https://t.me/sndct_supp", "_blank", "noopener,noreferrer")
+                }
               >
                 {supportCopy.link || "SUPPORT"}
               </button>
