@@ -8,9 +8,6 @@
   background: var(--color-dark-secondary);
 }
 
-:global(.rtl) .header {
-  direction: rtl;
-}
 
 .logoContainer {
   display: flex;
@@ -47,10 +44,6 @@
   margin-right: 38px;
 }
 
-:global(.rtl) .nav {
-  margin-right: 0;
-  margin-left: 38px;
-}
 .nav button {
   font-family: var(--font-inter);
   font-weight: 400;
@@ -91,10 +84,6 @@
   padding-right: 1px;
 }
 
-:global(.rtl) .circles {
-  padding-right: 0;
-  padding-left: 1px;
-}
 .languageSwitch {
   display: flex;
   align-items: center;
@@ -102,9 +91,6 @@
   padding: 0 6px;
 }
 
-:global(.rtl) .languageSwitch {
-  flex-direction: row-reverse;
-}
 .langBtn {
   font-family: var(--font-inter);
   font-size: 14px;
@@ -128,10 +114,6 @@
   align-items: center;
   gap: 12px;
 }
-
-:global(.rtl) .circlesRow {
-  flex-direction: row-reverse;
-}
 .circle {
   width: 40px;
   height: 40px;
@@ -153,11 +135,6 @@
 /* кнопка меню — по умолчанию скрыта (видна на ≤1280px) */
 .menuBtn {
   display: none;
-}
-
-:global(.rtl) .menuBtn {
-  margin-left: 0;
-  margin-right: auto;
 }
 
 /* ========= 1200–1280 PX tweaks (как было) ============ */
@@ -249,19 +226,11 @@
   opacity: 1; /* на случай будущих эффектов */
 }
 
-:global(.rtl) .menuOverlay {
-  direction: rtl;
-}
-
 .overlayLangSwitch {
   display: flex;
   justify-content: center;
   gap: 12px;
   margin: 24px 0;
-}
-
-:global(.rtl) .overlayLangSwitch {
-  flex-direction: row-reverse;
 }
 .overlayLangBtn {
   font-family: var(--font-inter);
@@ -330,10 +299,6 @@
   align-content: start;
   justify-items: center;
   padding: 0 20px;
-}
-
-:global(.rtl) .overlayNav {
-  direction: rtl;
 }
 .overlayNav button {
   background: none;
