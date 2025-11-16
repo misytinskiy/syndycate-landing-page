@@ -98,12 +98,12 @@ export default function HeroSection() {
         <div className={styles.timer}>
           <div>{timerCopy.label ?? ""}</div>
           <div className={styles.timerValue}>
-            {timeLeft.days}
-            <span className={styles.gray}>{timerCopy.days ?? ""}</span>:
+            {String(timeLeft.days).padStart(2, "0")}
+            <span className={styles.gray}>D</span>:
             {String(timeLeft.hours).padStart(2, "0")}
-            <span className={styles.gray}>{timerCopy.hours ?? ""}</span>:
+            <span className={styles.gray}>H</span>:
             {String(timeLeft.minutes).padStart(2, "0")}
-            <span className={styles.gray}>{timerCopy.minutes ?? ""}</span>
+            <span className={styles.gray}>M</span>
           </div>
         </div>
 
